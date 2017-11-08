@@ -1,0 +1,64 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{_name}</title>
+</head>
+<body>
+
+<div ><b>{_name}</b></div>
+<br>
+<div>    
+<table  border="1"  cellpadding=5 >	
+    <tr style="vertical-align:top; font-size:10pt; text-align:center;">
+        <th colspan="2" class="header c0">{info}</th>
+    </tr>
+    <tr>
+        <td> {depart} </td>
+        <td> {depart_name}  </td>
+    </tr>
+    <tr >
+        <td> {request_name}  </td>
+        <td> {requestdate}  </td>
+    </tr>
+    <tr >
+        <td> {data_begin_name}  </td>
+        <td> {data_begin}  </td>
+    </tr>
+    <tr >
+        <td> {data_complete}  </td>
+        <td> {completedate}  </td>
+    </tr>
+</table>    
+</div>
+<br>
+    
+<table class="generaltable boxaligncenter" border="1" align="center" frame='box' rules='all' cellpadding=5>	
+	<tr style="vertical-align:top; font-size:10pt; text-align:center;"> 
+		<th class="header c0">{column_fio}</th>
+		<th class="header c0">{column_lastaccess}</th>
+		<th class="header c0">{column_countaccess}</th>
+		<th class="header c0">{column_countaccessage}</th>
+		<th class="header c0">{column_messageforum}</th>
+		<th class="header c0">{column_countcourse}</th>
+		<th class="header c0">{column_countelements}</th>
+		<th class="header c0">{column_activecpassed}</th>
+	</tr>
+
+	<!-- BEGIN persons --> 
+	<tr >
+		<td class="cell c0">{fio}</td>
+		<td style="text-align:center;" class="cell c0">{lastaccess}</td>
+		<td style="text-align:center;" class="cell c0">{countaccess}</td>
+        <td style="text-align:center;" class="cell c0">{countaccessage}</td>
+        <td style="text-align:center;" class="cell c0">{messageforum}</td>
+        <td style="text-align:center;" class="cell c0">{countcourse}</td>
+		<td style="text-align:center;" class="cell c0">{countelements}</td>
+		<td style="text-align:center;" class="cell c0">{activecpasscstream}</td>
+		
+	</tr>
+	<!-- END persons -->
+    
+</table>	
+<br>
+
+</body>
+

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20120306" COMMENT="XMLDB file for Moodle blocks/dof/storages/ages"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_ages" COMMENT="Учебные периоды">
+      <FIELDS>
+        <FIELD NAME="id"             TYPE="int"  LENGTH="10"  NOTNULL="true"  UNSIGNED="true" SEQUENCE="true"                          NEXT="name"/>
+        <FIELD NAME="name"           TYPE="char" LENGTH="255" NOTNULL="false"                 SEQUENCE="false" PREVIOUS="id"           NEXT="begindate"      COMMENT="название учебного периода"/>
+        <FIELD NAME="begindate"      TYPE="int"  LENGTH="10"  NOTNULL="false" UNSIGNED="true" SEQUENCE="false" PREVIOUS="name"         NEXT="enddate"        COMMENT="дата и время начала по UTC"/>
+        <FIELD NAME="enddate"        TYPE="int"  LENGTH="10"  NOTNULL="false" UNSIGNED="true" SEQUENCE="false" PREVIOUS="begindate"    NEXT="eduweeks"       COMMENT="дата и время окончания по UTC"/>
+        <FIELD NAME="eduweeks"       TYPE="int"  LENGTH="3"   NOTNULL="false" UNSIGNED="true" SEQUENCE="false" PREVIOUS="enddate"      NEXT="departmentid"   COMMENT="количество учебных недель/циклов"/>
+        <FIELD NAME="departmentid"   TYPE="int"  LENGTH="10"  NOTNULL="false" UNSIGNED="true" SEQUENCE="false" PREVIOUS="eduweeks"     NEXT="previousid"     COMMENT="структурное подразделение, объявившее учебный период"/>
+        <FIELD NAME="previousid"     TYPE="int"  LENGTH="10"  NOTNULL="false" UNSIGNED="true" SEQUENCE="false" PREVIOUS="departmentid" NEXT="status"         COMMENT="предыдущий учебный период"/>
+        <FIELD NAME="status"         TYPE="char" LENGTH="20"  NOTNULL="false"                 SEQUENCE="false" PREVIOUS="previousid"   NEXT="schdays"        COMMENT="список статусов"/>
+        <FIELD NAME="schdays"        TYPE="int"  LENGTH="5"   NOTNULL="true"  UNSIGNED="true" SEQUENCE="false" PREVIOUS="status"       NEXT="schedudays"     DEFAULT="7" COMMENT="количество дней в учебной неделе"/>
+        <FIELD NAME="schedudays"     TYPE="char" LENGTH="255" NOTNULL="true"                  SEQUENCE="false" PREVIOUS="schdays"      NEXT="schstartdaynum" DEFAULT="1,2,3,4,5" COMMENT="список учебных дней"/>
+        <FIELD NAME="schstartdaynum" TYPE="int"  LENGTH="5"   NOTNULL="true"  UNSIGNED="true" SEQUENCE="false" PREVIOUS="schedudays"                         DEFAULT="1" COMMENT="номер первого дня в периоде"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="iname"           UNIQUE="false" FIELDS="name"                                    NEXT="ibegindate"/>
+        <INDEX NAME="ibegindate"      UNIQUE="false" FIELDS="begindate"      PREVIOUS="iname"         NEXT="ienddate"/>
+        <INDEX NAME="ienddate"        UNIQUE="false" FIELDS="enddate"        PREVIOUS="ibegindate"    NEXT="idepartmentid"/>
+        <INDEX NAME="idepartmentid"   UNIQUE="false" FIELDS="departmentid"   PREVIOUS="ienddate"      NEXT="ipreviousid"/>
+        <INDEX NAME="ipreviousid"     UNIQUE="false" FIELDS="previousid"     PREVIOUS="idepartmentid" NEXT="istatus"/>
+        <INDEX NAME="istatus"         UNIQUE="false" FIELDS="status"         PREVIOUS="ipreviousid"   NEXT="ischdays"/>
+        <INDEX NAME="ischdays"        UNIQUE="false" FIELDS="schdays"        PREVIOUS="istatus"       NEXT="ischedudays"/>
+        <INDEX NAME="ischedudays"     UNIQUE="false" FIELDS="schedudays"     PREVIOUS="ischdays"      NEXT="ischstartdaynum"/>
+        <INDEX NAME="ischstartdaynum" UNIQUE="false" FIELDS="schstartdaynum" PREVIOUS="ischedudays"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

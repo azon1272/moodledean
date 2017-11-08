@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20090529" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_contracts" COMMENT="Контракты на обучение">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="typeid"/>
+        <FIELD NAME="typeid" TYPE="int" LENGTH="2" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="тип договора (1 - договор непосредственно с учеником, 2 - договор с законным представителем)" PREVIOUS="id" NEXT="num"/>
+        <FIELD NAME="num" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="Номер договора" PREVIOUS="typeid" NEXT="numpass"/>
+        <FIELD NAME="numpass" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="номер пропуска, студенческого билета и т.п." PREVIOUS="num" NEXT="date"/>
+        <FIELD NAME="date" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="Дата заключения договора" PREVIOUS="numpass" NEXT="sellerid"/>
+        <FIELD NAME="sellerid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id продавца в persons" PREVIOUS="date" NEXT="clientid"/>
+        <FIELD NAME="clientid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id в persons законного представителя/плательщика" PREVIOUS="sellerid" NEXT="studentid"/>
+        <FIELD NAME="studentid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id в persons ученика" PREVIOUS="clientid" NEXT="adddate"/>
+        <FIELD NAME="adddate" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="Дата добавления в БД" PREVIOUS="studentid" NEXT="notes"/>
+        <FIELD NAME="notes" TYPE="text" LENGTH="small" NOTNULL="false" SEQUENCE="false" COMMENT="Заметки" PREVIOUS="adddate" NEXT="departmentid"/>
+        <FIELD NAME="departmentid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="подразделение, к которому приписан контракт на обучение" PREVIOUS="notes" NEXT="status"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Статус договора" PREVIOUS="departmentid" NEXT="contractform"/>
+        <FIELD NAME="contractform" TYPE="char" LENGTH="30" NOTNULL="false" SEQUENCE="false" COMMENT="форма договора (шаблон)" PREVIOUS="status" NEXT="organizationid"/>
+        <FIELD NAME="organizationid" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="юридическое лицо , оплачивающее  договор, если ученик платит за себя сам - то не указывается." PREVIOUS="contractform" NEXT="curatorid"/>
+        <FIELD NAME="curatorid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="Куратор данного ученика от работодателя" PREVIOUS="organizationid" NEXT="enddate"/>
+        <FIELD NAME="enddate" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата окончания договора" PREVIOUS="curatorid" NEXT="metacontractid"/>
+        <FIELD NAME="metacontractid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="метаконтракт" PREVIOUS="enddate"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="itypeid" UNIQUE="false" FIELDS="typeid" COMMENT="тип договора" NEXT="inum"/>
+        <INDEX NAME="inum" UNIQUE="true" FIELDS="num" COMMENT="Только уникальные номера договоров" PREVIOUS="itypeid" NEXT="idate"/>
+        <INDEX NAME="idate" UNIQUE="false" FIELDS="date" COMMENT="Индекс по дате заключения" PREVIOUS="inum" NEXT="isellerid"/>
+        <INDEX NAME="isellerid" UNIQUE="false" FIELDS="sellerid" PREVIOUS="idate" NEXT="iclientid"/>
+        <INDEX NAME="iclientid" UNIQUE="false" FIELDS="clientid" PREVIOUS="isellerid" NEXT="istudentid"/>
+        <INDEX NAME="istudentid" UNIQUE="false" FIELDS="studentid" PREVIOUS="iclientid" NEXT="istatus"/>
+        <INDEX NAME="istatus" UNIQUE="false" FIELDS="status" PREVIOUS="istudentid" NEXT="iadddate"/>
+        <INDEX NAME="iadddate" UNIQUE="false" FIELDS="adddate" PREVIOUS="istatus" NEXT="iorganizationid"/>
+        <INDEX NAME="iorganizationid" UNIQUE="false" FIELDS="organizationid" PREVIOUS="iadddate" NEXT="icuratorid"/>
+        <INDEX NAME="icuratorid" UNIQUE="false" FIELDS="curatorid" PREVIOUS="iorganizationid" NEXT="ienddate"/>
+        <INDEX NAME="ienddate" UNIQUE="false" FIELDS="enddate" PREVIOUS="icuratorid" NEXT="imetacontractid"/>
+        <INDEX NAME="imetacontractid" UNIQUE="false" FIELDS="metacontractid" PREVIOUS="ienddate"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

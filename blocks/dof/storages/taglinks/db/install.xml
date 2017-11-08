@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20120306" COMMENT="XMLDB file for Moodle blocks/dof/storages/taglinks"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_taglinks" COMMENT="Ссылки на объекты для тегов">
+      <FIELDS> 
+        <FIELD NAME="id"           TYPE="int"       LENGTH="10"   NOTNULL="true"  UNSIGNED="true"  SEQUENCE="true"                           NEXT="tagid"                         COMMENT="id линка"/>
+        <FIELD NAME="tagid"        TYPE="int"       LENGTH="10"   NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" PREVIOUS="id"            NEXT="plugintype"                    COMMENT="id тега"/>
+        <FIELD NAME="plugintype"   TYPE="char"      LENGTH="255"  NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" PREVIOUS="tagid"         NEXT="plugincode"                    COMMENT="Тип плагина"/>
+        <FIELD NAME="plugincode"   TYPE="char"      LENGTH="255"  NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" PREVIOUS="plugintype"    NEXT="objectid"                      COMMENT="Код плагина"/>
+        <FIELD NAME="objectid"     TYPE="int"       LENGTH="10"   NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" PREVIOUS="plugincode"    NEXT="sortname"     DEFAULT="0"      COMMENT="Id объекта"/>
+        <FIELD NAME="sortname"     TYPE="char"      LENGTH="255"  NOTNULL="false"                  SEQUENCE="false" PREVIOUS="objectid"      NEXT="departmentid" DEFAULT=""       COMMENT="Сортировка"/>
+        <FIELD NAME="departmentid" TYPE="int"       LENGTH="10"   NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" PREVIOUS="sortname"      NEXT="infotext"     DEFAULT="0"      COMMENT="Id подразделения"/>
+        <FIELD NAME="infotext"     TYPE="text"                    NOTNULL="true"                   SEQUENCE="false" PREVIOUS="departmentid"  NEXT="infoserial"                    COMMENT="Информация о линке"/>
+        <FIELD NAME="infoserial"   TYPE="text"                    NOTNULL="false"                  SEQUENCE="false" PREVIOUS="infotext"      NEXT="date"                          COMMENT="Сериализованный объект линка"/>
+        <FIELD NAME="date"         TYPE="int"       LENGTH="11"   NOTNULL="true"                   SEQUENCE="false" PREVIOUS="infoserial"    NEXT="updatemark"                    COMMENT="Дата создания"/>
+        <FIELD NAME="updatemark"   TYPE="int"       LENGTH="12"   NOTNULL="true"                   SEQUENCE="false" PREVIOUS="date"          NEXT="status"                        COMMENT="Метка актуальности"/>
+        <FIELD NAME="status"       TYPE="char"      LENGTH="255"  NOTNULL="true"                   SEQUENCE="false" PREVIOUS="updatemark"                        DEFAULT="active" COMMENT="Статус линка"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="id" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="id"            UNIQUE="true"  FIELDS="id"                                    NEXT="plugintype"/>
+        <INDEX NAME="plugintype"    UNIQUE="false" FIELDS="plugintype"   PREVIOUS="id"            NEXT="plugincode"/>
+        <INDEX NAME="plugincode"    UNIQUE="false" FIELDS="plugincode"   PREVIOUS="plugintype"    NEXT="objectid"/>
+        <INDEX NAME="objectid"      UNIQUE="false" FIELDS="objectid"     PREVIOUS="plugincode"    NEXT="departmentid"/>
+        <INDEX NAME="departmentid"  UNIQUE="false" FIELDS="departmentid" PREVIOUS="objectid"      NEXT="date"/>
+        <INDEX NAME="date"          UNIQUE="false" FIELDS="date"         PREVIOUS="departmentid"  NEXT="updatemark"/>
+        <INDEX NAME="updatemark"    UNIQUE="false" FIELDS="updatemark"   PREVIOUS="date"          NEXT="status"/>
+        <INDEX NAME="status"        UNIQUE="false" FIELDS="status"       PREVIOUS="updatemark"                     />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

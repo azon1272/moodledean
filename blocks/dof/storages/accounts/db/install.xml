@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20120306" COMMENT="XMLDB file for Moodle blocks/dof/storages/accounts"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_accounts" COMMENT="Справочник счетов">
+      <FIELDS> 
+        <FIELD NAME="id"         TYPE="int"  LENGTH="10"  NOTNULL="true"  UNSIGNED="true"  SEQUENCE="true"  NEXT="plugintype"                       COMMENT="id счета"/>
+        <FIELD NAME="plugintype" TYPE="char" LENGTH="20"  NOTNULL="true"                   SEQUENCE="false" NEXT="plugincode" PREVIOUS="id"         COMMENT="тип плагина - владельца"/>
+        <FIELD NAME="plugincode" TYPE="char" LENGTH="20"  NOTNULL="true"                   SEQUENCE="false" NEXT="code"       PREVIOUS="plugintype" COMMENT="код плагина - владельца"/>
+        <FIELD NAME="code"       TYPE="char" LENGTH="20"  NOTNULL="true"                   SEQUENCE="false" NEXT="objectid"   PREVIOUS="plugincode" COMMENT="код счета"/>
+        <FIELD NAME="objectid"   TYPE="int"  LENGTH="10"  NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" NEXT="type"       PREVIOUS="code"       COMMENT="id объекта-владельца"/>
+        <FIELD NAME="type"       TYPE="char" LENGTH="20"  NOTNULL="true"                   SEQUENCE="false" NEXT="createdate" PREVIOUS="objectid"   COMMENT="тип счета"/>
+        <FIELD NAME="createdate" TYPE="int"  LENGTH="8"   NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" NEXT="md5code"    PREVIOUS="type"       COMMENT="дата создания счета"/>
+        <FIELD NAME="md5code"    TYPE="char" LENGTH="32"  NOTNULL="true"                   SEQUENCE="false" NEXT="name"       PREVIOUS="createdate" COMMENT="md5-хэш для определения уникальности счета"/>
+        <FIELD NAME="name"       TYPE="char" LENGTH="255" NOTNULL="true"                   SEQUENCE="false" NEXT="status"     PREVIOUS="md5code"    COMMENT="название сичта"/>
+        <FIELD NAME="status"     TYPE="char" LENGTH="20"  NOTNULL="true"                   SEQUENCE="false"                   PREVIOUS="name"       COMMENT="статус счета"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="plugintype" UNIQUE="false"  FIELDS="plugintype" NEXT="plugincode"                       />
+        <INDEX NAME="plugincode" UNIQUE="false"  FIELDS="plugincode" NEXT="code"       PREVIOUS="plugintype" />
+        <INDEX NAME="code"       UNIQUE="false"  FIELDS="code"       NEXT="objectid"   PREVIOUS="plugincode" />
+        <INDEX NAME="objectid"   UNIQUE="false"  FIELDS="objectid"   NEXT="type"       PREVIOUS="code"       />
+        <INDEX NAME="type"       UNIQUE="false"  FIELDS="type"       NEXT="createdate" PREVIOUS="objectid"   />
+        <INDEX NAME="createdate" UNIQUE="false"  FIELDS="createdate" NEXT="md5code"    PREVIOUS="type"       />
+        <INDEX NAME="md5code"    UNIQUE="true"   FIELDS="md5code"    NEXT="name"       PREVIOUS="createdate" />
+        <INDEX NAME="name"       UNIQUE="false"  FIELDS="name"       NEXT="status"     PREVIOUS="md5code"    />
+        <INDEX NAME="status"     UNIQUE="false"  FIELDS="status"                       PREVIOUS="name"       />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

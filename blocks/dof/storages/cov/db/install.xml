@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20140320" COMMENT="XMLDB file for Moodle blocks/dof/storages/cov"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_cov" COMMENT="Таблица дополнительных полей для справочников">
+      <FIELDS>
+        <FIELD NAME="id"         TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true"  SEQUENCE="true"                        NEXT="plugintype"/>
+        <FIELD NAME="plugintype" TYPE="char" LENGTH="20"    NOTNULL="false" UNSIGNED="false" SEQUENCE="false" PREVIOUS="id"         NEXT="plugincode"/>
+        <FIELD NAME="plugincode" TYPE="char" LENGTH="20"    NOTNULL="true"                   SEQUENCE="false" PREVIOUS="plugintype" NEXT="substorage"/>
+        <FIELD NAME="substorage" TYPE="char" LENGTH="40"    NOTNULL="false"                  SEQUENCE="false" PREVIOUS="plugincode" NEXT="objectid"/>
+        <FIELD NAME="objectid"   TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" PREVIOUS="substorage" NEXT="code"/>
+        <FIELD NAME="code"       TYPE="char" LENGTH="255"   NOTNULL="true"                   SEQUENCE="false" PREVIOUS="objectid"   NEXT="value"/>
+        <FIELD NAME="value"      TYPE="text" LENGTH="small" NOTNULL="false"                  SEQUENCE="false" PREVIOUS="code"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="iplugintype" UNIQUE="false" FIELDS="plugintype"                        NEXT="iplugincode"/>
+        <INDEX NAME="iplugincode" UNIQUE="false" FIELDS="plugincode" PREVIOUS="iplugintype" NEXT="isubstorage"/>
+        <INDEX NAME="isubstorage" UNIQUE="false" FIELDS="substorage" PREVIOUS="iplugincode" NEXT="iobjectid"/>
+        <INDEX NAME="iobjectid"   UNIQUE="false" FIELDS="objectid"   PREVIOUS="isubstorage" NEXT="icode"/>
+        <INDEX NAME="icode"       UNIQUE="false" FIELDS="code"       PREVIOUS="iobjectid"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

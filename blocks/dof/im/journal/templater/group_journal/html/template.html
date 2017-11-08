@@ -1,0 +1,75 @@
+<style type="text/css"> #menu A { color: red; } </style>
+{formbegin}
+<table class="dof_group_journal">
+    <tr>
+        <td class="fixed_col">
+            <table width="100%" border="1" >
+	            <tr>
+	                <td height="30px" colspan="2" >
+	                    <div>{monthdesc}</div>
+	                </td>
+	            </tr>
+	            <tr>
+                    <td height="60px" colspan="2" >
+                        <div>{datedesc}</div>
+                    </td>
+                </tr>
+	            <tr>
+	                <td height="30px">
+	                    &nbsp;{npp}&nbsp;
+	                </td>
+	                <td nowrap height="30px" >
+	                    <b>{listtitle}</b>
+	                </td>
+	            </tr>
+	            <!-- BEGIN studentinfo -->
+	            <tr>
+	                <td height="60px" align="center" >
+	                    {studentnumber}
+	                </td>
+	                <td height="60px">
+	                    {fio}
+	                </td>
+	            </tr>
+	            <!-- END studentinfo --> 
+            </table>
+        </td>
+        <td class="gradelist">
+            <div>
+                <table width="100%" border="1" >
+                <tr>
+                <!-- BEGIN monthtitle -->
+                    <td height="30px" colspan="{mcolspan}" align="center">
+                        <b>{mtitle}</b>
+                    </td>
+                <!-- END monthtitle -->
+                </tr>
+                <tr>
+                <!-- BEGIN monthdate -->
+                    <td height="60px" nowrap >
+                        {datecode}
+                    </td>
+                <!-- END monthdate -->
+                </tr>
+                <tr>
+                <!-- BEGIN upper_anchor -->
+                    <td height="30px">
+                        <div align="right"><a name=jm{anchornum}></a></div>
+                    </td>
+                <!-- END upper_anchor -->
+                </tr>
+                <!-- BEGIN student -->
+	                <tr>
+	                <!-- BEGIN studentgrades -->
+	                    <td class="dof_cpassedgradecell" height="60px" {color} nowrap>
+	                        {grades}
+	                    </td>
+	                <!-- END studentgrades -->
+	                </tr>
+                <!-- END student -->
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>
+{formend}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20090601" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_workplaces" COMMENT="Привязка к месту работы">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="personid"/>
+        <FIELD NAME="personid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id персоны" PREVIOUS="id" NEXT="organizationid"/>
+        <FIELD NAME="organizationid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id организации" PREVIOUS="personid" NEXT="statuswork"/>
+        <FIELD NAME="statuswork" TYPE="char" LENGTH="50" NOTNULL="false" SEQUENCE="false" COMMENT="рабочий статус" PREVIOUS="organizationid" NEXT="post"/>
+        <FIELD NAME="post" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="должность" PREVIOUS="statuswork" NEXT="receptiondate"/>
+        <FIELD NAME="receptiondate" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата приема" PREVIOUS="post" NEXT="dismissaldate"/>
+        <FIELD NAME="dismissaldate" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата увольнения" PREVIOUS="receptiondate" NEXT="phonework"/>
+        <FIELD NAME="phonework" TYPE="char" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="рабочий телефон" PREVIOUS="dismissaldate" NEXT="addnumber"/>
+        <FIELD NAME="addnumber" TYPE="char" LENGTH="5" NOTNULL="false" SEQUENCE="false" COMMENT="добавочный номер" PREVIOUS="phonework" NEXT="comment"/>
+        <FIELD NAME="comment" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="коментарий" PREVIOUS="addnumber"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="ipersonid" UNIQUE="false" FIELDS="personid" NEXT="iorganizationid"/>
+        <INDEX NAME="iorganizationid" UNIQUE="false" FIELDS="organizationid" PREVIOUS="ipersonid" NEXT="istatuswork"/>
+        <INDEX NAME="istatuswork" UNIQUE="false" FIELDS="statuswork" PREVIOUS="iorganizationid" NEXT="ipost"/>
+        <INDEX NAME="ipost" UNIQUE="false" FIELDS="post" PREVIOUS="istatuswork" NEXT="ireceptiondate"/>
+        <INDEX NAME="ireceptiondate" UNIQUE="false" FIELDS="receptiondate" PREVIOUS="ipost" NEXT="idismissaldate"/>
+        <INDEX NAME="idismissaldate" UNIQUE="false" FIELDS="dismissaldate" PREVIOUS="ireceptiondate"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

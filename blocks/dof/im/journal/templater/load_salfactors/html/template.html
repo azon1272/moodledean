@@ -1,0 +1,83 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{_name}</title>
+</head>
+<body>
+<div align="center"><b>{title}</b></div>
+<br>
+<div align="center"><h2>{fullname}</h2></div>
+<br>
+<div style="overflow-x: auto;width:90%;">
+<table class="generaltable boxaligncenter" border="1" align="center" frame='box' rules='all' cellpadding=5>	
+	<tr style="vertical-align:top; font-size:10pt; text-align:center;">
+		<th class="header c0">{column_date}</th>
+		<th class="header c0">{column_cstream}</th>
+		<th class="header c0">{column_time}</th>
+		<th class="header c0">{column_duration}</th>
+        <th class="header c0"><span title="ahours">{column_ahours}</span></th>
+        <th class="header c0">{column_individual}</th>
+        <th class="header c0"><span title="config_salfactor_countstudents">{column_countstudents}</span></th>
+        <th class="header c0"><span title="programmitem_salfactor">{column_salfactor_programmitem}</span></th>
+        <th class="header c0"><span title="programmsbcs_salfactors">{column_salfactor_students}</span></th>
+        <th class="header c0"><span title="agroups_salfactors">{column_salfactor_agroup}</span></th>
+        <th class="header c0"><span title="cstreams_salfactor">{column_salfactor_cstream}</span></th>
+        <th class="header c0"><span title="cstreams_substsalfactor">{column_substsalfactor_cstream}</span></th>
+        <th class="header c0"><span title="schtemplates_salfactor">{column_salfactor_schtemplate}</span></th>
+        <th class="header c0"><span title="schevents_completed">{column_complete}</span></th>
+        <th class="header c0"><span title="payment_combination">{column_payment_combination}</span></th>
+        <th class="header c0"><span title="schevent_type">{column_type}</span></th>
+		<th class="header c0">{column_rhours}</th>
+	</tr>
+
+	<!-- BEGIN loaddata --> 
+	<tr>
+		<td style="text-align:center;" class="cell c0">{date}</td>
+		<td style="text-align:center;" class="cell c0">{cstream}</td>
+        <td style="text-align:center;" class="cell c0">{time}</td>
+        <td style="text-align:center;" class="cell c0">{duration}</td>
+        <td style="text-align:center;" class="cell c0">{ahours}</td>
+        <td style="text-align:center;" class="cell c0">{individual}</td>
+        <td style="text-align:center;" class="cell c0">{countstudents}/<br>{countstudents_salfactor}</td>
+        <td style="text-align:center;" class="cell c0">{salfactor_programmitem}</td>
+		<td style="text-align:center;" class="cell c0">
+		<!-- BEGIN programmsbcs -->
+		{salfactor}<br />
+		<!-- END programmsbcs -->
+		</td>
+		<td style="text-align:center;" class="cell c0">
+        <!-- BEGIN agroups -->
+        {salfactor}<br />
+        <!-- END agroups -->
+        </td>
+        <td style="text-align:center;" class="cell c0">{salfactor_cstreams}</td>
+        <td style="text-align:center;" class="cell c0">{substsalfactor_cstreams}</td>
+		<td style="text-align:center;" class="cell c0">{salfactor_schtemplates}</td>
+		<td style="text-align:center;" class="cell c0">{complete}</td>
+		<td style="text-align:center;" class="cell c0">{payment_combination}</td>
+		<td style="text-align:center;" class="cell c0">{type}</td>
+		<td style="text-align:center;" class="cell c0"><span title="{formula}">{rhours}</span></td>
+	</tr>
+	<!-- END loaddata -->
+	<tr>
+	   <td style="text-align:center;" class="cell c0">{score}</td>
+	   <td style="text-align:center;" class="cell c0"></td>
+	   <td style="text-align:center;" class="cell c0"></td>
+	   <td style="text-align:center;" class="cell c0"></td>
+	   <td style="text-align:center;" class="cell c0"></td>
+	   <td style="text-align:center;" class="cell c0"></td>
+	   <td style="text-align:center;" class="cell c0"></td>
+	   <td style="text-align:center;" class="cell c0"></td>
+	   <td style="text-align:center;" class="cell c0"></td>
+	   <td style="text-align:center;" class="cell c0"></td>
+	   <td style="text-align:center;" class="cell c0"></td>
+	   <td style="text-align:center;" class="cell c0"></td>
+	   <td style="text-align:center;" class="cell c0">{executeload}</td>
+	   <td style="text-align:center;" class="cell c0"></td>
+	   <td style="text-align:center;" class="cell c0"></td>
+	   <td style="text-align:center;" class="cell c0">{totalrhours}</td>
+	</tr>
+</table></div>	
+<br>
+
+</body>
+

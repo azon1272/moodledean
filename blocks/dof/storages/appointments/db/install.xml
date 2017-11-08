@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20100408" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_appointments" COMMENT="назначение должности с табельным номером">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="eagreementid"/>
+        <FIELD NAME="eagreementid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="договор с сотрудником" PREVIOUS="id" NEXT="schpositionid"/>
+        <FIELD NAME="schpositionid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="вакансия в штатном рассписании" PREVIOUS="eagreementid" NEXT="enumber"/>
+        <FIELD NAME="enumber" TYPE="char" LENGTH="30" NOTNULL="true" SEQUENCE="false" COMMENT="табельный номер" PREVIOUS="schpositionid" NEXT="worktime"/>
+        <FIELD NAME="worktime" TYPE="number" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" DECIMALS="2" COMMENT="ставка (часов в неделю)" PREVIOUS="enumber" NEXT="date"/>
+        <FIELD NAME="date" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата назначения" PREVIOUS="worktime" NEXT="begindate"/>
+        <FIELD NAME="begindate" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата вступления в должность" PREVIOUS="date" NEXT="enddate"/>
+        <FIELD NAME="enddate" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата увольнения с должности" PREVIOUS="begindate" NEXT="departmentid"/>
+        <FIELD NAME="departmentid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="ответственное подразделение" PREVIOUS="enddate" NEXT="status"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="статус" PREVIOUS="departmentid" NEXT="combination"/>
+        <FIELD NAME="combination" TYPE="int" LENGTH="1" NOTNULL="false" SEQUENCE="false" DEFAULT="0" COMMENT="статус" PREVIOUS="status"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="ieagreementid" UNIQUE="false" FIELDS="eagreementid" NEXT="ischpositionid"/>
+        <INDEX NAME="ischpositionid" UNIQUE="false" FIELDS="schpositionid" PREVIOUS="ieagreementid" NEXT="ienumber"/>
+        <INDEX NAME="ienumber" UNIQUE="true" FIELDS="enumber" PREVIOUS="ischpositionid" NEXT="iworktime"/>
+        <INDEX NAME="iworktime" UNIQUE="false" FIELDS="worktime" PREVIOUS="ienumber" NEXT="idate"/>
+        <INDEX NAME="idate" UNIQUE="false" FIELDS="date" PREVIOUS="iworktime" NEXT="ibegindate"/>
+        <INDEX NAME="ibegindate" UNIQUE="false" FIELDS="begindate" PREVIOUS="idate" NEXT="ienddate"/>
+        <INDEX NAME="ienddate" UNIQUE="false" FIELDS="enddate" PREVIOUS="ibegindate" NEXT="idepartmentid"/>
+        <INDEX NAME="idepartmentid" UNIQUE="false" FIELDS="departmentid" PREVIOUS="ienddate" NEXT="istatus"/>
+        <INDEX NAME="istatus" UNIQUE="false" FIELDS="status" PREVIOUS="idepartmentid" NEXT="icombination"/>
+        <INDEX NAME="icombination" UNIQUE="false" FIELDS="combination" PREVIOUS="istatus"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

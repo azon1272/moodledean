@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20110305" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_orders" COMMENT="Приказы">
+      <FIELDS>
+        <FIELD NAME="id"            TYPE="int"  LENGTH="10"    NOTNULL="true"  UNSIGNED="true"  SEQUENCE="true"                           NEXT="plugintype"/>
+        <FIELD NAME="plugintype"    TYPE="char" LENGTH="20"    NOTNULL="true"                   SEQUENCE="false" PREVIOUS="id"            NEXT="plugincode"    COMMENT="тип плагина-владельца документа"/>
+        <FIELD NAME="plugincode"    TYPE="char" LENGTH="40"    NOTNULL="true"                   SEQUENCE="false" PREVIOUS="plugintype"    NEXT="pluginversion" COMMENT="код плагина-владельца документа"/>
+        <FIELD NAME="pluginversion" TYPE="char" LENGTH="10"    NOTNULL="true"                   SEQUENCE="false" PREVIOUS="plugincode"    NEXT="code"          COMMENT="версия плагина-владельца документа"/>
+        <FIELD NAME="code"          TYPE="char" LENGTH="40"    NOTNULL="true"                   SEQUENCE="false" PREVIOUS="pluginversion" NEXT="num"           COMMENT="код типа документа"/>
+        <FIELD NAME="num"           TYPE="char" LENGTH="40"    NOTNULL="false"                  SEQUENCE="false" PREVIOUS="code"          NEXT="departmentid"  COMMENT="номер приказа"/>
+        <FIELD NAME="departmentid"  TYPE="int"  LENGTH="10"    NOTNULL="false" UNSIGNED="true"  SEQUENCE="false" PREVIOUS="num"           NEXT="ownerid"       COMMENT="основной отдел, к которому относится документ"/>
+        <FIELD NAME="ownerid"       TYPE="int"  LENGTH="10"    NOTNULL="false" UNSIGNED="true"  SEQUENCE="false" PREVIOUS="departmentid"  NEXT="signerid"      COMMENT="владелец/подписант документа"/>
+        <FIELD NAME="signerid"      TYPE="int"  LENGTH="10"    NOTNULL="false" UNSIGNED="true"  SEQUENCE="false" PREVIOUS="ownerid"       NEXT="date"          COMMENT="id персоны, подписавшей приказ"/>
+        <FIELD NAME="date"          TYPE="int"  LENGTH="10"    NOTNULL="false" UNSIGNED="false" SEQUENCE="false" PREVIOUS="signerid"      NEXT="signdate"      COMMENT="дата документа"/>
+        <FIELD NAME="signdate"      TYPE="int"  LENGTH="10"    NOTNULL="false" UNSIGNED="false" SEQUENCE="false" PREVIOUS="date"          NEXT="exdate"/>
+        <FIELD NAME="exdate"        TYPE="int"  LENGTH="10"    NOTNULL="false" UNSIGNED="false" SEQUENCE="false" PREVIOUS="signdate"      NEXT="crondate"      COMMENT="дата исполнения в системе"/>
+        <FIELD NAME="crondate"      TYPE="int"  LENGTH="10"    NOTNULL="false" UNSIGNED="false" SEQUENCE="false" PREVIOUS="exdate"        NEXT="changedate"    COMMENT=" время, раньше которого отчёт не будет собираться"/>
+        <FIELD NAME="changedate"    TYPE="int"  LENGTH="10"    NOTNULL="false" UNSIGNED="false" SEQUENCE="false" PREVIOUS="crondate"      NEXT="status"        COMMENT="дата последнего изменения"/>
+        <FIELD NAME="status"        TYPE="char" LENGTH="20"    NOTNULL="true"                   SEQUENCE="false" PREVIOUS="changedate"    NEXT="sdata"         COMMENT="статус документа"/>
+        <FIELD NAME="sdata"         TYPE="text" LENGTH="big"   NOTNULL="false"                  SEQUENCE="false" PREVIOUS="status"        NEXT="signature"     COMMENT="сериализованные данные (если нужны)"/>
+        <FIELD NAME="signature"     TYPE="text" LENGTH="small" NOTNULL="false"                  SEQUENCE="false" PREVIOUS="sdata"         NEXT="notes"         COMMENT="сигнатура приказа"/>
+        <FIELD NAME="notes"         TYPE="text" LENGTH="small" NOTNULL="false"                  SEQUENCE="false" PREVIOUS="signature" COMMENT="заметки"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="fulldocname"    UNIQUE="false" FIELDS="plugintype, plugincode, code"                           NEXT="ipluginversion" COMMENT="Полное имя документа"/>
+        <INDEX NAME="ipluginversion" UNIQUE="false" FIELDS="pluginversion"                PREVIOUS="fulldocname"    NEXT="inum"/>
+        <INDEX NAME="inum"           UNIQUE="false" FIELDS="num"                          PREVIOUS="ipluginversion" NEXT="idepartmentid"/>
+        <INDEX NAME="idepartmentid"  UNIQUE="false" FIELDS="departmentid"                 PREVIOUS="inum"           NEXT="iownerid"       COMMENT="Индекс по отделу"/>
+        <INDEX NAME="iownerid"       UNIQUE="false" FIELDS="ownerid"                      PREVIOUS="idepartmentid"  NEXT="isignerid"      COMMENT="По подписанту"/>
+        <INDEX NAME="isignerid"      UNIQUE="false" FIELDS="signerid"                     PREVIOUS="iownerid"       NEXT="idate"/>
+        <INDEX NAME="idate"          UNIQUE="false" FIELDS="date"                         PREVIOUS="isignerid"      NEXT="isigndate"/>
+        <INDEX NAME="isigndate"      UNIQUE="false" FIELDS="signdate"                     PREVIOUS="idate"          NEXT="iexdate"/>
+        <INDEX NAME="iexdate"        UNIQUE="false" FIELDS="exdate"                       PREVIOUS="isigndate"      NEXT="icrondate"/>
+        <INDEX NAME="icrondate"      UNIQUE="false" FIELDS="crondate"                     PREVIOUS="iexdate"        NEXT="ichangedate"/>
+        <INDEX NAME="ichangedate"    UNIQUE="false" FIELDS="changedate"                   PREVIOUS="icrondate"      NEXT="istatus"/>
+        <INDEX NAME="istatus"        UNIQUE="false" FIELDS="status"                       PREVIOUS="ichangedate"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

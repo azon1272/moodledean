@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20090910" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_learninghistory" COMMENT="таблица хранит историю изменений учебных процессов для каждого ученика">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="programmsbcid"/>
+        <FIELD NAME="programmsbcid" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="id подписки ученика на учебную программу в таблице programmsbcs." PREVIOUS="id" NEXT="ageid"/>
+        <FIELD NAME="ageid" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="id учебного периода в таблице ages" PREVIOUS="programmsbcid" NEXT="agenum"/>
+        <FIELD NAME="agenum" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="номер ступени обучения. (второй класс, четвертый курс, и т. п.)" PREVIOUS="ageid" NEXT="changedate"/>
+        <FIELD NAME="changedate" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="дата создания записи в формате unixtime" PREVIOUS="agenum" NEXT="orderid"/>
+        <FIELD NAME="orderid" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id приказа, в результате которого была изменена подписка на учебную дисциплину (таблица orders). Возможно null-значение, если изменения не были связаны ни с каким приказом." PREVIOUS="changedate"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="mdl_blocdofslear_pro_ix" UNIQUE="false" FIELDS="programmsbcid" NEXT="mdl_blocdofslear_age_ix"/>
+        <INDEX NAME="mdl_blocdofslear_age_ix" UNIQUE="false" FIELDS="ageid" PREVIOUS="mdl_blocdofslear_pro_ix" NEXT="mdl_blocdofslear_age2_ix"/>
+        <INDEX NAME="mdl_blocdofslear_age2_ix" UNIQUE="false" FIELDS="agenum" PREVIOUS="mdl_blocdofslear_age_ix" NEXT="mdl_blocdofslear_dat_ix"/>
+        <INDEX NAME="mdl_blocdofslear_dat_ix" UNIQUE="false" FIELDS="changedate" PREVIOUS="mdl_blocdofslear_age2_ix" NEXT="mdl_blocdofslear_ord_ix"/>
+        <INDEX NAME="mdl_blocdofslear_ord_ix" UNIQUE="false" FIELDS="orderid" PREVIOUS="mdl_blocdofslear_dat_ix"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

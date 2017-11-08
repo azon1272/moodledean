@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20090323" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_addresses" COMMENT="Адреса по стандарту SIF">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="type"/>
+        <FIELD NAME="type" TYPE="int" LENGTH="2" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="тип адреса по SIF (1 - постоянный домашний адрес по паспорту, 2 - другой домашний адрес, 3 - почтовый адрес, 7 - адрес организации, 8 - адрес учебного заведения, 9 - другой)" PREVIOUS="id" NEXT="postalcode"/>
+        <FIELD NAME="postalcode" TYPE="char" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="почтовый индекс" PREVIOUS="type" NEXT="country"/>
+        <FIELD NAME="country" TYPE="char" LENGTH="2" NOTNULL="false" SEQUENCE="false" COMMENT="код страны проживания (по предъявленному паспорту) в ICO 3166-1:1997" PREVIOUS="postalcode" NEXT="region"/>
+        <FIELD NAME="region" TYPE="char" LENGTH="6" NOTNULL="false" SEQUENCE="false" COMMENT="код региона по ISO 3166-2" PREVIOUS="country" NEXT="county"/>
+        <FIELD NAME="county" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="административный район" PREVIOUS="region" NEXT="city"/>
+        <FIELD NAME="city" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="город" PREVIOUS="county" NEXT="streetname"/>
+        <FIELD NAME="streetname" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="название улицы" PREVIOUS="city" NEXT="streettype"/>
+        <FIELD NAME="streettype" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="тип улицы" PREVIOUS="streetname" NEXT="number"/>
+        <FIELD NAME="number" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="номер дома" PREVIOUS="streettype" NEXT="gate"/>
+        <FIELD NAME="gate" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="подъезд" PREVIOUS="number" NEXT="floor"/>
+        <FIELD NAME="floor" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="этаж" PREVIOUS="gate" NEXT="apartment"/>
+        <FIELD NAME="apartment" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="квартира" PREVIOUS="floor" NEXT="latitude"/>
+        <FIELD NAME="latitude" TYPE="number" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" DECIMALS="7" COMMENT="широта в градусах" PREVIOUS="apartment" NEXT="longitude"/>
+        <FIELD NAME="longitude" TYPE="number" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" DECIMALS="7" PREVIOUS="latitude" NEXT="status"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" PREVIOUS="longitude"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="type" UNIQUE="false" FIELDS="type" NEXT="country"/>
+        <INDEX NAME="country" UNIQUE="false" FIELDS="country" PREVIOUS="type" NEXT="region"/>
+        <INDEX NAME="region" UNIQUE="false" FIELDS="region" PREVIOUS="country" NEXT="county"/>
+        <INDEX NAME="county" UNIQUE="false" FIELDS="county" PREVIOUS="region" NEXT="city"/>
+        <INDEX NAME="city" UNIQUE="false" FIELDS="city" PREVIOUS="county" NEXT="streetname"/>
+        <INDEX NAME="streetname" UNIQUE="false" FIELDS="streetname" PREVIOUS="city" NEXT="latitude"/>
+        <INDEX NAME="latitude" UNIQUE="false" FIELDS="latitude" PREVIOUS="streetname" NEXT="longitude"/>
+        <INDEX NAME="longitude" UNIQUE="false" FIELDS="longitude" PREVIOUS="latitude" NEXT="status"/>
+        <INDEX NAME="status" UNIQUE="false" FIELDS="status" PREVIOUS="longitude"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

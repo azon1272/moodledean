@@ -1,0 +1,31 @@
+table.generaltable.cards.boxaligncenter div.contractsnum {
+    padding-left: 20px;
+}
+
+table.generaltable.cards.boxaligncenter .psbc {
+    padding-left: 40px;
+}
+
+table.generaltable.cards.boxaligncenter .nopsbc {
+    padding-left: 40px;
+}
+
+.contractsnotice {
+    padding-left:20px;
+    font-weight:bold;
+}
+
+.contractsnum {
+    font-weight:bold;
+}
+
+.mform .fitem fieldset.felement {
+    display: block;
+    width: 60%;
+}
+
+.felement.fgroup > span {
+    display: block;
+    float: left;
+    width: 40%;
+}

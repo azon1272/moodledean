@@ -1,0 +1,22 @@
+#form_cpassed_list_editor #fgroup_id_cpassedids fieldset > span {
+	display: block;
+}
+#form_cpassed_list_editor .cpassed-listeditor fieldset div,
+#form_cpassed_list_editor .cpassed-listeditor fieldset {
+	margin: 0;
+}
+#form_cpassed_list_editor label.dof_modal_overlay {
+	display: none;
+}
+#form_cpassed_list_editor #id_submitbutton {
+	display: none;
+}
+#form_cpassed_list_editor table .fitemtitle {
+	display: none;
+}
+#form_cpassed_list_editor table .fitem, #form_cpassed_list_editor table .felement {
+	margin: 0;
+}
+#form_cpassed_list_editor table th {
+    vertical-align: middle;
+}

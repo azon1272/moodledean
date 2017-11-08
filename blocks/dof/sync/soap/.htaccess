@@ -1,0 +1,5 @@
+Order deny,allow
+Deny from all
+<FilesMatch "soap.php">
+  Allow from all # адреса клиентов SOAP-сервиса
+</FilesMatch>

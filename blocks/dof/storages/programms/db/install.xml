@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20110322" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_programms" COMMENT="Учебные программы">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="name"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="название учебной программы" PREVIOUS="id" NEXT="code"/>
+        <FIELD NAME="code" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="код учебной программы" PREVIOUS="name" NEXT="about"/>
+        <FIELD NAME="about" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="описание учебной программы для учеников" PREVIOUS="code" NEXT="status"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="статус" PREVIOUS="about" NEXT="departmentid"/>
+        <FIELD NAME="departmentid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="структурное подразделение, ответственное за учебную программу" PREVIOUS="status" NEXT="notice"/>
+        <FIELD NAME="notice" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="заметка для сотрудников об учебной программе" PREVIOUS="departmentid" NEXT="agenums"/>
+        <FIELD NAME="agenums" TYPE="int" LENGTH="3" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="количество учебных периодов, на которое расчитано обучение" PREVIOUS="notice" NEXT="duration"/>
+        <FIELD NAME="duration" TYPE="int" LENGTH="20" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="продолжительность обучения по программе в секундах" PREVIOUS="agenums" NEXT="ahours"/>
+        <FIELD NAME="ahours" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" PREVIOUS="duration" NEXT="billingtext"/>
+        <FIELD NAME="billingtext" TYPE="text" LENGTH="big" NOTNULL="false" UNSIGNED="false" SEQUENCE="false" PREVIOUS="ahours" NEXT="billingrules"/>
+        <FIELD NAME="billingrules" TYPE="text" LENGTH="big" NOTNULL="false" SEQUENCE="false" PREVIOUS="billingtext" NEXT="flowagenums"/>
+        <FIELD NAME="flowagenums" TYPE="int" LENGTH="2" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="плавающие учебные планы" PREVIOUS="billingrules" NEXT="edulevel"/>
+        <FIELD NAME="edulevel" TYPE="int" LENGTH="2" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="уровень образования" PREVIOUS="flowagenums"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="iname" UNIQUE="false" FIELDS="name" NEXT="icode"/>
+        <INDEX NAME="icode" UNIQUE="false" FIELDS="code" PREVIOUS="iname" NEXT="istatus"/>
+        <INDEX NAME="istatus" UNIQUE="false" FIELDS="status" PREVIOUS="icode" NEXT="idepartmentid"/>
+        <INDEX NAME="idepartmentid" UNIQUE="false" FIELDS="departmentid" PREVIOUS="istatus" NEXT="mdl_blocdofsprog_aho_ix"/>
+        <INDEX NAME="mdl_blocdofsprog_aho_ix" UNIQUE="false" FIELDS="ahours" PREVIOUS="idepartmentid" />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

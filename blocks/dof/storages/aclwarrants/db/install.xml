@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20121113" COMMENT="XMLDB file for Moodle blocks/dof/storages/aclwarrants"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_aclwarrants" COMMENT="Таблица настроек">
+      <FIELDS>
+        <FIELD NAME="id"            TYPE="int"  LENGTH="10"  NOTNULL="true"  UNSIGNED="true"  SEQUENCE="true"  NEXT="linkptype"/>
+        <FIELD NAME="linkptype"     TYPE="char" LENGTH="20"  NOTNULL="false"                  SEQUENCE="false" PREVIOUS="id"            NEXT="linkpcode"/>
+        <FIELD NAME="linkpcode"     TYPE="char" LENGTH="20"  NOTNULL="false"                  SEQUENCE="false" PREVIOUS="linkptype"     NEXT="linkid"/>
+        <FIELD NAME="linkid"        TYPE="int"  LENGTH="10"  NOTNULL="true"  UNSIGNED="false" SEQUENCE="false" PREVIOUS="linkpcode"     NEXT="linktype"/>
+        <FIELD NAME="linktype"      TYPE="char" LENGTH="20"  NOTNULL="true"                   SEQUENCE="false" PREVIOUS="linkid"        NEXT="code" DEFAULT="none"/>
+        <FIELD NAME="code"          TYPE="char" LENGTH="255" NOTNULL="false"                  SEQUENCE="false" PREVIOUS="linktype"      NEXT="parentid" COMMENT="код роли по умолчанию (manager, teacher, student)"/>
+        <FIELD NAME="parentid"      TYPE="int"  LENGTH="10"  NOTNULL="false" UNSIGNED="false" SEQUENCE="false" PREVIOUS="code"          NEXT="parenttype" COMMENT="id родительской доверенности (default:0)" DEFAULT="0"/>
+        <FIELD NAME="parenttype"    TYPE="char" LENGTH="20"  NOTNULL="true"                   SEQUENCE="false" PREVIOUS="parentid"      NEXT="isdelegatable" COMMENT="тип наследуемой доверенности" DEFAULT="sub"/>
+        <FIELD NAME="isdelegatable" TYPE="int"  LENGTH="1"   NOTNULL="true"  UNSIGNED="false" SEQUENCE="false" PREVIOUS="parenttype"    NEXT="description" DEFAULT="0"/>
+        <FIELD NAME="description"   TYPE="char" LENGTH="255" NOTNULL="true"                   SEQUENCE="false" PREVIOUS="isdelegatable" NEXT="name" />
+        <FIELD NAME="name"          TYPE="char" LENGTH="255" NOTNULL="true"                   SEQUENCE="false" PREVIOUS="description"   NEXT="status"/>
+        <FIELD NAME="status"        TYPE="char" LENGTH="20"  NOTNULL="true"                   SEQUENCE="false" PREVIOUS="name"          NEXT="ownerid"/>
+        <FIELD NAME="ownerid"       TYPE="int"  LENGTH="11"  NOTNULL="false" UNSIGNED="false" SEQUENCE="false" PREVIOUS="status"        NEXT="departmentid" COMMENT="id создателя доверенности"/>
+        <FIELD NAME="departmentid"  TYPE="int"  LENGTH="11"  NOTNULL="false" UNSIGNED="false" SEQUENCE="false" PREVIOUS="ownerid"       COMMENT="id подразделения"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="ilinkid"        UNIQUE="false" FIELDS="linkid"        NEXT="ilinktype"/>
+        <INDEX NAME="ilinktype"      UNIQUE="false" FIELDS="linktype"      PREVIOUS="ilinkid" NEXT="icode"/>
+        <INDEX NAME="icode"          UNIQUE="false" FIELDS="code"          PREVIOUS="ilinktype" NEXT="iparentid"/>
+        <INDEX NAME="iparentid"      UNIQUE="false" FIELDS="parentid"      PREVIOUS="icode" NEXT="iisdelegatable"/>
+        <INDEX NAME="iisdelegatable" UNIQUE="false" FIELDS="isdelegatable" PREVIOUS="iparentid" NEXT="istatus"/>
+        <INDEX NAME="istatus"        UNIQUE="false" FIELDS="status"        PREVIOUS="iisdelegatable" NEXT="ilinkptype"/>
+        <INDEX NAME="ilinkptype"     UNIQUE="false" FIELDS="linkptype"     PREVIOUS="istatus" NEXT="ilinkpcode"/>
+        <INDEX NAME="ilinkpcode"     UNIQUE="false" FIELDS="linkpcode"     PREVIOUS="ilinkptype" NEXT="iparenttype"/>
+        <INDEX NAME="iparenttype"    UNIQUE="false" FIELDS="parenttype"    PREVIOUS="ilinkpcode" NEXT="iownerid"/>
+        <INDEX NAME="iownerid"       UNIQUE="false" FIELDS="ownerid"       PREVIOUS="iparenttype" NEXT="idepartmentid"/>
+        <INDEX NAME="idepartmentid"  UNIQUE="false" FIELDS="departmentid"  PREVIOUS="iownerid"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

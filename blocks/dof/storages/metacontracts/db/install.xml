@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20090529" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_metacontracts" COMMENT="Контракты с группами">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="organizationid"/>
+        <FIELD NAME="organizationid" TYPE="int" LENGTH="2" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="организация (айди)" PREVIOUS="id" NEXT="num"/>
+        <FIELD NAME="num" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false" COMMENT="номер метаконтракта" PREVIOUS="organizationid" NEXT="departmentid" />
+        <FIELD NAME="departmentid" TYPE="int" LENGTH="3" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" DEFAULT="0" PREVIOUS="num"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="iorganizationid" UNIQUE="false" FIELDS="organizationid" COMMENT="id организации" NEXT="inum"/>
+        <INDEX NAME="inum" UNIQUE="false"  FIELDS="num" COMMENT="метаконтрактов" PREVIOUS="iorganizationid" NEXT="idepartmentid"/>
+        <INDEX NAME="idepartmentid" UNIQUE="false" FIELDS="departmentid" COMMENT="Подразделение" PREVIOUS="inum"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

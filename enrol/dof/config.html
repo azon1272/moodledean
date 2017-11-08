@@ -1,0 +1,22 @@
+<table cellspacing="0" cellpadding="5" border="0" class="boxaligncenter">
+
+<tr valign="top">
+    <td align="right">enrol_dof_studentrole:</td>
+    <td>
+    <?php 
+        $roles = get_all_roles();
+        $rolenames = array();
+		$rolenames[0]='default for course';
+        foreach ($roles as $id=>$role) {
+            $rolenames[$id]=$role->name;
+        }
+        choose_from_menu($rolenames, 'enrol_dof_studentrole', $frm->enrol_dof_studentrole); 
+    ?>
+    </td>
+    <td>
+    <?php  print_string("studentrole", "enrol_dof") ?> [<?php  echo $frm->enrol_dof_studentrole; ?>]
+    </td>
+</tr>
+
+
+</table>

@@ -1,0 +1,50 @@
+
+<table align='center' cellspacing='5' cellpadding='5' border='1'>
+    <tr align='center' >
+        <td  colspan='2' ><div style='font-weight: bold;'> Приказ №{orderid} </div>
+                {orderdesc}
+        </td>
+    </tr>
+    <tr>
+        <td> {hdirection}: </td>
+        <td> {direction} </td>
+    </tr>
+    <tr>
+        <td> {hchangestatus}: </td>
+        <td> {changestatus} </td>
+    </tr>
+    <tr>
+        <td> {hcurrentstatus}: </td>
+        <td> {currentstatus} </td>
+    </tr>
+    <tr>
+        <td> {hreason}: </td>
+        <td> {reason} </td>
+    </tr>
+    <tr>
+        <td> {hfullname}: </td>
+        <td> {tfullname} </td>
+    </tr>
+</table>
+
+<div align='center' style='color:#225dbf;'><h2> Переданная нагрузка: </div> 
+<div align='center' style='color:#36770f'> <h3> {byorder} </h3> </div>
+
+<!-- BEGIN cstreams --> <!-- Это может быть группировка по программам или по ФИО -->
+    <div align='center' style='color:#36770f'> <h3> {name} </h3> </div>
+
+    <table align='center' cellspacing='5' cellpadding='5' border='1'>
+    <!-- BEGIN disciplines -->
+        <tr align='center' >
+            <td  colspan='2' ><div style='font-weight: bold;'> {discipline} </div>
+            </td>
+        </tr>
+        <!-- BEGIN dcstreams -->
+            <tr>
+                <td> {cstream} </td>
+                <td> {fullname} {appointment} </td>
+            </tr>
+        <!-- END dcstreams -->
+    <!-- END disciplines -->
+    </table>
+<!-- END cstreams -->

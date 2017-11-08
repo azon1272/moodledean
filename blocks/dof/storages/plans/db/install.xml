@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20120202" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_plans" COMMENT="темы в учебном плане и контрольные точки внутри учебной дисциплины/предмета, предусмотренные учебным планом курса. ">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="linkid"/>
+        <FIELD NAME="linkid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="связь с учебным периодом, учебной программой, дисциплиной или учебным процессом" PREVIOUS="id" NEXT="linktype"/>
+        <FIELD NAME="linktype" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="тип связи" PREVIOUS="linkid" NEXT="parentid"/>
+        <FIELD NAME="parentid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id родительской контрольной точки," PREVIOUS="linktype" NEXT="name"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="название контрольной точки или темы занятия" PREVIOUS="parentid" NEXT="date"/>
+        <FIELD NAME="date" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="абсолютная дата контрольной точки или ноль" PREVIOUS="name" NEXT="reldate"/>
+        <FIELD NAME="reldate" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="относительная дата сдачи в секундах от начала учебного процесса." PREVIOUS="date" NEXT="reldldate"/>
+        <FIELD NAME="reldldate" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="относительная дата последнего срока сдачи в секундах от начала учебного процесса либо 0" PREVIOUS="reldate" NEXT="scale"/>
+        <FIELD NAME="scale" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="диапазон или перечисленные через запятую возможные оценки, пустая строка если оценка не предусмотрена" PREVIOUS="reldldate" NEXT="type"/>
+        <FIELD NAME="type" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="тип событи" PREVIOUS="scale" NEXT="typesync"/>
+        <FIELD NAME="typesync" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="тип синхронизации" PREVIOUS="type" NEXT="mdlinstance"/>
+        <FIELD NAME="mdlinstance" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id задания в moodle для синхронизации" PREVIOUS="typesync" NEXT="status"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="статус" PREVIOUS="mdlinstance" NEXT="homework"/>
+        <FIELD NAME="homework" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" COMMENT="Домашнее задание" PREVIOUS="status" NEXT="homeworkhours"/>
+        <FIELD NAME="homeworkhours" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="Часы, запланированные на на домашние задания." PREVIOUS="homework" NEXT="directmap"/>
+        <FIELD NAME="directmap" TYPE="int" LENGTH="1" NOTNULL="false" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="Фактическое отображение уроков" PREVIOUS="homeworkhours" NEXT="number"/>
+        <FIELD NAME="number" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="номер" PREVIOUS="directmap" NEXT="datetheme"/>
+        <FIELD NAME="datetheme" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true"  SEQUENCE="false" COMMENT="дата темы" PREVIOUS="number" NEXT="plansectionsid"/>
+        <FIELD NAME="plansectionsid" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true"  SEQUENCE="false" COMMENT="id из таблицы тематических разделов" PREVIOUS="datetheme" NEXT="note"/>
+        <FIELD NAME="note" TYPE="text" LENGTH="big" NOTNULL="false" UNSIGNED="true"  SEQUENCE="false" COMMENT="Примечание" PREVIOUS="plansectionsid"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="ilinkid" UNIQUE="false" FIELDS="linkid" NEXT="ilinktype"/>
+        <INDEX NAME="ilinktype" UNIQUE="false" FIELDS="linktype" PREVIOUS="ilinkid" NEXT="iparentid"/>
+        <INDEX NAME="iparentid" UNIQUE="false" FIELDS="parentid" PREVIOUS="ilinktype" NEXT="iname"/>
+        <INDEX NAME="iname" UNIQUE="false" FIELDS="name" PREVIOUS="iparentid" NEXT="idate"/>
+        <INDEX NAME="idate" UNIQUE="false" FIELDS="date" PREVIOUS="iname" NEXT="ireldate"/>
+        <INDEX NAME="ireldate" UNIQUE="false" FIELDS="reldate" PREVIOUS="idate" NEXT="ireldldate"/>
+        <INDEX NAME="ireldldate" UNIQUE="false" FIELDS="reldldate" PREVIOUS="ireldate" NEXT="itype"/>
+        <INDEX NAME="itype" UNIQUE="false" FIELDS="type" PREVIOUS="ireldldate" NEXT="itypesync"/>
+        <INDEX NAME="itypesync" UNIQUE="false" FIELDS="typesync" PREVIOUS="itype" NEXT="imdlinstance"/>
+        <INDEX NAME="imdlinstance" UNIQUE="false" FIELDS="mdlinstance" PREVIOUS="itypesync" NEXT="istatus"/>
+        <INDEX NAME="istatus" UNIQUE="false" FIELDS="status" PREVIOUS="imdlinstance" NEXT="mdl_blocdofsplan_hom2_ix"/>
+        <INDEX NAME="mdl_blocdofsplan_hom2_ix" UNIQUE="false" FIELDS="homeworkhours" PREVIOUS="istatus" NEXT="idirectmap"/>
+        <INDEX NAME="idirectmap" UNIQUE="false" FIELDS="directmap" PREVIOUS="mdl_blocdofsplan_hom2_ix" NEXT="inumber" />
+       	<INDEX NAME="inumber" UNIQUE="false" FIELDS="number" PREVIOUS="idirectmap" NEXT="idatetheme" />
+        <INDEX NAME="idatetheme" UNIQUE="false" FIELDS="datetheme" PREVIOUS="inumber" NEXT="iplansectionsid" />
+        <INDEX NAME="iplansectionsid" UNIQUE="false" FIELDS="plansectionsid" PREVIOUS="idatetheme" />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

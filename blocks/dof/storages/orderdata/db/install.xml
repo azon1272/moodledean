@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20111017" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_orderdata" COMMENT="Данные приказов">
+        <FIELDS>
+          <FIELD NAME="id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="orderid"/>
+          <FIELD NAME="orderid" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" COMMENT="id приказа" SEQUENCE="false" PREVIOUS="id" NEXT="firstlvlname"/>
+          <FIELD NAME="firstlvlname" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="имя переменной первого уровня" PREVIOUS="orderid" NEXT="varnum"/>
+          <FIELD NAME="varnum" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" COMMENT="номер переменной в массиве" PREVIOUS="firstlvlname" NEXT="scalar"/>
+          <FIELD NAME="scalar" TYPE="int"  LENGTH="1"  NOTNULL="true"  UNSIGNED="false" SEQUENCE="false" PREVIOUS="varnum" NEXT="data" /> 
+          <FIELD NAME="data" TYPE="text" LENGTH="big" NOTNULL="false" SEQUENCE="false" COMMENT="код типа документа" PREVIOUS="scalar" NEXT="ind"/>
+          <FIELD NAME="ind" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="индексация данных" PREVIOUS="data"/>
+        </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="iorderid" UNIQUE="false" FIELDS="orderid"  NEXT="ifirstlvlname"/>
+        <INDEX NAME="ifirstlvlname" UNIQUE="false" FIELDS="firstlvlname" NEXT="ivarnum" PREVIOUS="iorderid" />
+        <INDEX NAME="ivarnum" UNIQUE="false" FIELDS="varnum" NEXT="iscalar" PREVIOUS="ifirstlvlname" />
+        <INDEX NAME="iscalar" UNIQUE="false" FIELDS="scalar" PREVIOUS="ivarnum" NEXT="iind" />
+        <INDEX NAME="iind" UNIQUE="false" FIELDS="ind" PREVIOUS="iscalar" />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

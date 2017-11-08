@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20090529" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_organizations" COMMENT="справочник организаций">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="fullname"/>
+        <FIELD NAME="fullname" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="полное наименование" PREVIOUS="id" NEXT="shortname"/>
+        <FIELD NAME="shortname" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="краткое наименование" PREVIOUS="fullname" NEXT="inn"/>
+        <FIELD NAME="inn" TYPE="int" LENGTH="12" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="номер ИНН" PREVIOUS="shortname" NEXT="kpp"/>
+        <FIELD NAME="kpp" TYPE="int" LENGTH="9" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="номер КПП" PREVIOUS="inn" NEXT="ogrn"/>
+        <FIELD NAME="ogrn" TYPE="int" LENGTH="13" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="номер ОГРН" PREVIOUS="kpp" NEXT="bankrequisites"/>
+        <FIELD NAME="bankrequisites" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="банковские реквизиты" PREVIOUS="ogrn" NEXT="legaladdressid"/>
+        <FIELD NAME="legaladdressid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="юридический адрес" PREVIOUS="bankrequisites" NEXT="currentaddressid"/>
+        <FIELD NAME="currentaddressid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="физический адрес" PREVIOUS="legaladdressid" NEXT="mailingaddressid"/>
+        <FIELD NAME="mailingaddressid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="почтовый адрес" PREVIOUS="currentaddressid" NEXT="phone"/>
+        <FIELD NAME="phone" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="телефон" PREVIOUS="mailingaddressid" NEXT="fax"/>
+        <FIELD NAME="fax" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="факс" PREVIOUS="phone" NEXT="additionalrequisites"/>
+        <FIELD NAME="additionalrequisites" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="дополнительные реквизиты" PREVIOUS="fax" NEXT="head"/>
+        <FIELD NAME="head" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="ФИО руководителя" PREVIOUS="additionalrequisites" NEXT="posthead"/>
+        <FIELD NAME="posthead" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="должность руководителя" PREVIOUS="head" NEXT="actionhead"/>
+        <FIELD NAME="actionhead" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="основание действия руководителя" PREVIOUS="posthead"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="ifullname" UNIQUE="false" FIELDS="fullname" NEXT="ishortname"/>
+        <INDEX NAME="ishortname" UNIQUE="false" FIELDS="shortname" PREVIOUS="ifullname" NEXT="iinn"/>
+        <INDEX NAME="iinn" UNIQUE="false" FIELDS="inn" PREVIOUS="ishortname" NEXT="ikpp"/>
+        <INDEX NAME="ikpp" UNIQUE="false" FIELDS="kpp" PREVIOUS="iinn" NEXT="iogrn"/>
+        <INDEX NAME="iogrn" UNIQUE="false" FIELDS="ogrn" PREVIOUS="ikpp" NEXT="ilegaladdressid"/>
+        <INDEX NAME="ilegaladdressid" UNIQUE="false" FIELDS="legaladdressid" PREVIOUS="iogrn" NEXT="icurrentaddressid"/>
+        <INDEX NAME="icurrentaddressid" UNIQUE="false" FIELDS="currentaddressid" PREVIOUS="ilegaladdressid" NEXT="imailingaddressid"/>
+        <INDEX NAME="imailingaddressid" UNIQUE="false" FIELDS="mailingaddressid" PREVIOUS="icurrentaddressid" NEXT="ihead"/>
+        <INDEX NAME="ihead" UNIQUE="false" FIELDS="head" PREVIOUS="imailingaddressid" NEXT="iposthead"/>
+        <INDEX NAME="iposthead" UNIQUE="false" FIELDS="posthead" PREVIOUS="ihead"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

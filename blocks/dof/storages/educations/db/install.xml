@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20130628" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_educations" COMMENT="Information about customers previous educations">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="personid"/>
+        <FIELD NAME="personid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="id" NEXT="organizationid"/>
+		<FIELD NAME="organizationid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="personid" NEXT="edulevel"/>
+		<FIELD NAME="edulevel" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="organizationid" NEXT="edydoctype"/>
+		<FIELD NAME="edydoctype" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="edulevel" NEXT="edudoccode"/>
+		<FIELD NAME="edudoccode" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="edydoctype" NEXT="edudocserial"/>
+		<FIELD NAME="edudocserial" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="edudoccode" NEXT="edudocnum"/>
+		<FIELD NAME="edudocnum" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="edudocserial" NEXT="edudocdate"/>
+		<FIELD NAME="edudocdate" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="edudocnum" NEXT="startdate"/>
+		<FIELD NAME="startdate" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="edudocdate" NEXT="finishdate"/>
+		<FIELD NAME="finishdate" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="startdate" NEXT="comment"/>
+		<FIELD NAME="comment" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="finishdate"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="ipersonid" UNIQUE="false" FIELDS="personid" NEXT="iorganizationid"/>
+		<INDEX NAME="iorganizationid" UNIQUE="false" FIELDS="organizationid" PREVIOUS="ipersonid" NEXT="iedudocdate"/>
+		<INDEX NAME="iedudocdate" UNIQUE="false" FIELDS="edudocdate" PREVIOUS="iorganizationid"/>
+      </INDEXES>
+    </TABLE>  
+  </TABLES>
+</XMLDB>

@@ -1,0 +1,97 @@
+<form id="{formid}" method="post" action="{action}">
+    <div style="text-align:center;">
+    <h3 align="center">{title}</h3>
+        <table style="margin-left:auto;margin-right:auto; width:90%;" border="0" cellpadding="5" cellspacing="0">
+            <tr>
+                <td valign="top" style="width:40%;text-align:right;">
+                	<div  style="text-align:center;">
+                    <label for="removeselect">
+                        {removelabel}
+                    </label>
+					</div>
+                    <br/>
+                    <select style="min-width:250px;width:{columswidth};" name="removeselect[]" size="20" id="removeselect" multiple="multiple" onfocus="getElementById('{formid}').add.disabled=true;
+ getElementById('{formid}').remove.disabled=false;
+ getElementById('{formid}').addselect.selectedIndex=-1;">
+                        <!-- первый вариант на случай, если нужно вывести список по группам -->
+                        <!-- BEGIN removegroup -->
+                        <optgroup label="{removename}" title="{removefullname}">
+                            <!-- BEGIN removeelements -->
+                            <option style="{style}" value="{id}" title="{fullname}" >{name}</option>
+                            <!-- END removeelements -->
+                        </optgroup>
+                        <!-- END removegroup -->
+                        <!-- Второй вариант, если нужно просто вывести список без групп -->
+                        <!-- BEGIN removelist -->
+                        <option style="{style}" value="{id}" title="{fullname}">{name}</option>
+                        <!-- END removelist -->
+                    </select>
+                </td>
+                <td valign="top">
+                    <br/>
+                    <p>
+                        <!-- дополнительные элементы -->
+                        <!-- BEGIN extraelements -->
+                        {label}
+                        {separator}
+                        {element}
+                        <!-- END extraelements -->
+                    </p>
+                    <!-- СТРЕЛКИ "ДОБАВИТЬ" и "УДАЛИТЬ" -->
+                    <p class="arrow_button" align="center">
+                        <input name="add" id="add" type="submit" value="◄ {addarrow}" title="{addarrow}" />
+                        <br/>
+                        <input name="remove" id="remove" type="submit" value="► {removearrow}" title="{removearrow}" />
+                        <input name="{formid}" id="{formid}" type="hidden" value="{formid}" />
+                    </p>
+                </td>
+                <td valign="top"  style="width:40%;text-align:left;">
+                	<div  style="text-align:center;">
+                    <label for="addselect" style="text-align:center;">
+                        {addlabel}
+                    </label>
+                    </div>
+                    <br/>
+                    <select style="min-width:250px;width:{columswidth};" name="addselect[]" size="20" id="addselect" multiple="multiple" onfocus="getElementById('{formid}').add.disabled=false;
+ getElementById('{formid}').remove.disabled=true;
+ getElementById('{formid}').removeselect.selectedIndex=-1;">
+                        <!-- первый вариант на случай, если нужно вывести список по группам -->
+                        <!-- BEGIN addgroup -->
+                        <optgroup label="{addname}" title="{addfullname}">
+                            <!-- BEGIN addelements -->
+                            <option style="{style}" value="{id}" title="{fullname}" >{name}</option>
+                            <!-- END addelements -->
+                        </optgroup>
+                        <!-- END addgroup -->
+                        <!-- Второй вариант, если нужно просто вывести список без групп -->
+                        <!-- BEGIN addlist -->
+                        <option style="{style}" value="{id}" title="{fullname}" >{name}</option>
+                        <!-- END addlist -->
+                    </select>
+                    <br/>
+                    <!-- Дополнительные пользовательские части формы, распологающиеся под списком добавления -->
+                    {underaddlist}
+                    <!-- Если поиск есть - он покажется. Если нет - то не покажется -->
+                    <!-- BEGIN search -->
+                    <label for="searchtext" class="accesshide">
+                        {searchlabel}
+                    </label>
+                    <input type="text" name="searchtext" id="searchtext" size="30" value="{searchtext}" 
+                    onfocus ="getElementById('{formid}').add.disabled=true;
+ getElementById('{formid}').remove.disabled=true;
+ getElementById('{formid}').removeselect.selectedIndex=-1;
+ getElementById('{formid}').addselect.selectedIndex=-1;"
+ 
+ onkeydown = "var keyCode = event.which ? event.which : event.keyCode;
+ if (keyCode  == 13) {
+ getElementById('{formid}').previoussearch.value=1;
+ getElementById('{formid}').submit();
+}  " />
+                    <input name="search" id="search" type="submit" value="{searchbutton}" />
+                    <input name="showall" id="showall" type="submit" value="{showall}" />
+                    <!-- END search -->
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>

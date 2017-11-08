@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{_name}</title>
+</head>
+<body>
+    <div align="center"><b>{_name}</b></div>
+    <br>
+    <div>    
+        <table  border="1"  cellpadding=5 >	
+            <tr style="vertical-align:top; font-size:10pt; text-align:center;">
+                <th colspan="2" class="header c0">{info}</th>
+            </tr>
+            <tr>
+                <td> {depart} </td>
+                <td> {depart_name}  </td>
+            </tr>
+            <tr >
+                <td> {request_name}  </td>
+                <td> {requestdate}  </td>
+            </tr>
+            <tr >
+                <td> {data_begin_name}  </td>
+                <td> {data_begin}  </td>
+            </tr>
+            <tr >
+                <td> {data_complete}  </td>
+                <td> {completedate}  </td>
+            </tr>
+        </table>    
+    </div>
+    <br>
+
+    <!-- BEGIN students --> 
+    
+    <table class="generaltable boxaligncenter" border="1" width="100%" frame='box' rules='all' cellpadding=5>	
+      <tr style="vertical-align:top; font-size:14pt; text-align:center;">
+        <th class="header c0">{fio}</th>
+      </tr>
+    </table> 
+     
+
+        <!-- BEGIN contracts -->
+        <table class="generaltable boxaligncenter" border="1" width="100%" frame='box' rules='all' cellpadding=5>		
+          <tr style="vertical-align:top; font-size:12pt; text-align:center;">
+            <th class="header c0">{column_contract}:{num} | {column_date}:{date}</th>
+          </tr>
+        </table>
+        
+                <!-- BEGIN programmsbcs -->
+                <table class="generaltable boxaligncenter" border="1" width="100%" frame='box' rules='all' cellpadding=5>	
+                  <tr style="vertical-align:top; font-size:12pt; text-align:center;">
+                    <th class="header c0">{column_programm}:{programm} | {column_begindate}:{begindate}</th>
+                  </tr>
+                 </table>
+
+                        <table class="generaltable boxaligncenter" border="1" width="100%" frame='box' rules='all' cellpadding=5>	
+                          <tr style="vertical-align:top; font-size:10pt; text-align:center;">
+                            <th class="header c0">{column_course}</th>
+                            <th class="header c0">{column_mdlcourse}</th>
+                            <th class="header c0">{column_lastaccess}</th>
+                            <th class="header c0">{column_countaccessage}</th>
+                            <th class="header c0">{column_countactions}</th>
+                            <th class="header c0">{column_countactionsage}</th>
+                            <th class="header c0">{column_messageforum}</th>
+                            <th class="header c0">{column_countworks}</th>
+                          </tr> 
+						  <!-- BEGIN cpasseds -->
+                          <tr >
+                           <td style="text-align:center;" class="cell c0">{namecourse}</td>
+                            <td style="text-align:center;" class="cell c0">{mdlcourse}</td>
+                            <td style="text-align:center;" class="cell c0">{lastaccess}</td>
+                            <td style="text-align:center;" class="cell c0">{allaccess}</td>
+                            <td style="text-align:center;" class="cell c0">{allrecord}</td>
+                            <td style="text-align:center;" class="cell c0">{allrecordtime}</td>
+                            <td style="text-align:center;" class="cell c0">{forumanswer}</td>
+                            <td style="text-align:center;" class="cell c0">{readywork}</td>
+                          </tr>
+                        
+
+                        <!-- END cpasseds -->
+                        </table>
+                                
+                <!-- END programmsbcs -->
+
+            <!-- END contracts -->
+    <br><br>
+    <!-- END students -->
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+div.felement.fsubmit input.icon, 
+div.felement.fsubmit input.icon :hover {
+    cursor: pointer;
+    height: 16px;
+    padding-left: 16px;
+}
+input.icon input[type="submit"], input.icon input[type="submit"]:hover {
+}
+input.addtoplan, input.addtoplan:hover {
+    color: rgba(0, 0, 0, 0);
+    background: url("/blocks/dof/im/learningplan/icons/add.png") no-repeat scroll 0 0;
+    padding: 0px 5px 0px;
+    border: 0px;
+}
+input.excludefromplan, input.excludefromplan:hover {
+    color: rgba(0, 0, 0, 0);
+    background: url("/blocks/dof/im/learningplan/icons/exclude.png") no-repeat scroll 0 0;
+    padding: 0px 5px 0px;
+    border: 0px;
+}
+input.changeagenum, input.changeagenum:hover {
+    color: rgba(0, 0, 0, 0);
+    background: url("/blocks/dof/im/learningplan/icons/move.png") no-repeat scroll 0 0;
+    padding: 0px 5px 0px;
+    border: 0px;
+}
+div.changeagenumajax, div.changeagenumajax:hover {
+    color: rgba(0, 0, 0, 0);
+    background: url("/blocks/dof/im/learningplan/icons/move-ajax.png") no-repeat scroll 0 0;
+    padding: 0px 5px 0px;
+    border: 0px;
+    display: inline-block;
+    cursor: pointer;
+}
+.generaltable {
+    margin: 0;
+}
+tr.learned a {
+    color: #063
+}
+tr.planned a {
+    color: #06c
+}
+tr.planning a {
+    color: #999999
+}
+
+.pitemhide {
+    display: none;
+}
+
+.draggable {
+    cursor: move
+}
+
+.mform .fitem .fitemtitle div.haveelements {
+    display: none;
+}
+
+.havenoelements {
+    display: none;
+}
+
+.overlay {
+    filter: alpha(opacity=60);
+    opacity: 0.0;
+    z-index: 3;
+    position: absolute;
+}
+
+.yui3-dd-drop.yui3-dd-drop-active-valid {
+    opacity: 0.3;
+    border: 2px dashed;
+    border-top: 2px dashed;
+    border-color: #0070a3
+}
+
+/*.yui3-dd-drop.yui3-dd-drop-active-invalid {
+    opacity: 1.0;
+    border: 2px dashed red;
+    border-top: 2px dashed red;
+    border-color: #ffcccc
+}*/
+
+.yui3-dd-drop.yui3-dd-drop-active-valid.yui3-dd-drop-over {
+    opacity: 0.9;
+    border-color: #009900
+}
+.agenumplace{
+    position: absolute;
+    transform-origin: 50% 50%;
+    border: 1px solid #000;
+    text-align: center;
+    vertical-align: middle;
+    background: #FFF;
+    /*z-index: 0;*/
+    border-radius: 16px;
+    font-size: x-large;
+    /* Коррелирует с yui/ajax: view_agenums()*/
+    line-height: 32px;
+    margin: -8px;
+}
+.agenumplace.invisible {
+    display: none;
+}
+/* Правила для стандартов */
+.ruleok {
+    color: #038135;
+    font-weight: bold;
+}
+
+.rulefail {
+    color: #f00;
+    font-weight: bold;
+}
+
+/* Для подсказок под ячейками */
+[data-title]:hover {
+  position: relative;
+}
+
+[data-title]:hover:after {
+  text-decoration: none;
+  content: attr(data-title);
+  padding: 4px 8px;
+  color: #333;
+  position: absolute;
+  left: 0px;
+  top: 100%;
+  white-space: pre-line;
+  z-index: 20px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0px 0px 4px #222;
+  -webkit-box-shadow: 0px 0px 4px #222;
+  box-shadow: 0px 0px 4px #222;
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #eeeeee),color-stop(1, #cccccc));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+}
+
+.lastcol[data-title]:hover:after {
+  right: 0px;
+  left: auto;
+}
+
+.discipline[data-title]:hover:after {
+  text-align: left;
+}

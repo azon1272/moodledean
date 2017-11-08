@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20111124" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_invitems" COMMENT="реестр склада(оборудование)">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="name"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="название оборудования" PREVIOUS="id" NEXT="code"/>
+        <FIELD NAME="code" TYPE="char" LENGTH="30" NOTNULL="false" SEQUENCE="false" COMMENT="кодовое обозначение" PREVIOUS="name" NEXT="serialnum"/>
+        <FIELD NAME="serialnum" TYPE="char" LENGTH="55" NOTNULL="false" SEQUENCE="false" COMMENT="серийный номер" PREVIOUS="code" NEXT="type"/>
+        <FIELD NAME="type" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="тип оборудования:штучный,счетный " PREVIOUS="serialnum" NEXT="count"/>
+        <FIELD NAME="count" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="количество при счетном типе(>1) " PREVIOUS="type" NEXT="termofuse"/>
+        <FIELD NAME="termofuse" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="предполагаемый срок полезного использования" PREVIOUS="count" NEXT="dateentry"/>
+        <FIELD NAME="dateentry" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата и время поступления" PREVIOUS="termofuse" NEXT="datewriteoff"/>
+        <FIELD NAME="datewriteoff" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата и время списания" PREVIOUS="dateentry" NEXT="invcategoryid"/>
+        <FIELD NAME="invcategoryid" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="категория, к которой приписан объект " PREVIOUS="datewriteoff" NEXT="departmentid"/>
+        <FIELD NAME="departmentid" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="id подразделения" PREVIOUS="invcategoryid" NEXT="invsetid"/>
+        <FIELD NAME="invsetid" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id комплекта, если 0 - оборудование не в комплекте" PREVIOUS="departmentid" NEXT="setorderid"/>
+        <FIELD NAME="setorderid" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id приказа о поступлении оборудования" PREVIOUS="invsetid" NEXT="outorderid"/>
+        <FIELD NAME="outorderid" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id приказа о списании оборудования" PREVIOUS="setorderid" NEXT="status"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="статус" PREVIOUS="outorderid" />
+	  </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="iname" UNIQUE="false" FIELDS="name" NEXT="icode"/>
+        <INDEX NAME="icode" UNIQUE="false" FIELDS="code" PREVIOUS="iname" NEXT="iserialnum"/>
+        <INDEX NAME="iserialnum" UNIQUE="false" FIELDS="serialnum" PREVIOUS="icode" NEXT="itype"/>
+        <INDEX NAME="itype" UNIQUE="false" FIELDS="type" PREVIOUS="iserialnum" NEXT="icount"/>
+        <INDEX NAME="icount" UNIQUE="false" FIELDS="count" PREVIOUS="itype" NEXT="itermofuse"/>
+        <INDEX NAME="itermofuse" UNIQUE="false" FIELDS="termofuse" PREVIOUS="icount" NEXT="idateentry"/>
+        <INDEX NAME="idateentry" UNIQUE="false" FIELDS="dateentry" PREVIOUS="itermofuse" NEXT="idatewriteoff"/>        
+        <INDEX NAME="idatewriteoff" UNIQUE="false" FIELDS="datewriteoff" PREVIOUS="idateentry" NEXT="iinvcategoryid"/> 
+        <INDEX NAME="iinvcategoryid" UNIQUE="false" FIELDS="invcategoryid" PREVIOUS="idatewriteoff" NEXT="idepartmentid"/>
+        <INDEX NAME="idepartmentid" UNIQUE="false" FIELDS="departmentid" PREVIOUS="iinvcategoryid" NEXT="iinvsetid"/>
+        <INDEX NAME="iinvsetid" UNIQUE="false" FIELDS="invsetid" PREVIOUS="idepartmentid" NEXT="isetorderid"/>
+        <INDEX NAME="isetorderid" UNIQUE="false" FIELDS="setorderid" PREVIOUS="iinvsetid" NEXT="ioutorderid"/>
+        <INDEX NAME="ioutorderid" UNIQUE="false" FIELDS="outorderid" PREVIOUS="isetorderid" NEXT="istatus"/>
+        <INDEX NAME="istatus" UNIQUE="false" FIELDS="status" PREVIOUS="ioutorderid"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

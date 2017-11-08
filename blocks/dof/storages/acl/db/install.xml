@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20120306" COMMENT="XMLDB file for Moodle blocks/dof/storages/acl"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_acl" COMMENT="Таблица полномочий">
+      <FIELDS>
+        <FIELD NAME="id"             TYPE="int"  LENGTH="10"  NOTNULL="true"  UNSIGNED="true"  SEQUENCE="true"       NEXT="plugintype"/>
+        <FIELD NAME="plugintype"     TYPE="char" LENGTH="20"  NOTNULL="false" UNSIGNED="false" SEQUENCE="false"      PREVIOUS="id" NEXT="plugincode"/>
+        <FIELD NAME="plugincode"     TYPE="char" LENGTH="20"  NOTNULL="true"  SEQUENCE="false" PREVIOUS="plugintype" NEXT="code"/>
+        <FIELD NAME="code"           TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="plugincode" NEXT="objectid"/>
+        <FIELD NAME="objectid"       TYPE="int"  LENGTH="10"  NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false"      PREVIOUS="code" NEXT="aclwarrantid" />  
+        <FIELD NAME="aclwarrantid"   TYPE="int"  LENGTH="10"  NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false"      PREVIOUS="objectid" />     
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="icode"           UNIQUE="false" FIELDS="code"         NEXT="iplugintype"/>
+        <INDEX NAME="iplugintype"     UNIQUE="false" FIELDS="plugintype"   PREVIOUS="icode"       NEXT="iplugincode"/>
+        <INDEX NAME="iplugincode"     UNIQUE="false" FIELDS="plugincode"   PREVIOUS="iplugintype" NEXT="iobjectid"/>
+        <INDEX NAME="iobjectid"       UNIQUE="false" FIELDS="objectid"     PREVIOUS="iplugincode" NEXT="iaclwarrantid"/>
+        <INDEX NAME="iaclwarrantid"   UNIQUE="false" FIELDS="aclwarrantid" PREVIOUS="iobjectid" />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

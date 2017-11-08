@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20090615" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_schpresences" COMMENT="содержит сведения о присутствии или отсутствии учащихся на учебном событии">
+      <FIELDS>
+        <FIELD NAME="id"       TYPE="int"  LENGTH="10" NOTNULL="true"  UNSIGNED="true" SEQUENCE="true"                      NEXT="eventid"/>
+        <FIELD NAME="eventid"  TYPE="int"  LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" PREVIOUS="id"       NEXT="personid" COMMENT="id события"/>
+        <FIELD NAME="personid" TYPE="int"  LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" PREVIOUS="eventid"  NEXT="present"  COMMENT="id персоны"/>
+        <FIELD NAME="present"  TYPE="char" LENGTH="10" NOTNULL="false"                 SEQUENCE="false" PREVIOUS="personid" NEXT="orderid"  COMMENT="присутствие"/>
+        <FIELD NAME="orderid"  TYPE="int"  LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" PREVIOUS="present"  NEXT="mdlevent" COMMENT="id приказа, в соответствии в котором был выставлен статус присутсвия"/>
+        <FIELD NAME="mdlevent" TYPE="int"  LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" PREVIOUS="orderid"                  COMMENT="Id события в moodle"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="ieventid"  UNIQUE="false" FIELDS="eventid"                       NEXT="ipersonid"/>
+        <INDEX NAME="ipersonid" UNIQUE="false" FIELDS="personid" PREVIOUS="ieventid"  NEXT="ipresent"/>
+        <INDEX NAME="ipresent"  UNIQUE="false" FIELDS="present"  PREVIOUS="ipersonid" NEXT="iorderid"/>
+        <INDEX NAME="iorderid"  UNIQUE="false" FIELDS="orderid"  PREVIOUS="ipresent"  NEXT="imdlevent"/>
+        <INDEX NAME="imdlevent" UNIQUE="false" FIELDS="mdlevent" PREVIOUS="iorderid"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

@@ -1,0 +1,110 @@
+<div align="center"><h2>{_name}</h2></div>
+<div style="width:100%;overflow: auto;">
+<table class="generaltable boxaligncenter" cellpadding="0" cellspacing="0">
+<thead>
+<tr>
+	<th class="header c0" style="width:50px;text-align:center;" scope="col"><span>{table_report_admins_num}</span></th>
+	<th class="header c1" style="width:200px;text-align:center;" scope="col"><span>{table_report_admins_fio}</span></th>
+	<th class="header c2" style="width:950px;text-align:center;" scope="col" colspan="6">
+		<table class="generaltable">
+			<tbody>
+			<tr class="r0">
+				<td class="cell c0 lastcol" style="width:950px;" colspan="6">{table_report_admins_about_lo}</td>
+			</tr>
+			<tr class="r1 lastrow">
+				<td class="cell c0" style="width:200px;text-align:center;">{table_report_admins_lo}</td>
+				<td class="cell c1" style="width:100px;text-align:center;">{table_report_admins_lo_type}</td>
+				<td class="cell c2" style="width:150px;text-align:center;">{table_report_admins_lo_district}</td>
+				<td class="cell c3" style="width:200px;text-align:center;">{table_report_admins_lo_director_fio}</td>
+				<td class="cell c4" style="width:150px;text-align:center;">{table_report_admins_lo_telephone}</td>
+				<td class="cell c5 lastcol" style="width:150px;text-align:center;">{table_report_admins_lo_email}</td>
+			</tr>
+			</tbody>
+		</table>
+	</th>
+	<th class="header c3" style="width:700px;" scope="col" colspan="5">
+		<table class="generaltable">
+			<tbody>
+			<tr class="r0">
+				<td class="cell c0 lastcol" style="width:700px;" colspan="5">{table_report_admins_about_director}</td>
+			</tr>
+			<tr class="r1 lastrow">
+				<td class="cell c0" style="width:150px;text-align:center;">{table_report_admins_director_position}</td>
+				<td class="cell c1" style="width:100px;text-align:center;">{table_report_admins_director_birth}</td>
+				<td class="cell c2" style="width:100px;text-align:center;">{table_report_admins_director_gender}</td>
+				<td class="cell c3" style="width:150px;text-align:center;">{table_report_admins_director_email}</td>
+				<td class="cell c4 lastcol" style="width:200px;text-align:center;">{table_report_admins_director_mobile}</td>
+			</tr>
+			</tbody>
+		</table>
+	</th>
+	<th class="header c4" style="width:150px;text-align:center;" scope="col"><span>{table_report_admins_registration_date}</span></th>
+	<th class="header c5" style="width:100px;text-align:center;" scope="col" colspan="2">
+		<table class="generaltable">
+			<tbody>
+			<tr class="r0">
+				<td class="cell c0 lastcol" style="width:100px;text-align:center;" colspan="2">{table_report_admins_student_count}</td>
+			</tr>
+			<tr class="r1 lastrow">
+				<td class="cell c0" style="width:50px;text-align:center;">{table_report_admins_student_count_plan}</td>
+				<td class="cell c1 lastcol" style="width:50px;text-align:center;">{table_report_admins_student_count_fact}</td>
+			</tr>
+			</tbody>
+		</table>
+	</th>
+	<th class="header c5" style="width:100px;text-align:center;" scope="col" colspan="2">
+		<table class="generaltable">
+			<tbody>
+			<tr class="r0">
+				<td class="cell c0 lastcol" style="width:100px;text-align:center;" colspan="2">{table_report_admins_teacher_count}</td>
+			</tr>
+			<tr class="r1 lastrow">
+				<td class="cell c0" style="width:50px;text-align:center;">{table_report_admins_teacher_count_plan}</td>
+				<td class="cell c1 lastcol" style="width:50px;text-align:center;">{table_report_admins_teacher_count_fact}</td>
+			</tr>
+			</tbody>
+		</table>
+	</th>
+	<th class="header c5" style="width:100px;text-align:center;" scope="col" colspan="2">
+		<table class="generaltable">
+			<tbody>
+			<tr class="r0">
+				<td class="cell c0 lastcol" style="width:100px;text-align:center;" colspan="2">{table_report_admins_admins_count}</td>
+			</tr>
+			<tr class="r1 lastrow">
+				<td class="cell c0" style="width:50px;text-align:center;">{table_report_admins_student_admins_plan}</td>
+				<td class="cell c1 lastcol" style="width:50px;text-align:center;">{table_report_admins_student_admins_fact}</td>
+			</tr>
+			</tbody>
+		</table>
+	</th>
+</tr>
+</thead>
+<tbody>
+<!-- BEGIN persons -->
+	<tr class="r{num}">
+		<td class="cell c0"><div style="width:50px;word-wrap: break-word;">{num}</div></td>
+		<td class="cell c1"><div style="width:200px;word-wrap: break-word;">{managerfio}</div></td>
+		<td class="cell c2"><div style="width:200px;word-wrap: break-word;">{departmentname}</div></td>
+		<td class="cell c3"><div style="width:100px;word-wrap: break-word;">{departmenttype}</div></td>
+		<td class="cell c4"><div style="width:150px;word-wrap: break-word;">{departmentregion}</div></td>
+		<td class="cell c5"><div style="width:200px;word-wrap: break-word;">{directorfio}</div></td>
+		<td class="cell c6"><div style="width:150px;word-wrap: break-word;">{departmenttelephone}</div></td>
+		<td class="cell c7"><div style="width:150px;word-wrap: break-word;">{departmentemail}</div></td>
+		<td class="cell c8"><div style="width:150px;word-wrap: break-word;">{managerposition}</div></td>
+		<td class="cell c9"><div style="width:100px;word-wrap: break-word;">{managerdateofbirth}</div></td>
+		<td class="cell c10"><div style="width:100px;word-wrap: break-word;">{managergender}</div></td>
+		<td class="cell c11"><div style="width:150px;word-wrap: break-word;">{manageremail}</div></td>
+		<td class="cell c12"><div style="width:200px;word-wrap: break-word;">{managerphonecell}</div></td>
+		<td class="cell c13"><div style="width:150px;word-wrap: break-word;">{timecreate}</div></td>
+		<td class="cell c14"><div style="width:50px;word-wrap: break-word;">{studentsnumplan}</div></td>
+		<td class="cell c15"><div style="width:50px;word-wrap: break-word;">{studentsnumfact}</div></td>
+		<td class="cell c16"><div style="width:50px;word-wrap: break-word;">{teachersnumplan}</div></td>
+		<td class="cell c17"><div style="width:50px;word-wrap: break-word;">{teachersnumfact}</div></td>
+		<td class="cell c18"><div style="width:50px;word-wrap: break-word;">{adminsnumplan}</div></td>
+		<td class="cell c19 lastcol"><div style="width:50px;word-wrap: break-word;">{adminsnumfact}</div></td>
+	</tr>
+<!-- END persons -->	
+</tbody>
+</table>
+</div>

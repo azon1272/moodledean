@@ -1,0 +1,164 @@
+.mform {
+	position: relative;
+	clear: both;
+}
+.calendar_legend {
+	float: left;
+    clear: both;
+}
+.calendar_legend table {
+    border: 1px solid #000;
+}
+.calendar_legend_heading {
+    text-align: center;
+    font-style: italic;
+}
+.calendar_legend td {
+    position: relative;
+    width: 50%;
+}
+.calendar_legend td > div {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.calendartable {
+    table-layout: fixed;
+    position: relative;
+    outline: 3px #000 solid;
+    border: none;
+    margin-left:5px;
+}
+ h1 {
+    clear: both;
+}
+.calendartable td {
+    position: relative;
+}
+.calendartable .addweek {
+    position: relative;
+    z-index:1;
+    float: right;
+}
+.calendartable .emptycheckbox {
+	position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    left: 0;
+    top: 0;
+    z-index:1;
+}
+.calendartable .emptycheckbox {
+    position: absolute;
+    width: 100%!important;
+    height: 100%!important;
+    margin-left: 0!important;
+    margin-right: 0!important;
+    margin-top: 0!important;
+    margin-bottom: 0!important;
+    padding: 0!important;
+    top: 0;
+    left: 0;
+}
+.calendartable .emptycheckbox input[type="checkbox"] {
+    display: none!important;
+}
+.calendartable td input[type="checkbox"] + label {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: '';
+    top: 0;
+    left: 0;
+    display: block;
+    box-sizing: border-box;
+}
+.calendartable td input[type="checkbox"]:checked + label  {
+    background: rgba(0, 0, 0, 0.2);
+    border: 3px dotted rgba(0, 0, 0, 0.5);
+}
+
+.calendartable td .fitemtitle {
+    display: none;
+}
+
+.calendartable .day {
+    position: relative;
+    z-index:2;
+    float: left;
+}
+.calendartable .dayicon {
+    position: relative;
+    z-index:3;
+    float: right;
+}
+.calendar_autofunctions {
+	display: block;
+    float: left;
+    clear: both;
+}
+.calendarmessage {
+	clear: both;
+	text-align: center;
+	display: block;
+}
+.continuelink {
+    text-align: center;
+    display: block;
+}
+
+/* День не создан */
+.calendartable .notcreated , .calendar_legend .notcreated {
+    background-color: #a9a9a9!important;
+}
+/* Цвета в зависимости от типа. Расписание не создано */
+.calendartable .working , .calendar_legend .working {
+	background-color: #afd599!important;
+}
+.calendartable .holiday , .calendar_legend .holiday {
+    background-color: #fff!important;
+}
+.calendartable .vacation , .calendar_legend .vacation {
+    background-color: #fff!important;
+}
+.calendartable .dayoff , .calendar_legend .dayoff {
+	background-color: #e49732!important;
+}
+.calendartable .edunomatch , .calendar_legend .edunomatch {
+    background-color: #B5DFF0!important;
+}
+.calendartable .nullday {
+    border: none;
+}
+/* Цвета в зависимости от типа. Расписание создано */
+.calendartable .working.haveschedule {
+    background-color: #72a454!important;
+}
+.calendartable .holiday.haveschedule {
+    background-color: #eeeeec!important;
+}
+.calendartable .vacation.haveschedule {
+    background-color: #eeeeec!important;
+}
+.calendartable .dayoff.haveschedule {
+    background-color: #A56108!important;
+}
+.calendartable .edunomatch.haveschedule {
+    background-color: #6EB3CF!important;
+}
+
+.haveschedule {
+    font-weight: bold;
+}
+/* Учебный день наступил */
+td.occured {
+    border: 3px solid #000;
+}
+/* Учебный день еще не наступил */
+td.notoccured {
+    border: 3px solid #fff;
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20111124" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_invsets" COMMENT="Комплекты оборудования">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="code"/>
+        <FIELD NAME="code" TYPE="char" LENGTH="30" NOTNULL="false" SEQUENCE="false" COMMENT="кодовое обозначение" PREVIOUS="id" NEXT="type"/>
+        <FIELD NAME="type" TYPE="char" LENGTH="30" NOTNULL="false" SEQUENCE="false" COMMENT="возвращаемость комплекта: полностью расходуемый, возвращаемый, штучный " PREVIOUS="code" NEXT="invcategoryid"/>
+        <FIELD NAME="invcategoryid" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="категория, к которой приписан объект " PREVIOUS="type" NEXT="departmentid"/>
+        <FIELD NAME="departmentid" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="id подразделения" PREVIOUS="invcategoryid" NEXT="personid"/>
+        <FIELD NAME="personid" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="персона, ответственная за комплект" PREVIOUS="departmentid" NEXT="status"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="статус" PREVIOUS="personid" NEXT="note" />
+        <FIELD NAME="note" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="примечание" PREVIOUS="status" />
+	  </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="icode" UNIQUE="false" FIELDS="code" NEXT="itype"/>
+        <INDEX NAME="itype" UNIQUE="false" FIELDS="type" PREVIOUS="icode" NEXT="iinvcategoryid"/>
+        <INDEX NAME="iinvcategoryid" UNIQUE="false" FIELDS="invcategoryid" PREVIOUS="itype" NEXT="idepartmentid"/>
+        <INDEX NAME="idepartmentid" UNIQUE="false" FIELDS="departmentid" PREVIOUS="iinvcategoryid" NEXT="ipersonid"/>
+        <INDEX NAME="ipersonid" UNIQUE="false" FIELDS="personid" PREVIOUS="idepartmentid" NEXT="istatus"/>
+        <INDEX NAME="istatus" UNIQUE="false" FIELDS="status" PREVIOUS="ipersonid"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

@@ -1,0 +1,64 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{_name}</title>
+</head>
+<body>
+<div align="center"><b>{_name}</b></div>
+<br>
+<div>    
+<table  border="1"  cellpadding=5 > 
+    <tr style="vertical-align:top; font-size:10pt; text-align:center;">
+        <th colspan="2" class="header c0">{info}</th>
+    </tr>
+    <tr>
+        <td> {depart} </td>
+        <td> {depart_name}  </td>
+    </tr>
+    <tr >
+        <td> {request_name}  </td>
+        <td> {requestdate}  </td>
+    </tr>    
+    <tr >
+       <td> {data_begin_name}  </td>
+       <td> {data_begin}  </td>
+    </tr>
+    <tr >
+        <td> {data_complete}  </td>
+        <td> {completedate}  </td>
+    </tr>
+</table>    
+</div>
+<br>
+<div ><b>{form_title}</b></div><br>
+<div >{form}</div>
+<table class="generaltable boxaligncenter" border="1" align="center" frame='box' rules='all' cellpadding=5> 
+    <tr style="vertical-align:top; font-size:10pt; text-align:center;">
+        <th class="header c0">{column_date}</th>
+        <th class="header c0">{column_oldteacher}</th>
+        <th class="header c0">{column_oldpitem}</th>
+        <th class="header c0">{column_student}</th>
+        <th class="header c0">{column_date}</th>
+        <th class="header c0">{column_newteacher}</th>
+        <th class="header c0">{column_newpitem}</th>
+        <th class="header c0">{column_eventrhours}</th>
+        <th class="header c0">{column_type}</th>
+    </tr>
+
+    <!-- BEGIN column_events --> 
+    <tr >
+        <td class="cell c0">{date}</td>
+        <td style="text-align:center;" class="cell c0">{oldteacher}</td>
+        <td style="text-align:center;" class="cell c0">{oldpitem}</td>
+        <td style="text-align:center;" class="cell c0">{student}</td>
+        <td class="cell c0">{newdate}</td>
+        <td style="text-align:center;" class="cell c0">{newteacher}</td>
+        <td style="text-align:center;" class="cell c0">{newpitem}</td>
+        <td style="text-align:center;" class="cell c0">{eventrhours}</td>
+        <td style="text-align:center;" class="cell c0">{type}</td>
+    </tr>
+    <!-- END column_events -->
+    
+</table>    
+<br>
+</body>
+

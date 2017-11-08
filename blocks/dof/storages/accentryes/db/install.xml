@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20120306" COMMENT="XMLDB file for Moodle blocks/dof/storages/accentryes"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_accentryes" COMMENT="Справочник проводок по счетам">
+      <FIELDS> 
+        <FIELD NAME="id"               TYPE="int"   LENGTH="10"                     NOTNULL="true"  UNSIGNED="true"  SEQUENCE="true"  NEXT="fromid"                                       COMMENT="id операции"/>
+        <FIELD NAME="fromid"           TYPE="int"   LENGTH="10"                     NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" NEXT="toid"             PREVIOUS="id"               COMMENT="счет - источник"/>
+        <FIELD NAME="toid"             TYPE="int"   LENGTH="10"                     NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" NEXT="amount"           PREVIOUS="fromid"           COMMENT="счет - получатель"/>
+        <FIELD NAME="amount"           TYPE="float" LENGTH="16"    DECIMALS="4"     NOTNULL="true"  UNSIGNED="false" SEQUENCE="false" NEXT="orderid"          PREVIOUS="toid"             COMMENT="сумма операции"/>
+        <FIELD NAME="orderid"          TYPE="int"   LENGTH="10"                     NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" NEXT="createdate"       PREVIOUS="amount"           COMMENT="id приказа, на основании которого совершена операция"/>
+        <FIELD NAME="createdate"       TYPE="int"   LENGTH="8"                      NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" NEXT="date"             PREVIOUS="orderid"          COMMENT="дата фактической региcтрации проводки"/>
+        <FIELD NAME="date"             TYPE="int"   LENGTH="8"                      NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" NEXT="extentryopts"     PREVIOUS="createdate"       COMMENT="дата выполнения операции"/>
+        <FIELD NAME="extentryopts"     TYPE="text"  LENGTH="small"                  NOTNULL="false"                  SEQUENCE="false" NEXT="extentryoptshash" PREVIOUS="date"             COMMENT="массив с опциями внешнего ключа"/>
+        <FIELD NAME="extentryoptshash" TYPE="char"  LENGTH="32"                     NOTNULL="false"                  SEQUENCE="false" NEXT="about"            PREVIOUS="extentryopts"     COMMENT="хеш опций внешнего ключа"/>
+        <FIELD NAME="about"            TYPE="text"  LENGTH="small"                  NOTNULL="true"                   SEQUENCE="false" NEXT="status"           PREVIOUS="extentryoptshash" COMMENT="пояснение операции"/>
+        <FIELD NAME="status"           TYPE="char"  LENGTH="20"                     NOTNULL="true"                   SEQUENCE="false"                         PREVIOUS="about"            COMMENT="статус операции"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="fromid"           UNIQUE="false"  FIELDS="fromid"           NEXT="toid"             />
+        <INDEX NAME="toid"             UNIQUE="false"  FIELDS="toid"             NEXT="amount"           PREVIOUS="fromid" />
+        <INDEX NAME="amount"           UNIQUE="false"  FIELDS="amount"           NEXT="orderid"          PREVIOUS="toid" />
+        <INDEX NAME="orderid"          UNIQUE="false"  FIELDS="orderid"          NEXT="createdate"       PREVIOUS="amount" />
+        <INDEX NAME="createdate"       UNIQUE="false"  FIELDS="createdate"       NEXT="date"             PREVIOUS="orderid" />
+        <INDEX NAME="date"             UNIQUE="false"  FIELDS="date"             NEXT="extentryoptshash" PREVIOUS="createdate" />
+        <INDEX NAME="extentryoptshash" UNIQUE="false"  FIELDS="extentryoptshash" NEXT="status"           PREVIOUS="date" />
+        <INDEX NAME="status"           UNIQUE="false"  FIELDS="status"                                   PREVIOUS="extentryoptshash" />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

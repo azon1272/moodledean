@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20090615" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_cstreamlinks" COMMENT="участие академических групп в учебных потоках">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="cstreamid"/>
+        <FIELD NAME="cstreamid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id учебного процесса" PREVIOUS="id" NEXT="agroupid"/>
+        <FIELD NAME="agroupid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id академической группы" PREVIOUS="cstreamid" NEXT="agroupsync"/>
+        <FIELD NAME="agroupsync" TYPE="char" LENGTH="20" NOTNULL="true" DEFAULT="nolink" SEQUENCE="false" COMMENT="тип связи с академической группой" PREVIOUS="agroupid"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="icstreamid" UNIQUE="false" FIELDS="cstreamid" NEXT="iagroupid"/>
+        <INDEX NAME="iagroupid" UNIQUE="false" FIELDS="agroupid" PREVIOUS="icstreamid" NEXT="iagroupsync"/>
+        <INDEX NAME="iagroupsync" UNIQUE="false" FIELDS="agroupsync" PREVIOUS="iagroupid"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

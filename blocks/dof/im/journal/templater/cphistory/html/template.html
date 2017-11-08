@@ -1,0 +1,55 @@
+<style type="text/css"> #menu A { color: red; } </style>
+
+<table>
+    <!-- BEGIN cpasseds -->
+    <tr>
+        <td valign="top">
+            <table width="100%" border="1" >
+	            <tr>
+	                <td colspan="2">
+	                    <div align="right">{monthdesc}</div>
+	                </td>
+	            </tr>
+	            <tr>
+	                <td colspan="2">
+	                    <p align="right">{daydesc}</p>
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="cpassedlink">
+                            {cpassedlink}<br/>
+                            [{cpdate}]
+	                </td>
+	            </tr>
+            </table>
+        </td>
+        <td valign="top">
+            <div style="max-width: 450px; overflow-x: scroll;">
+            <table width="100%" border="1" >
+                <tr class="monthrow">
+                <!-- BEGIN monthtitle -->
+                    <td class="monthtitle" height="20px" colspan="{mcolspan}">
+                        <b>{mtitle}</b>
+                    </td>
+                <!-- END monthtitle -->
+                </tr>
+                <tr class="monthrow">
+                <!-- BEGIN monthdate -->
+                    <td class="monthdate" min-width="30px" NOWRAP>
+                        {date}
+                    </td>
+                <!-- END monthdate -->
+                </tr>
+                <tr class="graderow">
+                    <!-- BEGIN studentgrades -->
+                        <td class="gradedata" {color} NOWRAP>
+                            {grades}
+                        </td>
+                    <!-- END studentgrades -->
+                </tr>
+            </table>
+            </div>
+        </td>
+    </tr>
+    <!-- END cpasseds -->
+</table>

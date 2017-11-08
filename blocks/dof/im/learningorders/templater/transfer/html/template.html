@@ -1,0 +1,66 @@
+
+{anchortmp}
+
+<!-- BEGIN type -->
+<div {style}>
+<div align='center' style='color:#225dbf;'><h2> {types} {typesanchor} <span style='font-size:12px;'><a href='#begin'>[func_get_string('in_begin','learningorders')]</a></span></div> 
+<!-- BEGIN newparallel -->
+    <div align='center' style='color:#36770f'> <h3>{remove_parallel} {remove_na_parallel} {typeparal}</h3> </div>
+    <table align='center' cellspacing='5' cellpadding='5' border='1'>
+      <!-- BEGIN group -->
+        <tr align='center' > 
+            <td  colspan='6' ><div style='font-weight: bold;'> {typegroup} {groups} {groupname} {change_group} | {prog} {typeprog} | {paral} </div> 
+                    {string} <span style='font-size:12px;'><a href='#begin'>[func_get_string('in_begin','learningorders')]</a></span> 
+            </td>
+        </tr>    
+        <tr> 
+            <td> №                        </td>
+            <td> {lastnamee}              </td>
+            <td> {firstnamee}             </td>
+            <td> {middlenamee}            </td>
+            <td {reasonstylee}> {reasone} </td>
+            <td {actionstyle}> {action}   </td>
+        </tr>      
+        <!-- BEGIN student --> 
+        <tr>  
+            <td> {i}                      </td>
+            <td> {lastname}               </td>  
+            <td> {firstname}              </td>                    
+            <td> {middlename}             </td>
+            <td {reasonstyle}> {reason}   </td>
+            <td {studentstyle}> {student} </td>
+        </tr>       
+        <!-- END student -->
+      <!-- END group --> 
+      <!-- BEGIN no_group -->
+        <tr align='center' >
+           <td  colspan='6' ><div style='font-weight: bold;'> {typenogroup} {no_group} {change_group} | {prog} {typenoprog} | {parall} </div> 
+                {string} <span style='font-size:12px;'><a href='#begin'>[func_get_string('in_begin','learningorders')]</a></span> 
+           </td>
+       </tr>
+       <tr>
+            <td> №                       </td>
+            <td> {lastnamee}             </td>
+            <td> {firstnamee}            </td>
+            <td> {middlenamee}           </td>
+            <td {reasonstylee}> {reasone} </td>
+            <td {actionstyle}> {action}   </td>
+       </tr> 
+       <!-- BEGIN student1 --> 
+       <tr>  
+            <td> {i}                      </td>
+            <td> {lastname}               </td>
+            <td> {firstname}              </td>
+            <td> {middlename}             </td>
+            <td {reasonstyle}> {reason}   </td>
+            <td {studentstyle}> {student} </td>
+       </tr>       
+       <!-- END student1 -->
+      <!-- END no_group --> 
+    </table>
+    <br>
+<!-- END newparallel -->
+</div>
+<!-- END type -->
+
+

@@ -1,0 +1,8 @@
+.generaltable th
+{
+	padding: 0!important;
+}
+.generaltable th span, .generaltable td
+{
+	padding: 5!important;
+}

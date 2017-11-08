@@ -1,0 +1,67 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{_name}</title>
+</head>
+<body>
+<div align="center"><b>{_name}</b></div>
+<br>
+<div>    
+<table  border="1"  cellpadding=5 >	
+    <tr style="vertical-align:top; font-size:10pt; text-align:center;">
+        <th colspan="2" class="header c0">{info}</th>
+    </tr>
+    <tr>
+        <td> {depart} </td>
+        <td> {depart_name}  </td>
+    </tr>
+    <tr >
+        <td> {request_name}  </td>
+        <td> {requestdate}  </td>
+    </tr>    
+    <tr >
+       <td> {data_begin_name}  </td>
+       <td> {data_begin}  </td>
+    </tr>
+    <tr >
+        <td> {data_complete}  </td>
+        <td> {completedate}  </td>
+    </tr>
+</table>    
+</div>
+<br>
+<table class="generaltable boxaligncenter" border="1" align="center" frame='box' rules='all' cellpadding=5>	
+	<tr style="vertical-align:top; font-size:10pt; text-align:center;">
+		<th class="header c0">{column_teacher}</th>
+		<th class="header c0">{column_eagreement}</th>
+		<th class="header c0">{column_appoint}</th>
+		<th class="header c0">{column_tabelload}</th>
+		<th class="header c0">{column_fixload}</th>
+		<th class="header c0">{column_planload}</th>
+		<th class="header c0">{column_executeload}</th>
+		<th class="header c0">{column_replace}</th>
+		<th class="header c0">{column_cancel}</th>
+		<th class="header c0">{column_salarypoints}</th>
+		{column_correction}
+	</tr>
+
+	<!-- BEGIN column_persons --> 
+	<tr >
+		<td class="cell c0">{teacher}</td>
+		<td style="text-align:center;" class="cell c0">{eagreement}</td>
+        <td style="text-align:center;" class="cell c0">{appoint}</td>
+        <td style="text-align:center;" class="cell c0">{tabelload}</td>
+        <td style="text-align:center;" class="cell c0">{fixload}</td>
+        <td style="text-align:center;" class="cell c0">{planload}</td>
+        <td style="text-align:center;" class="cell c0">{executeload}</td>
+        <td style="text-align:center;" class="cell c0">{replace}</td>
+        <td style="text-align:center;" class="cell c0">{cancel}</td>
+        <td style="text-align:center;" class="cell c0">{salarypoints}</td>
+		{correction}
+	</tr>
+	<!-- END column_persons -->
+    
+</table>	
+<br>
+
+</body>
+

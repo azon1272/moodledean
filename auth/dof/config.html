@@ -1,0 +1,77 @@
+<?php
+    global $OUTPUT;
+
+    // Установки по умолчанию
+    if ( ! isset($config->recaptcha) ) 
+    {// Добавление капчи
+        $config->recaptcha = false;
+    }
+    if ( ! isset($config->dof_departmentid) ) 
+    {// Подразделение Деканата, в которое добавляются пользователи
+        $config->dof_departmentid = 0;
+    }
+    if ( ! isset($config->sendmethod) ) 
+    {// Метод отправки данных для входа
+        $config->sendmethod = 'disabled';
+    }
+?>
+<table cellspacing="0" cellpadding="5" border="0">
+    <tr>
+       <td colspan="3">
+            <h2 class="main"><?php print_string('settings_title', 'auth_dof') ?> </h2>
+       </td>
+    </tr>
+    <tr>
+        <td align="right">
+            <label for="recaptcha"><?php print_string('settings_recaptcha_label', 'auth_dof') ?></label>
+        </td>
+        <td>
+            <?php
+                $yesno = [ get_string('no'), get_string('yes') ];
+                echo html_writer::select($yesno, 'recaptcha', $config->recaptcha, false);
+            ?>
+        </td>
+        <td>
+            <?php print_string('settings_recaptcha', 'auth_dof') ?>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            <label for="dof_departmentid"><?php print_string('settings_dof_departmentid_label', 'auth_dof') ?></label>
+        </td>
+        <td>
+            <?php
+                $departments = $this->get_available_dof_departments();
+                if ( ! isset($departments[$config->dof_departmentid]) )
+                {// Текущее подразделение не найдено в списке
+                    $departments[$config->dof_departmentid] = get_string('dof_departments_not_found', 'auth_dof');
+                }
+                echo html_writer::select($departments, 'dof_departmentid', $config->dof_departmentid, false);
+            ?>
+        </td>
+        <td>
+             <?php print_string('settings_dof_departmentid', 'auth_dof') ?>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            <label for="menurecaptcha"><?php print_string('settings_sendmethod_label', 'auth_dof') ?></label>
+        </td>
+        <td>
+            <?php
+                $sendmethods = $this->get_available_send_methods();
+                if ( ! isset($sendmethods[$config->sendmethod]) )
+                {// Текущий обработчик не найден в списке
+                    $sendmethods[$config->sendmethod] = get_string('send_method_not_found', 'auth_dof');
+                }
+                echo html_writer::select($sendmethods, 'sendmethod', $config->sendmethod, false);
+            ?>
+        </td> 
+        <td>
+             <?php print_string('settings_sendmethod', 'auth_dof') ?>
+        </td>
+    </tr>
+    <?php
+        print_auth_lock_options($this->authtype, $user_fields, get_string('auth_fieldlocks_help', 'auth'), false, false);
+    ?>
+</table>

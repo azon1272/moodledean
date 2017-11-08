@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20110914" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_programmsbcs" COMMENT="подписка на изучение учебной программы/специальности">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="contractid"/>
+        <FIELD NAME="contractid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id контракта, по которому реализуется подписка" PREVIOUS="id" NEXT="programmid"/>
+        <FIELD NAME="programmid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id заказанной программы" PREVIOUS="contractid" NEXT="edutype"/>
+        <FIELD NAME="edutype" TYPE="char" LENGTH="20" NOTNULL="false" DEFAULT="individual" SEQUENCE="false" COMMENT="тип обучения" PREVIOUS="programmid" NEXT="eduform"/>
+        <FIELD NAME="eduform" TYPE="char" LENGTH="40" NOTNULL="false" DEFAULT="internal" SEQUENCE="false" COMMENT="форма обучения" PREVIOUS="edutype" NEXT="freeattendance"/>
+        <FIELD NAME="freeattendance" TYPE="char" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="свободное посещение" PREVIOUS="eduform" NEXT="agroupid"/>
+        <FIELD NAME="agroupid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id академической группы, если обучение групповое" PREVIOUS="freeattendance" NEXT="agenum"/>
+        <FIELD NAME="agenum" TYPE="int" LENGTH="3" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="порядковый номер текущего учебного периода" PREVIOUS="agroupid" NEXT="departmentid"/>
+        <FIELD NAME="departmentid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="структурное подразделение, ответственное за исполнение подписки" PREVIOUS="agenum" NEXT="status"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="статус" PREVIOUS="departmentid" NEXT="datestart"/>
+        <FIELD NAME="datestart" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата начала действия подписки" PREVIOUS="status" NEXT="dateadd"/>
+        <FIELD NAME="dateadd" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата создания подписки" PREVIOUS="datestart" NEXT="certificatenum"/>
+        <FIELD NAME="certificatenum" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="номер сертификата" PREVIOUS="dateadd" NEXT="certificateform"/>
+        <FIELD NAME="certificateform" TYPE="char" LENGTH="30" NOTNULL="false" SEQUENCE="false" COMMENT="код формы/бланка сертификата (должен совпадать с кодом шаблона в плагине storage/programmsbcs)" PREVIOUS="certificatenum" NEXT="certificatedate"/>
+        <FIELD NAME="certificatedate" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата выдачи сертификата" PREVIOUS="certificateform" NEXT="certificateorderid"/>
+        <FIELD NAME="certificateorderid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="Номер приказа, в соответствии с которым выдан сертификат" PREVIOUS="certificatedate" NEXT="dateend"/>
+        <FIELD NAME="dateend" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата завершения подписки" PREVIOUS="certificateorderid" NEXT="salfactor"/>
+        <FIELD NAME="salfactor" TYPE="float" LENGTH="6" NOTNULL="true" DEFAULT="0" UNSIGNED="true" SEQUENCE="false" COMMENT="поправочный зарплатный коэффициент для слушателя" PREVIOUS="dateend"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="icontractid" UNIQUE="false" FIELDS="contractid" NEXT="iprogrammid"/>
+        <INDEX NAME="iprogrammid" UNIQUE="false" FIELDS="programmid" PREVIOUS="icontractid" NEXT="iedutype"/>
+        <INDEX NAME="iedutype" UNIQUE="false" FIELDS="edutype" PREVIOUS="iprogrammid" NEXT="ieduform"/>
+        <INDEX NAME="ieduform" UNIQUE="false" FIELDS="eduform" PREVIOUS="iedutype" NEXT="ifreeattendance"/>
+        <INDEX NAME="ifreeattendance" UNIQUE="false" FIELDS="freeattendance" PREVIOUS="ieduform" NEXT="iagroupid"/>
+        <INDEX NAME="iagroupid" UNIQUE="false" FIELDS="agroupid" PREVIOUS="ifreeattendance" NEXT="iagenum"/>
+        <INDEX NAME="iagenum" UNIQUE="false" FIELDS="agenum" PREVIOUS="iagroupid" NEXT="idepartmentid"/>
+        <INDEX NAME="idepartmentid" UNIQUE="false" FIELDS="departmentid" PREVIOUS="iagenum" NEXT="istatus"/>
+        <INDEX NAME="istatus" UNIQUE="false" FIELDS="status" PREVIOUS="idepartmentid" NEXT="idatestart"/>
+        <INDEX NAME="idatestart" UNIQUE="false" FIELDS="datestart" PREVIOUS="istatus" NEXT="idateadd"/>
+        <INDEX NAME="idateadd" UNIQUE="false" FIELDS="dateadd" PREVIOUS="idatestart" NEXT="icertificatenum"/>
+        <INDEX NAME="icertificatenum" UNIQUE="false" FIELDS="certificatenum" PREVIOUS="idateadd" NEXT="icertificateform"/>
+        <INDEX NAME="icertificateform" UNIQUE="false" FIELDS="certificateform" PREVIOUS="icertificatenum" NEXT="icertificatedate"/>
+        <INDEX NAME="icertificatedate" UNIQUE="false" FIELDS="certificatedate" PREVIOUS="icertificateform" NEXT="icertificateorderid"/>
+        <INDEX NAME="icertificateorderid" UNIQUE="false" FIELDS="certificateorderid" PREVIOUS="icertificatedate" NEXT="idateend"/>
+        <INDEX NAME="idateend" UNIQUE="false" FIELDS="dateend" PREVIOUS="icertificateorderid" NEXT="isalfactor"/>
+        <INDEX NAME="isalfactor" UNIQUE="false" FIELDS="salfactor" PREVIOUS="idateend"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

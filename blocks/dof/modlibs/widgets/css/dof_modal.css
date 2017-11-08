@@ -1,0 +1,111 @@
+.dof_modal_open {
+	display: none;
+}
+.dof_modal_wrapper > label {
+    display: inline;
+}
+.dof_modal_header h2 {
+    color: #555;  
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 1;    
+    margin: 0;
+}
+/* кнопка закрытия окна */
+.dof_modal .dof_modal_button_close {
+    color: #aaa;
+    cursor: pointer;
+    font-size: 30px;
+    text-decoration: none;
+    position: absolute;
+    right: 5px;
+    top: 0;
+}
+.dof_modal .dof_modal_button_close:hover {
+    color: red;
+}
+/* слой затемнения */
+.dof_modal_modalwrap:before {
+    content: "";
+    display: none;
+    background: rgba(0, 0, 0, .3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 101;
+}
+.mform label.dof_modal_overlay {
+    bottom: 0;
+    display: none;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 102;
+}
+/* активация слоя затемнения и модального блока */
+.dof_modal_open:checked ~ .dof_modal_modalwrap:before,
+.dof_modal_open:checked ~ .dof_modal_modalwrap .dof_modal_overlay {
+    display: block;
+}
+.dof_modal_open:checked ~ .dof_modal_modalwrap .dof_modal_dialog {
+    -webkit-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    top: 20%;
+}
+/* элементы модального окна */
+.dof_modal_dialog {
+    background: #fefefe;
+    border: none;
+    border-radius: 5px;
+    position: fixed;
+    width: auto;
+    min-width: 50vw;
+    max-width: 80vw;
+    left: 50%;
+    top: -100%;
+    max-height: 60vh;
+    -webkit-box-shadow: 0 15px 20px rgba(0,0,0,.22),0 19px 60px rgba(0,0,0,.3);
+    -moz-box-shadow: 0 15px 20px rgba(0,0,0,.22),0 19px 60px rgba(0,0,0,.3);
+    box-shadow: 0 15px 20px rgba(0,0,0,.22),0 19px 60px rgba(0,0,0,.3);
+    -webkit-transform: translate(-50%, -500%);
+    -ms-transform: translate(-50%, -500%);
+    -o-transform: translate(-50%, -500%);
+    transform: translate(-50%, -500%);
+    -webkit-transition: -webkit-transform 0.4s ease-out;
+    -moz-transition: -moz-transform 0.4s ease-out;
+    -o-transition: -o-transform 0.4s ease-out;
+    transition: transform 0.4s ease-out;
+    z-index: 103;
+    overflow: auto;
+}
+.dof_modal_body {
+  padding: 20px;
+}
+.dof_modal_body p {
+    margin: 0;
+}
+.dof_modal_header,
+.dof_modal_footer {
+    padding: 20px 20px;
+}
+.dof_modal_header {
+    border-bottom: #eaeaea solid 1px;
+}
+.dof_modal_header h2 {
+    font-size: 20px;
+    margin: 0;
+}
+.dof_modal_footer {
+    border-top: #eaeaea solid 1px;
+    text-align: right;
+}
+/* адаптивные картинки в модальном блоке */
+.dof_modal_body img { 
+    max-width: 100%;
+    height: auto;
+}

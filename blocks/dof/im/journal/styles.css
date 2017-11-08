@@ -1,0 +1,201 @@
+/**
+ * Стиль для отображения/скрытия домашнего задания
+ */
+#hideCont
+{
+    display:none; /* Скрываем контент */
+}
+
+.Btn
+{
+    cursor:pointer;
+    outline:none; /* Скрываем рамочку, при нажатии */
+}
+
+/**
+ * Цвет нераскрывшейся ссылки 
+ */
+.red a:link
+{
+    color: red; 
+}   
+
+.red a:visited
+{
+    color: red;
+}
+
+/**
+ * Цвет раскрывшейся ссылки 
+ */
+.show a:link
+{
+    color: green;
+}
+
+.show a:visited
+{
+    color: green;
+}
+
+/**
+ * Стиль для текста
+ */
+.gray
+{ 
+    color: gray; 
+}
+
+.gray_link a:hover, .gray_link a:link, .gray_link a:visited, .gray_link a:active
+{ 
+    color: gray; 
+}
+
+.graderow {
+    border: 1px solid;
+}
+
+.gradedata { 
+    border: 1px solid;
+    text-align: center;
+}
+
+.monthrow {
+    border: 1px solid;
+    text-align: center;
+}
+
+.monthtitle {
+    border: 1px solid;
+    text-align: center;
+}
+
+.monthdate {
+    border: 1px solid;
+    text-align: center;
+}
+
+.cpassedlink {
+    text-align: center;
+}
+
+.psbcinfo {
+    width: 50%;
+}
+.psbcinfo table.generaltable {
+    width: 100%;
+}
+
+.cstreamgrades {
+    width: 50%;
+}
+.pbcgl_left {
+	text-align: left;
+}
+
+/* ЖУРНАЛ ПРЕДМЕТО-КЛАССА */
+.dof_group_journal_baseinfo,
+.dof_group_journal_journallist {
+	table-layout: fixed;
+	width: 100%;
+}
+
+.dof_group_journal_baseinfo > tbody > tr > td ,
+.dof_group_journal_journallist > tbody > tr > td {
+    width: 50%;
+    vertical-align: top;
+}
+.dof_group_journal_action {
+	margin: 2px 5px;
+}
+.dof_group_journal {
+	width: 100%;
+    table-layout: fixed;
+    position: relative;
+    overflow: hidden;
+}
+.dof_cpassedgradecell {
+	padding: 0 5px;
+	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.dof_group_journal .fixed_col,
+.dof_group_journal .gradelist {
+    vertical-align: top;
+    position: relative;
+}
+.dof_group_journal .fixed_col {
+	z-index: 1;
+}
+.dof_group_journal .gradelist {
+    z-index: 2;
+    background: #fff;
+}
+.dof_group_journal .gradelist div {
+    overflow: auto;
+}
+.dof_group_journal_journallist_gradelist {
+	padding: 0 10px;
+	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.dof_cpassedgradeform {
+	height: 50px;
+}
+.dof_cpassedgradeform td,
+.dof_group_journal td.dof_cpassedgradecell {
+    vertical-align: middle!important;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.fixed_col td,
+.gradelist td {
+	vertical-align: middle!important;
+	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.gradelist td {
+	text-align: center;
+}
+.dof_group_journal_comment {
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.dof_group_journal_comment textarea {
+    height: 50px;
+    margin: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.dof_group_journal_journallist_gradelist .dof_modal_wrapper > label
+{
+	padding: 0 0 0 5px;
+}
+.dof_group_journal_journallist_gradelist .dof_modal_wrapper span
+{
+    opacity: 0.5;
+}
+.dof_group_journal_journallist_gradelist .dof_modal_wrapper span.grpjournal_has_comments
+{
+    border: 1px solid #000;
+    opacity: 1;
+}
+.dof_group_journal_journallist_gradelist .dof_modal_wrapper textarea
+{
+    width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    display: block;
+    margin: 0 0 10px 0;
+}
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20120306" COMMENT="XMLDB file for Moodle blocks/dof/storages/skills"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_skills" COMMENT="Дерево компетенций">
+      <FIELDS> 
+      	<FIELD NAME="id"         TYPE="int"   LENGTH="10"                NOTNULL="true"  UNSIGNED="true" SEQUENCE="true"                                    NEXT="name"       COMMENT="ID компетенции"/>
+        <FIELD NAME="name"       TYPE="char"  LENGTH="255"               NOTNULL="false"                 SEQUENCE="false"             PREVIOUS="id"         NEXT="complexity" COMMENT="Имя компетенции"/>
+        <FIELD NAME="complexity" TYPE="float" LENGTH="10"   DECIMALS="4" NOTNULL="true"  UNSIGNED="true" SEQUENCE="false" DEFAULT="0" PREVIOUS="name"       NEXT="parentid"   COMMENT="Коэффициент сложности"/>
+        <FIELD NAME="parentid"   TYPE="int"   LENGTH="10"                NOTNULL="false" UNSIGNED="true" SEQUENCE="false" DEFAULT="0" PREVIOUS="complexity" NEXT="self"       COMMENT="ID родителя"/>
+        <FIELD NAME="self"       TYPE="int"   LENGTH="1"                 NOTNULL="true"  UNSIGNED="true" SEQUENCE="false" DEFAULT="1" PREVIOUS="parentid"   NEXT="path"       COMMENT="Самостоятельная компетенция"/>
+        <FIELD NAME="path"       TYPE="char"  LENGTH="255"               NOTNULL="false"                 SEQUENCE="false"             PREVIOUS="self"       NEXT="status"     COMMENT="Путь компетенции"/>
+        <FIELD NAME="status"     TYPE="char"  LENGTH="255"               NOTNULL="false"                 SEQUENCE="false"             PREVIOUS="path"                         COMMENT="Статус компетенции"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="id" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="id"         UNIQUE="true"  FIELDS="id"                                NEXT="complexity"/>
+        <INDEX NAME="complexity" UNIQUE="false" FIELDS="complexity" PREVIOUS="id"          NEXT="parentid"/>
+        <INDEX NAME="parentid"   UNIQUE="false" FIELDS="parentid"   PREVIOUS="complexity"  NEXT="self"/>
+        <INDEX NAME="self"       UNIQUE="false" FIELDS="self"       PREVIOUS="parentid"    NEXT="path"/>
+        <INDEX NAME="path"       UNIQUE="false" FIELDS="path"       PREVIOUS="self"        NEXT="status"/>
+        <INDEX NAME="status"     UNIQUE="false" FIELDS="status"     PREVIOUS="path"                     />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

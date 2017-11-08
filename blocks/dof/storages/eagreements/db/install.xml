@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20100405" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_eagreements" COMMENT="Договоры с сотрудниками">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="personid"/>
+        <FIELD NAME="personid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="персона из деканата" PREVIOUS="id" NEXT="num"/>
+        <FIELD NAME="num" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="номер договора" PREVIOUS="personid" NEXT="numpass"/>
+        <FIELD NAME="numpass" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="номер попуска" PREVIOUS="num" NEXT="date"/>
+        <FIELD NAME="date" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата договора" PREVIOUS="numpass" NEXT="begindate"/>
+        <FIELD NAME="begindate" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата начала работы" PREVIOUS="date" NEXT="enddate"/>
+        <FIELD NAME="enddate" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата окончания работы" PREVIOUS="begindate" NEXT="departmentid"/>
+        <FIELD NAME="departmentid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="ответственное подразделение" PREVIOUS="enddate" NEXT="status"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="статус" PREVIOUS="departmentid" NEXT="notice"/>
+        <FIELD NAME="notice" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="коментарии" PREVIOUS="status" NEXT="adddate"/>
+        <FIELD NAME="adddate" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата добавления в БД" PREVIOUS="notice"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="ipersonid" UNIQUE="false" FIELDS="personid" NEXT="idate"/>
+        <INDEX NAME="idate" UNIQUE="false" FIELDS="date" PREVIOUS="ipersonid" NEXT="ibegindate"/>
+        <INDEX NAME="ibegindate" UNIQUE="false" FIELDS="begindate" PREVIOUS="idate" NEXT="ienddate"/>
+        <INDEX NAME="ienddate" UNIQUE="false" FIELDS="enddate" PREVIOUS="ibegindate" NEXT="idepartmentid"/>
+        <INDEX NAME="idepartmentid" UNIQUE="false" FIELDS="departmentid" PREVIOUS="ienddate" NEXT="istatus"/>
+        <INDEX NAME="istatus" UNIQUE="false" FIELDS="status" PREVIOUS="idepartmentid" NEXT="inum"/>
+        <INDEX NAME="inum" UNIQUE="true" FIELDS="num" PREVIOUS="istatus" NEXT="inumpass"/>
+        <INDEX NAME="inumpass" UNIQUE="false" FIELDS="numpass" PREVIOUS="inum" NEXT="iadddate"/>
+        <INDEX NAME="iadddate" UNIQUE="false" FIELDS="adddate" PREVIOUS="inumpass"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

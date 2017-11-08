@@ -1,0 +1,31 @@
+<table cellpadding = "5" cellspacing="1" border="1" width="100%" class="generaltable boxaligncenter dof_recordbook">
+<!-- строка заголовка -->
+<tr>
+<th class="header c1" width="5%">{titledate}</th>
+<th class="header c1" width="5%">{titletime}</th>
+<th class="header c1" width="15%">{titlecourses}</th>
+<th class="header c1" width="15%">{titletheme}</th>
+<th class="header c1" width="40%">{titlehomework}</th>
+<th class="header c1" width="10%">{titletimework}</th>
+<th class="header c1" width="5%">{titleform}</th>
+<th class="header c1" width="5%">{titlegrade}</th>
+</tr>
+<!-- дни недели -->
+<!-- BEGIN first_course_string -->
+{separate}
+<tr bgcolor="{style}" >
+<td rowspan="{numberofcourses}" class="dof_recordbook_weekday dof_recordbook_weekday_{weekdaynum}">{weekday}</td>
+</tr>
+<!-- BEGIN course_string -->
+<tr class="dof_recordbook_eventline" bgcolor={style}>
+<td align="center">&nbsp;{time}</td>
+<td>{course}</td>
+<td>{theme}</td>
+<td align="center">{homework}</td>
+<td align="center">{timework}</td>
+<td align="center">{form}</td>
+<td align="center" nowrap >{grade}{comments}</td>
+</tr>
+<!-- END course_string -->
+<!-- END first_course_string -->
+</table>

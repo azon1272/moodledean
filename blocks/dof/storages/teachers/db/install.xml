@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20100402" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+      <TABLE NAME="block_dof_s_teachers" COMMENT="Учителя (свясь должности и преподаваемой дисциплины)">
+        <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="appointmentid"/>
+        <FIELD NAME="appointmentid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="ссылка на табельный номер" PREVIOUS="id" NEXT="programmitemid"/>
+        <FIELD NAME="programmitemid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id подписки на программу в таблице programmitems" PREVIOUS="appointmentid" NEXT="departmentid"/>
+        <FIELD NAME="departmentid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id подразделения" PREVIOUS="programmitemid" NEXT="worktime"/>
+        <FIELD NAME="worktime" TYPE="number" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" DECIMALS="2" COMMENT="Количество рабочих часов в неделю" PREVIOUS="departmentid" NEXT="status"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" PREVIOUS="worktime"/>
+        </FIELDS>
+        <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        </KEYS>
+        <INDEXES>
+        <INDEX NAME="mdl_blocdofsteac_app_ix" UNIQUE="false" FIELDS="appointmentid" NEXT="mdl_blocdofsteac_pro_ix"/>
+        <INDEX NAME="mdl_blocdofsteac_pro_ix" UNIQUE="false" FIELDS="programmitemid" PREVIOUS="mdl_blocdofsteac_app_ix" NEXT="mdl_blocdofsteac_dep_ix"/>
+        <INDEX NAME="mdl_blocdofsteac_dep_ix" UNIQUE="false" FIELDS="departmentid" PREVIOUS="mdl_blocdofsteac_pro_ix" NEXT="mdl_blocdofsteac_wor_ix"/>
+        <INDEX NAME="mdl_blocdofsteac_wor_ix" UNIQUE="false" FIELDS="worktime" PREVIOUS="mdl_blocdofsteac_dep_ix" NEXT="mdl_blocdofsteac_sta_ix"/>
+        <INDEX NAME="mdl_blocdofsteac_sta_ix" UNIQUE="false" FIELDS="status" PREVIOUS="mdl_blocdofsteac_wor_ix"/>
+        </INDEXES>
+        </TABLE>
+  </TABLES>
+</XMLDB>

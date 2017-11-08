@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20140624" COMMENT="XMLDB file for Moodle blocks/dof/storages/learningplan"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+    <TABLES>
+        <TABLE NAME="block_dof_s_learningplan" COMMENT="запланированные на будущие периоды дисциплины">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="type"/>
+                <FIELD NAME="type" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="тип объекта, на которого запланирована дисциплина (programmsbc, agroup)" PREVIOUS="id" NEXT="programmsbcid"/>
+                <FIELD NAME="programmsbcid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="id слушателя,type=programmsbc или NULL" PREVIOUS="type" NEXT="agroupid"/>
+                <FIELD NAME="agroupid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="id группы, если type=agroup или NULL" PREVIOUS="programmsbcid" NEXT="agenum"/>
+                <FIELD NAME="agenum" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false" COMMENT="номер параллели, для которой задан план. Если слушатель обязан пройти дисциплину в любой период обучения =0" PREVIOUS="agroupid" NEXT="programmitemid"/>
+                <FIELD NAME="programmitemid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="id запланированной дисциплины" PREVIOUS="agenum" NEXT="appointmentid"/>
+                <FIELD NAME="appointmentid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="id рекомендованного преподавателя" PREVIOUS="programmitemid"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+            </KEYS>
+            <INDEXES>
+                <INDEX NAME="programmsbcid" UNIQUE="false" FIELDS="programmsbcid" NEXT="agroupid"/>
+                <INDEX NAME="agroupid" UNIQUE="false" FIELDS="agroupid" PREVIOUS="programmsbcid" NEXT="agenum"/>
+                <INDEX NAME="agenum" UNIQUE="false" FIELDS="agenum" PREVIOUS="agroupid" NEXT="programmitemid"/>
+                <INDEX NAME="programmitemid" UNIQUE="false" FIELDS="programmitemid" PREVIOUS="agenum" NEXT="appointmentid"/>
+                <INDEX NAME="appointmentid" UNIQUE="false" FIELDS="appointmentid" PREVIOUS="programmitemid"/>
+            </INDEXES>
+        </TABLE>
+    </TABLES>
+</XMLDB>

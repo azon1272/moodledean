@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20111128" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_invcategories" COMMENT="Категории ресурсов">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="name"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="название" PREVIOUS="id" NEXT="code"/>
+        <FIELD NAME="code" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="кодовое обозначение" PREVIOUS="name" NEXT="parentid"/>
+        <FIELD NAME="parentid" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="родительская категория" PREVIOUS="code" NEXT="departmentid"/>
+        <FIELD NAME="departmentid" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="вышестоящее структурное подразделение" PREVIOUS="parentid" NEXT="path"/>
+        <FIELD NAME="path" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="список всех родительских категорий,путь" PREVIOUS="departmentid" NEXT="depth"/>
+        <FIELD NAME="depth" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="глубина" PREVIOUS="path" NEXT="status"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="статус" PREVIOUS="depth" />
+	  </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="iname" UNIQUE="false" FIELDS="name" NEXT="icode"/>
+        <INDEX NAME="icode" UNIQUE="false" FIELDS="code" PREVIOUS="iname" NEXT="iparentid"/>
+        <INDEX NAME="iparentid" UNIQUE="false" FIELDS="parentid" PREVIOUS="icode" NEXT="idepartmentid"/>
+        <INDEX NAME="idepartmentid" UNIQUE="false" FIELDS="departmentid" PREVIOUS="iparentid" NEXT="ipath"/>
+        <INDEX NAME="ipath" UNIQUE="false" FIELDS="path" PREVIOUS="idepartmentid" NEXT="idepth"/>
+        <INDEX NAME="idepth" UNIQUE="false" FIELDS="depth" PREVIOUS="ipath" NEXT="istatus"/>
+        <INDEX NAME="istatus" UNIQUE="false" FIELDS="status" PREVIOUS="idepth"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

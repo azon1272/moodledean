@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20110124" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_schevents" COMMENT="учебные события, отображенные на реальные даты.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="templateid"/>
+        <FIELD NAME="templateid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="шаблон" PREVIOUS="id" NEXT="dayid"/>
+        <FIELD NAME="dayid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="день, по которому было создано событие" PREVIOUS="templateid" NEXT="planid"/>
+        <FIELD NAME="planid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id темы урока в плане" PREVIOUS="dayid" NEXT="type"/>
+        <FIELD NAME="type" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="тип события" PREVIOUS="planid" NEXT="joinid"/>
+        <FIELD NAME="joinid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="id обычного урока, к которому присоединяется &quot;бесплатный&quot; или &quot;интегрированный&quot; либо 0" PREVIOUS="type" NEXT="cstreamid"/>
+        <FIELD NAME="cstreamid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id учебного потока" PREVIOUS="joinid" NEXT="teacherid"/>
+        <FIELD NAME="teacherid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id преподавателя по таблице persons" PREVIOUS="cstreamid" NEXT="date"/>
+        <FIELD NAME="date" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата и время начала события по UTC" PREVIOUS="teacherid" NEXT="duration"/>
+        <FIELD NAME="duration" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="продолжительность события" PREVIOUS="date" NEXT="place"/>
+        <FIELD NAME="place" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="место проведения события" PREVIOUS="duration" NEXT="replaceid"/>
+        <FIELD NAME="replaceid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id события, которое заменяется данным событием" PREVIOUS="place" NEXT="status"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="статус" PREVIOUS="replaceid" NEXT="form"/>
+		<FIELD NAME="form" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="тип урока (очно/дистанционно)" PREVIOUS="status" NEXT="appointmentid"/>
+        <FIELD NAME="appointmentid" TYPE="int" LENGTH="11" NOTNULL="false" SEQUENCE="false" COMMENT="id из таблицы - назначение должности с табельным номером" PREVIOUS="form" NEXT="ahours"/>
+      	<FIELD NAME="ahours" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="продолжительность урока в академических часах" PREVIOUS="appointmentid" NEXT="salfactor"/>
+      	<FIELD NAME="salfactor" TYPE="float" LENGTH="6" NOTNULL="true" DEFAULT="0" UNSIGNED="true" SEQUENCE="false" DECIMALS="2" COMMENT="применяемый итоговый коэффициент" PREVIOUS="ahours" NEXT="salfactorparts"/>
+      	<FIELD NAME="salfactorparts" TYPE="text" LENGTH="big" NOTNULL="false" SEQUENCE="false" COMMENT="замещающий поправочный коэффициент для учебного процесса" PREVIOUS="salfactor" NEXT="rhours"/>
+      	<FIELD NAME="rhours" TYPE="float" LENGTH="6" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" DECIMALS="2" COMMENT="продолжительность в условных часах, рассчитанная по формуле" PREVIOUS="salfactorparts"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="itemplateid" UNIQUE="false" FIELDS="templateid" NEXT="idayid"/>
+        <INDEX NAME="idayid" UNIQUE="false" FIELDS="dayid" PREVIOUS="itemplateid" NEXT="iplanid"/>
+        <INDEX NAME="iplanid" UNIQUE="false" FIELDS="planid" PREVIOUS="idayid" NEXT="itype"/>
+        <INDEX NAME="itype" UNIQUE="false" FIELDS="type" PREVIOUS="iplanid" NEXT="ijoinid"/>
+        <INDEX NAME="ijoinid" UNIQUE="false" FIELDS="joinid" PREVIOUS="itype" NEXT="icstreamid"/>
+        <INDEX NAME="icstreamid" UNIQUE="false" FIELDS="cstreamid" PREVIOUS="ijoinid" NEXT="iteacherid"/>
+        <INDEX NAME="iteacherid" UNIQUE="false" FIELDS="teacherid" PREVIOUS="icstreamid" NEXT="idate"/>
+        <INDEX NAME="idate" UNIQUE="false" FIELDS="date" PREVIOUS="iteacherid" NEXT="ireplaceid"/>
+        <INDEX NAME="ireplaceid" UNIQUE="false" FIELDS="replaceid" PREVIOUS="idate" NEXT="istatus"/>
+        <INDEX NAME="istatus" UNIQUE="false" FIELDS="status" PREVIOUS="ireplaceid" NEXT="iform"/>
+        <INDEX NAME="iform" UNIQUE="false" FIELDS="form" PREVIOUS="istatus" NEXT="iappointmentid"/>
+        <INDEX NAME="iappointmentid" UNIQUE="false" FIELDS="appointmentid" PREVIOUS="iform" NEXT="iahours"/>
+        <INDEX NAME="iahours" UNIQUE="false" FIELDS="ahours" PREVIOUS="iappointmentid" NEXT="isalfactor"/>
+        <INDEX NAME="isalfactor" UNIQUE="false" FIELDS="salfactor" PREVIOUS="iahours" NEXT="irhours"/>
+        <INDEX NAME="irhours" UNIQUE="false" FIELDS="rhours" PREVIOUS="isalfactor"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

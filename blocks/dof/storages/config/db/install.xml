@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20120306" COMMENT="XMLDB file for Moodle blocks/dof/storages/config"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_config" COMMENT="Таблица настроек">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="departmentid"/>
+        <FIELD NAME="departmentid" TYPE="int" LENGTH="10" DEFAULT="0" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="id" NEXT="code"/>
+        <FIELD NAME="code" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="departmentid" NEXT="type"/>
+        <FIELD NAME="type" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false" PREVIOUS="code" NEXT="value"/>
+        <FIELD NAME="value" TYPE="text" LENGTH="small" NOTNULL="false" SEQUENCE="false" PREVIOUS="type" NEXT="plugintype"/>
+        <FIELD NAME="plugintype" TYPE="char" LENGTH="20" NOTNULL="false" UNSIGNED="false" SEQUENCE="false" PREVIOUS="value" NEXT="plugincode"/>
+        <FIELD NAME="plugincode" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false" PREVIOUS="plugintype" NEXT="noextend"/>
+        <FIELD NAME="noextend" TYPE="int" LENGTH="1" NOTNULL="true" UNSIGNED="false" DEFAULT="0" SEQUENCE="false" PREVIOUS="plugincode" NEXT="personid"/>
+        <FIELD NAME="personid" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" UNSIGNED="true" SEQUENCE="false" PREVIOUS="noextend"/>
+     </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="idepartmentid" UNIQUE="false" FIELDS="departmentid" NEXT="icode"/>
+        <INDEX NAME="icode" UNIQUE="false" FIELDS="code" PREVIOUS="idepartmentid" NEXT="itype"/>
+        <INDEX NAME="itype" UNIQUE="false" FIELDS="type" PREVIOUS="icode" NEXT="iplugintype"/>
+        <INDEX NAME="iplugintype" UNIQUE="false" FIELDS="plugintype" PREVIOUS="itype" NEXT="iplugincode"/>
+        <INDEX NAME="iplugincode" UNIQUE="false" FIELDS="plugincode" PREVIOUS="iplugintype" NEXT="inoextend"/>
+        <INDEX NAME="inoextend" UNIQUE="false" FIELDS="noextend" PREVIOUS="iplugincode" NEXT="ipersonid"/>
+        <INDEX NAME="ipersonid" UNIQUE="false" FIELDS="personid" PREVIOUS="inoextend"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB> 

@@ -1,0 +1,53 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{_name}</title>
+</head>
+<body>
+<div align="center"><b>{_name} {column_time}</b></div>
+<br>
+
+<div>    
+    <table  border="1"  cellpadding=5 >	
+        <tr style="vertical-align:top; font-size:10pt; text-align:center;">
+            <th colspan="2" class="header c0">{info}</th>
+        </tr>
+        <tr>
+            <td> {depart} </td>
+            <td> {depart_name}  </td>
+        </tr>
+        <tr >
+            <td> {request_name}  </td>
+            <td> {requestdate}  </td>
+        </tr> 
+        <tr >
+            <td> {data_begin_name}  </td>
+            <td> {data_begin}  </td>
+        </tr>
+        <tr >
+            <td> {data_complete}  </td>
+            <td> {completedate}  </td>
+        </tr>
+    </table>    
+</div>
+<br>
+
+<table class="generaltable boxaligncenter" border="1" align="center" frame='box' rules='all' cellpadding=5>	
+	<tr style="vertical-align:top; font-size:10pt; text-align:center;">
+		<th class="header c0">№</th>
+        <th class="header c0">{column_person}</th>
+		<th class="header c0">{column_item}</th>
+	</tr>
+
+	<!-- BEGIN column_persons --> 
+	<tr >
+	    <td class="cell c0">{i}</td>
+		<td class="cell c0">{person}</td>
+        <td class="cell c0">{item}</td>
+	</tr>
+	<!-- END column_persons -->
+    
+</table>	
+<br>
+
+</body>
+

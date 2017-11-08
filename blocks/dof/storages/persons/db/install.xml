@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20120307" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_persons" COMMENT="Справочник персоналий">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="firstname"/>
+        <FIELD NAME="firstname" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false" COMMENT="Имя" PREVIOUS="id" NEXT="middlename"/>
+        <FIELD NAME="middlename" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false" COMMENT="Отчество" PREVIOUS="firstname" NEXT="lastname"/>
+        <FIELD NAME="lastname" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false" COMMENT="фамилия" PREVIOUS="middlename" NEXT="sortname"/>
+        <FIELD NAME="sortname" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false" COMMENT="Имя в том порядке, в каком надо сортировать" PREVIOUS="lastname" NEXT="preferredname"/>
+        <FIELD NAME="preferredname" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false" COMMENT="Префикс для имени" PREVIOUS="sortname" NEXT="dateofbirth"/>
+        <FIELD NAME="dateofbirth" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="false" SEQUENCE="false" COMMENT="дата рождения" PREVIOUS="preferredname" NEXT="gender"/>
+        <FIELD NAME="gender" TYPE="char" LENGTH="100" NOTNULL="true" DEFAULT="unknown" SEQUENCE="false" COMMENT="пол" PREVIOUS="dateofbirth" NEXT="email"/>
+        <FIELD NAME="email" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false" COMMENT="Электронная почта" PREVIOUS="gender" NEXT="phonehome"/>
+        <FIELD NAME="phonehome" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Домашний телефон" PREVIOUS="email" NEXT="phonework"/>
+        <FIELD NAME="phonework" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Рабочий телефон" PREVIOUS="phonehome" NEXT="phonecell"/>
+        <FIELD NAME="phonecell" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Мобильный телефон" PREVIOUS="phonework" NEXT="passtypeid"/>
+        <FIELD NAME="passtypeid" TYPE="int" LENGTH="2" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="тип удостоверения личности (1 - свидетельство о рождение, 2 - паспорт гражданина РФ, 3 - загранпасспорт, 4 - разрешение на временное проживание лица без гражданства, 5 - вид на жительство, 6 - военный билет, 7 - водительсткое удостоверение пластиковое, 8 - вод. удостоверение форма 1, 9 - вод. удостоверение международное)" PREVIOUS="phonecell" NEXT="passportserial"/>
+        <FIELD NAME="passportserial" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="серия удостоверения личности" PREVIOUS="passtypeid" NEXT="passportnum"/>
+        <FIELD NAME="passportnum" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Номер паспорта (без пробелов)" PREVIOUS="passportserial" NEXT="passportdate"/>
+        <FIELD NAME="passportdate" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="false" SEQUENCE="false" COMMENT="Дата выдачи паспорта" PREVIOUS="passportnum" NEXT="passportem"/>
+        <FIELD NAME="passportem" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Организация, выдавшая паспорт" PREVIOUS="passportdate" NEXT="citizenship"/>
+        <FIELD NAME="citizenship" TYPE="char" LENGTH="5" NOTNULL="false" SEQUENCE="false" COMMENT="гражданство" PREVIOUS="passportem" NEXT="passportaddrid"/>
+        <FIELD NAME="passportaddrid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="адрес прописки по паспорту" PREVIOUS="citizenship" NEXT="mdluser"/>
+        <FIELD NAME="mdluser" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="Id пользователя в moodle" PREVIOUS="passportaddrid" NEXT="sync2moodle"/>
+        <FIELD NAME="sync2moodle" TYPE="char" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Нужна синхронизация с moodle" PREVIOUS="mdluser" NEXT="addressid"/>
+        <FIELD NAME="addressid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="текущий адрес" PREVIOUS="sync2moodle" NEXT="status"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="статус объекта" PREVIOUS="addressid" NEXT="adddate"/>
+        <FIELD NAME="adddate" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="false" SEQUENCE="false" COMMENT="дата добавления объекта" PREVIOUS="status" NEXT="birthaddressid"/>
+        <FIELD NAME="birthaddressid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id адреса рождения человека" PREVIOUS="adddate" NEXT="departmentid"/>
+        <FIELD NAME="departmentid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="основной отдел, к которому приписан человек" PREVIOUS="birthaddressid" NEXT="about"/>
+        <FIELD NAME="about" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Характеристика личности" PREVIOUS="departmentid" NEXT="skype"/>
+        <FIELD NAME="skype" TYPE="char" LENGTH="32" NOTNULL="false" SEQUENCE="false" COMMENT="Уникальный идентификатор в Skype" PREVIOUS="about" NEXT="phoneadd1"/>
+        <FIELD NAME="phoneadd1" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Дополнительный телефон 1" PREVIOUS="skype" NEXT="phoneadd2"/>
+        <FIELD NAME="phoneadd2" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Дополнительный телефон 2" PREVIOUS="phoneadd1" NEXT="phoneadd3"/>
+        <FIELD NAME="phoneadd3" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Дополнительный телефон 3" PREVIOUS="phoneadd2" NEXT="emailadd1"/>
+        <FIELD NAME="emailadd1" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false" COMMENT="Дополнительная электронная почта 1" PREVIOUS="phoneadd3" NEXT="emailadd2"/>
+        <FIELD NAME="emailadd2" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false" COMMENT="Дополнительная электронная почта 2" PREVIOUS="emailadd1" NEXT="emailadd3"/>
+        <FIELD NAME="emailadd3" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false" COMMENT="Дополнительная электронная почта 3" PREVIOUS="emailadd2"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="fio" UNIQUE="false" FIELDS="lastname, firstname, middlename" COMMENT="ФИО" NEXT="ifirstname"/>
+        <INDEX NAME="ifirstname" UNIQUE="false" FIELDS="firstname" COMMENT="Индекс по имени" PREVIOUS="fio" NEXT="idateofbirth"/>
+        <INDEX NAME="idateofbirth" UNIQUE="false" FIELDS="dateofbirth" COMMENT="Индекс по дате рождения" PREVIOUS="ifirstname" NEXT="iemail"/>
+        <INDEX NAME="iemail" UNIQUE="false" FIELDS="email" PREVIOUS="idateofbirth" NEXT="iemailadd1"/>
+        <INDEX NAME="iemailadd1" UNIQUE="false" FIELDS="emailadd1" PREVIOUS="iemail" NEXT="iemailadd2"/>
+        <INDEX NAME="iemailadd2" UNIQUE="false" FIELDS="emailadd2" PREVIOUS="iemailadd1" NEXT="iemailadd3"/>
+        <INDEX NAME="iemailadd3" UNIQUE="false" FIELDS="emailadd3" PREVIOUS="iemailadd2" NEXT="iskype"/>
+        <INDEX NAME="iskype" UNIQUE="false" FIELDS="skype" PREVIOUS="iemailadd3" NEXT="imdluser"/>
+        <INDEX NAME="imdluser" UNIQUE="false" FIELDS="mdluser" PREVIOUS="iskype" NEXT="isync2moodle"/>
+        <INDEX NAME="isync2moodle" UNIQUE="false" FIELDS="sync2moodle" PREVIOUS="imdluser" NEXT="ipassportnum"/>
+        <INDEX NAME="ipassportnum" UNIQUE="false" FIELDS="passportnum" PREVIOUS="isync2moodle" NEXT="icitizenship"/>
+        <INDEX NAME="icitizenship" UNIQUE="false" FIELDS="citizenship" PREVIOUS="ipassportnum" NEXT="istatus"/>
+        <INDEX NAME="istatus" UNIQUE="false" FIELDS="status" PREVIOUS="icitizenship" NEXT="iadddate"/>
+        <INDEX NAME="iadddate" UNIQUE="false" FIELDS="adddate" PREVIOUS="istatus" NEXT="ibirthaddressid"/>
+        <INDEX NAME="ibirthaddressid" UNIQUE="false" FIELDS="birthaddressid" PREVIOUS="iadddate" NEXT="idepartmentid"/>
+        <INDEX NAME="idepartmentid" UNIQUE="false" FIELDS="departmentid" PREVIOUS="ibirthaddressid"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

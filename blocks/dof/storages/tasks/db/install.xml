@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20120306" COMMENT="XMLDB file for Moodle blocks/dof/storages/tasks"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_tasks" COMMENT="Cписок задач">
+      <FIELDS> 
+        <FIELD NAME="id"                TYPE="int"   LENGTH="10"    NOTNULL="true"  UNSIGNED="true" SEQUENCE="true"                               NEXT="parentid"           COMMENT="id задачи"/>
+        <FIELD NAME="parentid"          TYPE="int"   LENGTH="10"    NOTNULL="true"  UNSIGNED="true" SEQUENCE="false" PREVIOUS="id"                NEXT="assignedpersonid"   COMMENT="id родительской задачи"/>
+        <FIELD NAME="assignedpersonid"  TYPE="int"   LENGTH="10"    NOTNULL="true"  UNSIGNED="true" SEQUENCE="false" PREVIOUS="parentid"          NEXT="purchaserpersonid"  COMMENT="Кому поручена задача"/>
+        <FIELD NAME="purchaserpersonid" TYPE="int"   LENGTH="10"    NOTNULL="true"  UNSIGNED="true" SEQUENCE="false" PREVIOUS="assignedpersonid"  NEXT="title"              COMMENT="Кем поручена задача"/>
+        <FIELD NAME="title"             TYPE="char"  LENGTH="255"   NOTNULL="true"                  SEQUENCE="false" PREVIOUS="purchaserpersonid" NEXT="about"              COMMENT="Заголовок задачи"/>
+        <FIELD NAME="about"             TYPE="text"  LENGTH="small" NOTNULL="true"                  SEQUENCE="false" PREVIOUS="title"             NEXT="solution"           COMMENT="Описание задачи"/>
+        <FIELD NAME="solution"          TYPE="text"  LENGTH="small" NOTNULL="true"                  SEQUENCE="false" PREVIOUS="about"             NEXT="date"               COMMENT="Решение задачи"/>
+        <FIELD NAME="date"              TYPE="int"   LENGTH="11"    NOTNULL="true"                  SEQUENCE="false" PREVIOUS="solution"          NEXT="actualdate"         COMMENT="Дата создания"/>
+        <FIELD NAME="actualdate"        TYPE="int"   LENGTH="11"    NOTNULL="false"                  SEQUENCE="false" PREVIOUS="date"              NEXT="deadlinedate"       COMMENT="Дата актуализации"/>
+        <FIELD NAME="deadlinedate"      TYPE="int"   LENGTH="11"    NOTNULL="false"                  SEQUENCE="false" PREVIOUS="actualdate"        NEXT="status"             COMMENT="Дата дедлайна"/>
+        <FIELD NAME="status"            TYPE="char"  LENGTH="20"    NOTNULL="false"                 SEQUENCE="false" PREVIOUS="deadlinedate"                                COMMENT="Статус задачи"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="id" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="iparentid"          UNIQUE="false" FIELDS="parentid"                                        NEXT="iassignedpersonid"/>
+        <INDEX NAME="iassignedpersonid"  UNIQUE="false" FIELDS="assignedpersonid"  PREVIOUS="iparentid"          NEXT="ipurchaserpersonid"/>
+        <INDEX NAME="ipurchaserpersonid" UNIQUE="false" FIELDS="purchaserpersonid" PREVIOUS="iassignedpersonid"  NEXT="idate"/>
+        <INDEX NAME="idate"              UNIQUE="false" FIELDS="date"              PREVIOUS="ipurchaserpersonid" NEXT="iactualdate"/>
+        <INDEX NAME="iactualdate"        UNIQUE="false" FIELDS="actualdate"        PREVIOUS="idate"              NEXT="ideadlinedate"/>
+        <INDEX NAME="ideadlinedate"      UNIQUE="false" FIELDS="deadlinedate"      PREVIOUS="iactualdate"                            />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

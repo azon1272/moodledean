@@ -1,0 +1,45 @@
+
+.dof_modal_wrapper {
+	display: inline-block;
+	margin: 0 5px 0 0 ;
+}
+
+.dof_im_participants_students_filter {
+	margin: 0 10px;
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+}
+.dof_im_participants_students_filter .fitem_fgroup .fitemtitle {
+	display: none!important;
+}
+.dof_im_participants_students_filter .fitem_fgroup .fgroup {
+	margin-left: 0!important;
+}
+.dof_im_participants_students_filter .dof_im_participants_students_filter input {
+	margin: 0 2px;
+}
+.dof_page_description {
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 10px 20px;
+}
+table a > img {
+	position: realtive;
+	display: inline-block;
+	margin: 0 2px;
+}
+.dof_button_right {
+	float: right;
+}
+.dof_modal_wrapper {
+	margin: 0;
+}
+.table_import_error {
+	color: #b94a48;
+}
+.table_import_message {
+	color: #3c763d;
+}

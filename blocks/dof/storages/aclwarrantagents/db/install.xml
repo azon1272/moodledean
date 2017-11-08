@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20120306" COMMENT="XMLDB file for Moodle blocks/dof/storages/aclwarrantagents"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_aclwarrantagents" COMMENT="Справочник применения доверенностей">
+      <FIELDS>
+        <FIELD NAME="id"              TYPE="int"  LENGTH="10" NOTNULL="true"  UNSIGNED="true"  SEQUENCE="true"  NEXT="departmentid"/>
+        <FIELD NAME="departmentid"    TYPE="int"  LENGTH="10" NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" PREVIOUS="id"           NEXT="personid"/>
+        <FIELD NAME="personid"        TYPE="int"  LENGTH="10" NOTNULL="false" UNSIGNED="true"  SEQUENCE="false" PREVIOUS="departmentid" NEXT="baseptype" DEFAULT="0"/>
+        <FIELD NAME="baseptype"       TYPE="char" LENGTH="20" NOTNULL="false" UNSIGNED="false" SEQUENCE="false" PREVIOUS="personid"     NEXT="basepcode"/>   
+        <FIELD NAME="basepcode"       TYPE="char" LENGTH="20" NOTNULL="false" UNSIGNED="false" SEQUENCE="false" PREVIOUS="baseptype"    NEXT="basetype"/> 
+        <FIELD NAME="basetype"        TYPE="char" LENGTH="20" NOTNULL="false" UNSIGNED="false" SEQUENCE="false" PREVIOUS="basepcode"    NEXT="baseid"   DEFAULT="record"/>
+        <FIELD NAME="baseid"          TYPE="int"  LENGTH="10" NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" PREVIOUS="basetype"     NEXT="aclwarrantid"/>       
+        <FIELD NAME="aclwarrantid"    TYPE="int"  LENGTH="10" NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" PREVIOUS="baseid"       NEXT="datecreate"/>
+        <FIELD NAME="datecreate"      TYPE="int"  LENGTH="10" NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" PREVIOUS="aclwarrantid" NEXT="begindate"/>
+        <FIELD NAME="begindate"       TYPE="int"  LENGTH="10" NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" PREVIOUS="datecreate"   NEXT="duration"/>
+        <FIELD NAME="duration"        TYPE="int"  LENGTH="10" NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" PREVIOUS="begindate"    NEXT="status"/>
+        <FIELD NAME="status"          TYPE="char" LENGTH="20" NOTNULL="true"  UNSIGNED="false" SEQUENCE="false" PREVIOUS="duration"     NEXT="isdelegatable"/>
+        <FIELD NAME="isdelegatable"   TYPE="int"  LENGTH="1"  NOTNULL="true"  UNSIGNED="false" SEQUENCE="false" PREVIOUS="status" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="idepartmentid"    UNIQUE="false" FIELDS="departmentid"  NEXT="ipersonid"/>
+        <INDEX NAME="ipersonid"        UNIQUE="false" FIELDS="personid"      PREVIOUS="idepartmentid" NEXT="ibasetype"/>
+        <INDEX NAME="ibasetype"        UNIQUE="false" FIELDS="basetype"      PREVIOUS="ipersonid"     NEXT="ibaseid"/>
+        <INDEX NAME="ibaseid"          UNIQUE="false" FIELDS="baseid"        PREVIOUS="ibasetype"     NEXT="iaclwarrantid"/>       
+        <INDEX NAME="iaclwarrantid"    UNIQUE="false" FIELDS="aclwarrantid"  PREVIOUS="ibaseid"       NEXT="idatecreate"/>  
+        <INDEX NAME="idatecreate"      UNIQUE="false" FIELDS="datecreate"    PREVIOUS="iaclwarrantid" NEXT="ibegindate"/>
+        <INDEX NAME="ibegindate"       UNIQUE="false" FIELDS="begindate"     PREVIOUS="idatecreate"   NEXT="iduration"/>
+        <INDEX NAME="iduration"        UNIQUE="false" FIELDS="duration"      PREVIOUS="ibegindate"    NEXT="istatus"/>
+        <INDEX NAME="istatus"          UNIQUE="false" FIELDS="status"        PREVIOUS="iduration"     NEXT="ibaseptype" />
+        <INDEX NAME="ibaseptype"       UNIQUE="false" FIELDS="baseptype"     PREVIOUS="istatus"       NEXT="ibasepcode"/>
+        <INDEX NAME="ibasepcode"       UNIQUE="false" FIELDS="basepcode"     PREVIOUS="ibaseptype"    NEXT="iisdelegatable" />
+        <INDEX NAME="iisdelegatable"   UNIQUE="false" FIELDS="isdelegatable" PREVIOUS="ibasepcode" /> 
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

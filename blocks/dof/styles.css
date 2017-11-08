@@ -1,0 +1,638 @@
+/** БАЗОВЫЕ СТИЛИ ДЕКАНАТА */
+.r0 .cell {
+    background-color: #fafafa;
+    color: #000;
+}
+.r1 .cell {
+    background-color: #fff;
+    color: #000;
+}
+.gray
+{ 
+    color: gray; 
+}
+.gray_link a:hover, .gray_link a:link, .gray_link a:visited, .gray_link a:active
+{ 
+    color: gray; 
+}
+.block_dof .content {
+    padding:10px;
+}
+.dof_fixed_table, .dof_fixed_table > table {
+	table-layout: fixed;
+}
+.dof_clearboth {
+	clear: both;
+}
+.dof_button {
+	margin: 0 5px 0 0;
+}
+.dof_button_right {
+	margin: 0 0 0 5px;
+}
+.dof_table_allborders td {
+	border-left: 1px solid;
+    border-right: 1px solid;
+    border-color: inherit;
+    border-bottom: 1px solid;
+}
+.block_dof_success_message
+{
+    border-style:solid;
+    background-color: #88EE88;
+    border-color: #006600;
+    color: #004400;
+    font-weight:bold;
+    text-align:center;
+    font-size: 0.75em;
+    line-height: 1.6em;
+    border-width: 1px;
+}
+.block_dof_error_message
+{
+    border-style:solid;
+    background-color: #EE8888;
+    border-color: #660000;
+    color: #440000;
+    font-weight:bold;
+    text-align:center;
+    font-size: 0.75em;
+    line-height: 1.6em;
+    border-width: 1px;
+}
+.block_dof_notice_message
+{
+    border-style:solid;
+    background-color: #c0c0c0;
+    border-color: #666666;
+    color: #444444;
+    font-weight:bold;
+    text-align:center;
+    font-size: 0.75em;
+    line-height: 1.6em;
+    border-width: 1px;
+}
+.block_dof_warning_message
+{
+    border-style:solid;
+    background-color: #c0c0c0;
+    border-color: #666666;
+    color: #444444;
+    font-weight:bold;
+    text-align:center;
+    font-size: 0.75em;
+    line-height: 1.6em;
+    border-width: 1px;
+}
+.dof_paging {
+	text-align: center;
+}
+.dof_tooltip:after {
+	content: attr(data-tooltip);
+	position: absolute;
+	left: 0;
+    width: 50%;
+    z-index: 1;
+    background: #333;
+    padding: 10px;
+    display: none;
+    color: #fff;
+    font-style: italic;
+    border-radius: 5px;
+	display: none;
+}
+.dof_tooltip:hover:after {
+    display: block;
+}
+#block_dof_content {
+}
+#block_dof_content > table {
+	position: relative;
+	width: 100%;
+	vertical-align: top;
+}
+#block_dof_content > table td {
+    position: relative;
+    vertical-align: top;
+}
+#block_dof_content > table td.block_dof_maintable_left {
+    max-width: 200px;
+}
+#block_dof_content > table td.block_dof_maintable_center {
+    width: 100%;
+}
+#block_dof_content > table td.block_dof_maintable_right {
+    max-width: 200px;
+}
+#block_dof_content .block_dof_maintable_content_wrapper {
+    position: relative;
+    width: 100%;
+    vertical-align: top;
+    display: table;
+}
+#block_dof_content > table .block_dof_maintable_top {
+    position: relative;
+    width: 100%;
+    display: table-header-group;
+}
+
+#block_dof_content > table .block_dof_maintable_content {
+	position: relative;
+    width: 100%;
+    display: table-row;
+}
+
+/** Стили блока подразделения **/
+#block_dof_content .dof_departmens_infosection_wrapper {
+	padding: 10px;
+	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    width: 100%;
+    position: relative;
+    margin-bottom: 30px;
+}
+#block_dof_content .dof_departmens_infoblock_wrapper {
+	position: relative;
+    display: block;
+    float: left;
+}
+#block_dof_content .dof_departmens_infosection_wrapper > input {
+    display: none;
+}
+#block_dof_content .dof_departmens_infosection_wrapper > label {
+	position: absolute;
+    z-index: 1;
+    display: inline-block;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    max-width: 100%;
+    min-width: 100px;
+    text-align: center;
+    background: inherit;
+    padding-bottom: 5px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom: 1px solid;
+    border-color: inherit;
+    border-left: inherit;
+    border-right: inherit;
+    cursor: pointer;
+}
+#block_dof_content .dof_departmens_infosection_wrapper > input + label .dof_departmens_infosection_spoiler_checkbox_spoil {
+    display: none;
+}
+#block_dof_content .dof_departmens_infosection_wrapper > input:checked + label .dof_departmens_infosection_spoiler_checkbox_spoil {
+    display: block;
+}
+#block_dof_content .dof_departmens_infosection_wrapper > input:checked + label .dof_departmens_infosection_spoiler_checkbox_despoil {
+    display: none;
+}
+#block_dof_content input:checked ~ .dof_departmens_inf_content .dof_departmens_inf_header,
+#block_dof_content input:checked ~ .dof_departmens_inf_content .dof_departmens_inf_footer {
+    display: none;
+}
+#block_dof_content input ~ .dof_departmens_inf_content .dof_departmens_inf_header,
+#block_dof_content input ~ .dof_departmens_inf_content .dof_departmens_inf_footer {
+    display: block;
+}
+#block_dof_content .dof_departmens_infoblock_dname {
+	margin : 0 10px 0 0;
+	display: inline-block;
+}
+#block_dof_content .dof_departmens_depcode {
+	position: relative;
+	display: inline-block;
+}
+#block_dof_content .dof_departmens_depcode input {
+	display: none;
+}
+#block_dof_content .dof_departmens_depcode label {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+#block_dof_content .dof_departmens_depcode span {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+#block_dof_content .dof_departmens_depcode input:checked + label {
+    display: none;
+}
+#block_dof_content .dof_departmens_depcode input + label + span {
+    display: none;
+}
+#block_dof_content .dof_departmens_depcode input:checked + label + span {
+    display: inline-block;
+}
+/** Шапка блока текущего подразделения */
+#block_dof_content .dof_departmens_inf_h_parentdep_wrapper {
+    width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    position: relative;
+    padding: 0 0 0 80px;
+}
+#block_dof_content .dof_departmens_inf_h_p_icon {
+    width: 80px;
+    position: absolute;
+    height: 100%;
+    max-height: 22px;
+    left: 0;
+    bottom: 0;
+}
+#block_dof_content .dof_departmens_inf_h_p_icon:after {
+    content: '';
+    position: absolute;
+    border-top: 2px solid #d8d8d8;
+    border-left: 2px solid #d8d8d8;
+    width: 80%;
+    height: 50%;
+    bottom: 0;
+    right: 0;
+}
+#block_dof_content .dof_departmens_inf_h_p_icon > div {
+    content: '⌃';
+    position: absolute;
+    width: 30%;
+    height: 80%;
+    bottom: 0;
+    right: 0;
+    background: #595959;
+    z-index: 1;
+    text-align: center;
+    color: #fff;
+}
+#block_dof_content .dof_departmens_inf_h_p_icon > div:before {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 20%;
+    top: -20%;
+    left: 0;
+    background: #444;
+    z-index: 0;
+}
+#block_dof_content .dof_departmens_inf_h_p_icon > div:after {
+    content: '⌃';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+    text-align: center;
+    font-size: 30px;
+    line-height: 34px;
+    color: #fff;
+}
+#block_dof_content .dof_departmens_inf_h_p_code {
+    display: inline-block;
+    margin: 0 0 0 1px;
+    padding: 1px 8px;
+    background: #727272;
+    color: #fff;
+    position: relative;
+}
+#block_dof_content .dof_departmens_inf_h_p_name {
+    display: inline-block;
+    margin: 0 0 0 1px;
+    padding: 1px 5px;
+    color: #FF5000;
+    font-size: 120%;
+    position: relative;
+}
+/** Контент блока текущего подразделения */
+#block_dof_content .dof_departmens_infoblock_content {
+	position: relative;
+}
+#block_dof_content .dof_departmens_infosection_wrapper > input:checked ~ .dof_departmens_infoblock_wrapper .dof_departmens_infoblock_content {
+    display: none;
+}
+#block_dof_content .dof_departmens_infoblock_dmanager {
+    display: inline-block;
+    position: relative;
+}
+#block_dof_content .dof_departmens_infoblock_dactions {
+    display: inline-block;
+    position: relative;
+    padding: 0 0 0 5px;
+}
+#block_dof_content .dof_departmens_infoblock_dactions > a {
+    display: inline-block;
+    position: relative;
+    background: #FF5000;
+    margin: 1px;
+    padding: 0;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+}
+#block_dof_content .dof_departmens_infoblock_dactions > a:hover,
+#block_dof_content .dof_departmens_infoblock_dactions > a:focus,
+#block_dof_content .dof_departmens_infoblock_dactions > a:active {
+    background: #C63205;
+}
+#block_dof_content .dof_departmens_infoblock_dactions > a img {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    width: 60%;
+    height: 60%;
+}
+#block_dof_content .dof_departmens_inf_main {
+    position: relative;
+    display: block;
+    margin-top: 2px;
+    z-index: 2;
+}
+#block_dof_content .dof_departmens_inf_main:before {
+    display: block;
+    content: '';
+    background: rgba(0,0,0,0.1);
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background: -moz-linear-gradient(left,  rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+	background: -webkit-linear-gradient(left,  rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 100%);
+	background: linear-gradient(to right,  rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1a000000', endColorstr='#00000000',GradientType=1 );
+}
+#block_dof_content .dof_departmens_dateblock_wrapper {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+#block_dof_content .dof_departmens_dateblock {
+    position: relative;
+    display: block;
+    cursor: help;
+    background: #FF5000;
+    padding: 10px 15px 3px 15px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+#block_dof_content .dof_departmens_dateblock:before {
+    display: block;
+    content: '';
+    background: #C63205;
+    position: absolute;
+    width: 60%;
+    height: 10px;
+    top: -10px;
+    left: 0;
+    z-index: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background: -moz-linear-gradient(70deg,  rgba(198,50,5,1) 0%, rgba(198,50,5,1) 74%, rgba(200,58,15,0) 75%, rgba(255,255,255,0) 100%);
+    background: -webkit-linear-gradient(70deg,  rgba(198,50,5,1) 0%,rgba(198,50,5,1) 74%,rgba(200,58,15,0) 75%,rgba(255,255,255,0) 100%);
+    background: linear-gradient(70deg,  rgba(198,50,5,1) 0%,rgba(198,50,5,1) 74%,rgba(200,58,15,0) 75%,rgba(255,255,255,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c63205', endColorstr='#ffffff',GradientType=1 );
+}
+#block_dof_content .dof_departmens_dateblock_time {
+    position: relative;
+    display: block;
+    font-weight: bold;
+    color: #fff;
+}
+#block_dof_content #dof_departmens_dateblock_currenttime {
+    position: relative;
+    font-size: 100%;
+    text-align: center;
+}
+#block_dof_content #dof_departmens_dateblock_currenttimezone {
+    position: relative;
+    font-size: 70%;
+    text-align: center;
+}
+#block_dof_content .dof_departmens_dateblock_additional {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    overflow: hidden;
+    width: 100%;
+    min-width: 120px;
+    max-width: 100vh;
+     box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    display: none;
+}
+#block_dof_content .dof_departmens_dateblock_additional_arrow {
+    display: block;
+    padding: 0 0 0 15px;
+    position: relative;
+}
+#block_dof_content .dof_departmens_dateblock_additional_arrow:before {
+    display: block;
+    position: relative;
+    width: 0px;
+    height: 0px;
+    border: 7px solid transparent;
+    border-bottom-color: rgba(255,80,0,0.85);
+    margin: 0;
+    padding: 0;
+    float: left;
+    content: '';
+}
+#block_dof_content .dof_departmens_dateblock_additional_arrow:after {
+    display: block;
+    clear: both;
+    content: '';
+    position: relative;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+#block_dof_content .dof_departmens_dateblock_additional_content {
+    position: relative;
+    text-align: center;
+    padding: 5px 10px;
+    background: rgba(255, 80, 0, 0.85);
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-radius: 2px;
+    font-size: 90%;
+    color: #fff;
+}
+.dof_departmens_dateblock_dayweek,
+.dof_departmens_dateblock_date {
+	display: inline-block;
+}
+.dof_departmens_dateblock_dayweek:after {
+	padding: 0 3px 0 0;
+	content: ',';
+}
+#block_dof_content .dof_departmens_dateblock:hover .dof_departmens_dateblock_additional,
+#block_dof_content .dof_departmens_dateblock:active .dof_departmens_dateblock_additional,
+#block_dof_content .dof_departmens_dateblock:focus .dof_departmens_dateblock_additional {
+    display: block;
+}
+#block_dof_content .dof_departmens_depinfo_wrapper {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+#block_dof_content .dof_departmens_inf_c_code {
+    display: inline-block;
+    margin: 0 0 0 1px;
+    padding: 1px 8px;
+    background: #878787;
+    color: #fff;
+    position: relative;
+    vertical-align: middle;
+}
+#block_dof_content .dof_departmens_inf_c_name {
+    display: inline-block;
+    margin: 0 0 0 1px;
+    padding: 1px 5px;
+    color: #4B4B4B;
+    font-size: 140%;
+    position: relative;
+    vertical-align: middle;
+}
+#block_dof_content .dof_departmens_depaddinfo_wrapper {
+    position: relative;
+    display: block;
+    float: right;
+    margin: 10px;
+    font-size: 80%;
+    text-align: right;
+}
+#block_dof_content .dof_departmens_infoblock_dmanager_name * {
+	color: #FF5000;
+}
+/** Футер блока текущего подразделения */
+#block_dof_content .dof_departmens_inf_footer {
+    width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+}
+#block_dof_content .dof_departmens_inf_subdep_wrapper {
+    width: 70%;
+    min-width: 200px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    position: relative;
+    float: left;
+}
+#block_dof_content .dof_departmens_inf_subdep {
+    width: 33%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    position: relative;
+    display: inline-block;
+    min-width: 200px;
+    padding: 10px 0 0 40px;
+    vertical-align: top;
+}
+#block_dof_content .dof_departmens_inf_subdep a {
+    white-space: nowrap;
+}
+#block_dof_content .dof_departmens_inf_f_p_icon {
+    width: 40px;
+    position: absolute;
+    height: 100%;
+    left: 0;
+    bottom: 0;
+}
+#block_dof_content .dof_departmens_inf_f_p_icon:after {
+    content: '';
+    position: absolute;
+    border-bottom: 2px solid #d8d8d8;
+    border-left: 2px solid #d8d8d8;
+    width: 70%;
+    height: 80%;
+    top: 0;
+    right: 0;
+}
+#block_dof_content .dof_departmens_inf_f_p_icon > div {
+    position: absolute;
+    width: 60%;
+    height: 80%;
+    max-height: 18px;
+    bottom: 0;
+    right: 0;
+    background: #FF5000;
+    z-index: 1;
+    text-align: center;
+    color: #fff;
+}
+#block_dof_content .dof_departmens_inf_f_p_icon > div:before {
+    content: '';
+    position: absolute;
+    width: 60%;
+    height: 20%;
+    top: -20%;
+    left: 0;
+    background: #C63205;
+    z-index: 0;
+}
+#block_dof_content .dof_departmens_inf_f_p_icon > div:after {
+    content: '˅';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+    text-align: center;
+    line-height: 34px;
+    font-size: 25px;
+    color: #fff;
+}
+#block_dof_content .dof_departmens_inf_f_p_code {
+    display: inline-block;
+    margin: 0 0 0 1px;
+    padding: 1px 8px;
+    background: #a5a5a5;
+    color: #fff;
+    position: relative;
+    font-size: 90%;
+}
+#block_dof_content .dof_departmens_inf_f_p_name {
+    display: inline-block;
+    margin: 0 0 0 1px;
+    padding: 1px 5px;
+    color: #FF5000;
+    font-size: 90%;
+    position: relative;
+}
+#block_dof_content .dof_departmens_inf_fastlink_wrapper {
+    width: 25%;
+    min-width: 200px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    position: relative;
+    float: right;
+    text-align: right;
+}
+#block_dof_content .dof_departmens_inf_fastlink_wrapper select {
+    margin: 0;
+}

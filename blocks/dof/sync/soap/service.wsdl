@@ -1,0 +1,704 @@
+<wsdl:definitions xmlns:tns="<?php echo $DOF->url_sync('soap', '/soap.php'); ?>"
+                  targetNamespace="<?php echo $DOF->url_sync('soap', '/soap.php'); ?>"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+    <wsdl:types>
+        <xsd:schema targetNamespace="<?php echo $DOF->url_sync('soap', '/soap.php'); ?>">
+            <xsd:simpleType name="object" base="soapenc:Struct">
+                <xsd:restriction base="soapenc:Struct"/>
+            </xsd:simpleType>
+            <xsd:complexType name="set_meta_contract_soap_in">
+                <xsd:annotation>
+                    <documentation>
+                        Объект для передачи методу set_meta_contract()
+                    </documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="requestlogin" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Идентификатор системы-отправителя
+                                запроса
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="requesttime" type="xsd:int">
+                        <xsd:annotation>
+                            <documentation>
+                                Время генерации запроса
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="requesthash" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                sha1-хеш
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="id" type="xsd:int">
+                        <xsd:annotation>
+                            <documentation>
+                                Внешний id метаконтракта
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="num" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Номер метаконтракта
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="departmentcode" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Код подразделения
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="cov" type="tns:object">
+                        <xsd:annotation>
+                            <documentation>
+                                Дополнительный массив cov, содержащий
+                                дополнительные поля к объекту
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="set_person_soap_in">
+                <xsd:annotation>
+                    <documentation>
+                        Объект для передачи методу set_person()
+                    </documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="requestlogin" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Идентификатор системы-отправителя
+                                запроса
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="requesttime" type="xsd:int">
+                        <xsd:annotation>
+                            <documentation>
+                                Время генерации запроса
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="requesthash" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                sha1-хеш
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="id" type="xsd:int">
+                        <xsd:annotation>
+                            <documentation>
+                                Внешний id персоны
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="firstname" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Имя
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="middlename" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Отчество
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="lastname" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Фамилия
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="preferredname" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Префикс для имения (Mr. Dr. Г-н, Г-а)
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="dateofbirth" type="xsd:int">
+                        <xsd:annotation>
+                            <documentation>
+                                Дата рождения в UTS
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="gender" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Пол (male, female, unknown)
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="email" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Основной адрес электронной почты
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="phonehome" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Домашний телефон
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="phonework" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Рабочий телефон
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="phonecell" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Сотовый телефон
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="passtypeid" type="xsd:int">
+                        <xsd:annotation>
+                            <documentation>
+                                Тип удостоверения личности (1 -
+                                свидетельство о рождении, 2 - паспорт
+                                гражданина РФ, 3 - загранпасспорт, 4 -
+                                разрешение на временное проживание лица
+                                без гражданства, 5 - вид на жительство, 6 -
+                                военный билет, 7 - водительсткое
+                                удостоверение пластиковое, 8 - вод.
+                                удостоверение форма 1, 9 - вод.
+                                удостоверение международное)
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="passportserial" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Серия удостоверения личности (если
+                                предусмотрена типом документа)
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="passportnum" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Номер удостоверения личности
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="passportdate" type="xsd:int">
+                        <xsd:annotation>
+                            <documentation>
+                                Дата выдачи удостоверения личности в UTS
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="passportem" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Название организации, выдавшей
+                                удостоверение личности
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="citizenship" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Гражданство
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="departmentcode" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Основной отдел, к которому приписан
+                                человек (может редактировать его данные
+                                в persons)
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="about" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Характеристика личности
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="skype" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Уникальный идентификатор в Skype
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="phoneadd1" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Дополнительный телефон 1
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="phoneadd2" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Дополнительный телефон 2
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="phoneadd3" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Дополнительный телефон 3
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="emailadd1" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Дополнительная электронная почта 1
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="emailadd2" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Дополнительная электронная почта 2
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="emailadd3" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Дополнительная электронная почта 3
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="passportaddr" type="tns:set_address">
+                        <xsd:annotation>
+                            <documentation>
+                                Адрес прописки по паспорту (для
+                                генерации документов)
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="address" type="tns:set_address">
+                        <xsd:annotation>
+                            <documentation>
+                                Текущий адрес (почтовый адрес)
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="birthaddress" type="tns:set_address">
+                        <xsd:annotation>
+                            <documentation>
+                                Адрес рождения персоны
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="cov" type="tns:object">
+                        <xsd:annotation>
+                            <documentation>
+                                Дополнительный массив cov, содержащий
+                                дополнительные поля к объекту
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="set_contract_soap_in">
+                <xsd:annotation>
+                    <documentation>
+                        Объект для передачи методу set_contract()
+                    </documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="requestlogin" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Идентификатор системы-отправителя
+                                запроса
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="requesttime" type="xsd:int">
+                        <xsd:annotation>
+                            <documentation>
+                                Время генерации запроса
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="requesthash" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                sha1-хеш
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="id" type="xsd:int">
+                        <xsd:annotation>
+                            <documentation>
+                                Внешний id договора
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="date" type="xsd:int">
+                        <xsd:annotation>
+                            <documentation>
+                                Дата заключения в UTS
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="sellerid" type="xsd:int">
+                        <xsd:annotation>
+                            <documentation>
+                                Менеджер по работе с клиентами (приемная
+                                комиссия, партнер) - добавляет договор,
+                                меняет статус до "подписан клиентом",
+                                отслеживает статус договора и ход
+                                обучения (id по таблице persons)
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="clientid" type="xsd:int">
+                        <xsd:annotation>
+                            <documentation>
+                                Клиент, оплачивающий обучение (законный
+                                представитель, сам совершеннолетний
+                                ученик или куратор от организации, может
+                                принимать значение 0 или null, если клиент
+                                создается, а контракт имеет черновой
+                                вариант) (по таблице persons)
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="studentid" type="xsd:int">
+                        <xsd:annotation>
+                            <documentation>
+                                Ученик (может принимать значение 0, если
+                                ученик создается, а контракт имеет
+                                черновой вариант) (по таблице persons)
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="notes" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Заметки
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="departmentcode" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Подразделение в таблице departments , к
+                                которому приписан контракт на обучение
+                                (например, принявшее ученика)
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="curatorid" type="xsd:int">
+                        <xsd:annotation>
+                            <documentation>
+                                Куратор или классный руководитель
+                                данного ученика (по таблице persons или не
+                                указан), отслеживает учебный процесс,
+                                держит связь с учеником, является
+                                посредником между учеником и системой,
+                                может быть внешней персоной.
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="metacontractid" type="xsd:int">
+                        <xsd:annotation>
+                            <documentation>
+                                id метаконтракта, к которому привязан
+                                договор, в таблице metacontracts
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="cov" type="tns:object">
+                        <xsd:annotation>
+                            <documentation>
+                                Дополнительный массив cov, содержащий
+                                дополнительные поля к объекту
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="set_soap_out">
+                <xsd:annotation>
+                    <documentation>
+                        Возвращаемый объект для операций set
+                    </documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="id" type="xsd:int">
+                        <xsd:annotation>
+                            <documentation>
+                                Внешний id объекта
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="dofid" type="xsd:int">
+                        <xsd:annotation>
+                            <documentation>
+                                Внутренний id объекта
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="modified" type="xsd:int">
+                        <xsd:annotation>
+                            <documentation>
+                                Дата модификации созданного или
+                                обновлённого объекта
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="hash" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Хеш операции
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="errorcode" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Код ошибки, если таковые возникли
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="set_address">
+                <xsd:annotation>
+                    <documentation>
+                        Объект (массив) адреса
+                    </documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="postalcode" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Почтовый индекс
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="country" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Код страны проживания (по предъявленному
+                                паспорту) в ICO 3166-1:1997 (RU)
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="region" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Код региона по ISO 3166-2 (RU-NGR, RU-MOS)
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="county" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Административный район
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="city" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Город
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="streetname" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Название улицы
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="streettype" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Тип улицы
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="number" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Номер дома
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="gate" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Подъезд
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="floor" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Этаж
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="true" name="apartment" type="xsd:string">
+                        <xsd:annotation>
+                            <documentation>
+                                Квартира
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="latitude" type="xsd:float">
+                        <xsd:annotation>
+                            <documentation>
+                                Широта в градусах
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element minOccurs="1" maxOccurs="1" nillable="false" name="longitude" type="xsd:float">
+                        <xsd:annotation>
+                            <documentation>
+                                Долгота в градусах
+                            </documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="set_meta_contractSoapIn">
+        <wsdl:part name="input" type="tns:set_meta_contract_soap_in">
+            <wsdl:documentation>
+                Данные контракта, пришедшего к нам по soap
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="set_meta_contractSoapOut">
+        <wsdl:part name="return" type="tns:set_soap_out">
+            <wsdl:documentation>
+                Объект содерщаший id записей или код
+                ошибки
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="set_personSoapIn">
+        <wsdl:part name="input" type="tns:set_person_soap_in">
+            <wsdl:documentation>
+                Данные контракта, пришедшего к нам по soap
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="set_personSoapOut">
+        <wsdl:part name="return" type="tns:set_soap_out">
+            <wsdl:documentation>
+                Объект содерщаший id записей или код
+                ошибки
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="set_contractSoapIn">
+        <wsdl:part name="input" type="tns:set_contract_soap_in">
+            <wsdl:documentation>
+                Данные контракта, пришедшего к нам по soap
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="set_contractSoapOut">
+        <wsdl:part name="return" type="tns:set_soap_out">
+            <wsdl:documentation>
+                Объект содерщаший id записей или код
+                ошибки
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="blocks_dof_sync_soap_soapserverSoap">
+        <wsdl:operation name="set_meta_contract">
+            <wsdl:documentation>
+                Создать мета-контракт и привязать его к
+                переданному внешнему id,
+                обновить название мета-контракта
+                (контрагента)
+            </wsdl:documentation>
+            <wsdl:input message="tns:set_meta_contractSoapIn" />
+            <wsdl:output message="tns:set_meta_contractSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="set_person">
+            <wsdl:documentation>
+                Создать персону и привязать её к
+                внешнему id, обновить персону
+            </wsdl:documentation>
+            <wsdl:input message="tns:set_personSoapIn" />
+            <wsdl:output message="tns:set_personSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="set_contract">
+            <wsdl:documentation>
+                Создать контракт для персоны по её
+                внешнему id, номеру и дате
+            </wsdl:documentation>
+            <wsdl:input message="tns:set_contractSoapIn" />
+            <wsdl:output message="tns:set_contractSoapOut" />
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="blocks_dof_sync_soap_soapserverSoap" type="tns:blocks_dof_sync_soap_soapserverSoap">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+        <wsdl:operation name="set_meta_contract">
+            <soap:operation soapAction="set_meta_contract" />
+            <wsdl:input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="<?php echo $DOF->url_sync('soap', '/soap.php'); ?>" parts="input" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="<?php echo $DOF->url_sync('soap', '/soap.php'); ?>" parts="return" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="set_person">
+            <soap:operation soapAction="set_person" />
+            <wsdl:input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="<?php echo $DOF->url_sync('soap', '/soap.php'); ?>" parts="input" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="<?php echo $DOF->url_sync('soap', '/soap.php'); ?>" parts="return" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="set_contract">
+            <soap:operation soapAction="set_contract" />
+            <wsdl:input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="<?php echo $DOF->url_sync('soap', '/soap.php'); ?>" parts="input" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="<?php echo $DOF->url_sync('soap', '/soap.php'); ?>" parts="return" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="blocks_dof_sync_soap_soapserver">
+        <wsdl:port name="blocks_dof_sync_soap_soapserverSoap" binding="tns:blocks_dof_sync_soap_soapserverSoap">
+            <soap:address location="<?php echo $DOF->url_sync('soap', '/soap.php?do=service'); ?>" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

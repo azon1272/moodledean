@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20110711" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_schdays" COMMENT="реестр дней, на которые было создано учебное расписание.">
+      <FIELDS>
+        <FIELD NAME="id"           TYPE="int"  LENGTH="10" NOTNULL="true"  UNSIGNED="true" SEQUENCE="true"                          NEXT="ageid"/>
+		<FIELD NAME="ageid"        TYPE="int"  LENGTH="10" NOTNULL="true"  UNSIGNED="true" SEQUENCE="false" PREVIOUS="id"           NEXT="date"         COMMENT="id периода, для которого формируем расписание"/>
+        <FIELD NAME="date"         TYPE="int"  LENGTH="10" NOTNULL="true"  UNSIGNED="true" SEQUENCE="false" PREVIOUS="ageid"        NEXT="daynum"       COMMENT="Unix Timestamp на 12-00 этого дня по UTC"/>
+        <FIELD NAME="daynum"       TYPE="int"  LENGTH="1"  NOTNULL="false" UNSIGNED="true" SEQUENCE="false" PREVIOUS="date"         NEXT="dayvar"       COMMENT="номер дня недели"/>
+        <FIELD NAME="dayvar"       TYPE="int"  LENGTH="1"  NOTNULL="false" UNSIGNED="true" SEQUENCE="false" PREVIOUS="daynum"       NEXT="departmentid" COMMENT="вариант дня"/>
+        <FIELD NAME="departmentid" TYPE="int"  LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" PREVIOUS="dayvar"       NEXT="type"         COMMENT="id структурного подразделения"/>
+        <FIELD NAME="type"         TYPE="char" LENGTH="20" NOTNULL="false"                 SEQUENCE="false" PREVIOUS="departmentid" NEXT="status"       COMMENT="тип дня"/>
+        <FIELD NAME="status"       TYPE="char" LENGTH="20" NOTNULL="false"                 SEQUENCE="false" PREVIOUS="type"                             COMMENT="статус"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="idate"         UNIQUE="false" FIELDS="date"                                  NEXT="iageid"/>
+		<INDEX NAME="iageid"        UNIQUE="false" FIELDS="ageid"        PREVIOUS="idate"         NEXT="idaynum"/>
+        <INDEX NAME="idaynum"       UNIQUE="false" FIELDS="daynum"       PREVIOUS="iageid"        NEXT="idayvar"/>
+        <INDEX NAME="idayvar"       UNIQUE="false" FIELDS="dayvar"       PREVIOUS="idaynum"       NEXT="idepartmentid"/>
+        <INDEX NAME="idepartmentid" UNIQUE="false" FIELDS="departmentid" PREVIOUS="idayvar"       NEXT="istatus"/>
+        <INDEX NAME="istatus"       UNIQUE="false" FIELDS="status"       PREVIOUS="idepartmentid" NEXT="itype"/>
+        <INDEX NAME="itype"         UNIQUE="false" FIELDS="type"         PREVIOUS="istatus"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

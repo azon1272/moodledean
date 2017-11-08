@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20091120" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_cpassed" COMMENT="изучаемые и пройденные курсы: отражает ход изучения учащимися выбранной учебной программы, итоговые отметки.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="cstreamid"/>
+        <FIELD NAME="cstreamid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id учебного процесса, по которому велось обучение" PREVIOUS="id" NEXT="programmsbcid"/>
+        <FIELD NAME="programmsbcid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id подписки контракта на программу обучения" PREVIOUS="cstreamid" NEXT="programmitemid"/>
+        <FIELD NAME="programmitemid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id дисциплины" PREVIOUS="programmsbcid" NEXT="studentid"/>
+        <FIELD NAME="studentid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id слушателя по таблице persons" PREVIOUS="programmitemid" NEXT="agroupid"/>
+        <FIELD NAME="agroupid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id академической группы" PREVIOUS="studentid" NEXT="grade"/>
+        <FIELD NAME="grade" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="итоговая отметка по курсу" PREVIOUS="agroupid" NEXT="gradelevel"/>
+        <FIELD NAME="gradelevel" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="уровень оценки" PREVIOUS="grade" NEXT="credit"/>
+        <FIELD NAME="credit" TYPE="int" LENGTH="5" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="количество кредитов, полученное за прохождение дисциплины" PREVIOUS="gradelevel" NEXT="notice"/>
+        <FIELD NAME="notice" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="текстовое пояснение об источнике оценки при перезачете" PREVIOUS="credit" NEXT="repeatid"/>
+        <FIELD NAME="repeatid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id предыдущей подписке, если обучение выполняется повторно" PREVIOUS="notice" NEXT="typesync"/>
+        <FIELD NAME="typesync" TYPE="int" LENGTH="2" NOTNULL="false" UNSIGNED="false" SEQUENCE="false" COMMENT="тип синхронизации" PREVIOUS="repeatid" NEXT="mdlinstance"/>
+        <FIELD NAME="mdlinstance" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id задания в moodle, с которым выполнялась синхронизация" PREVIOUS="typesync" NEXT="teacherid"/>
+        <FIELD NAME="teacherid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id сотрудника по справочнику persons, вручную выставившего итоговую отметку" PREVIOUS="mdlinstance" NEXT="ageid"/>
+        <FIELD NAME="ageid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id периода" PREVIOUS="teacherid" NEXT="orderid"/>
+        <FIELD NAME="orderid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id приказа" PREVIOUS="ageid" NEXT="status"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="статус" PREVIOUS="orderid" NEXT="begindate"/>
+        <FIELD NAME="begindate" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="Дата начало действия подписки" PREVIOUS="status" NEXT="enddate"/>
+        <FIELD NAME="enddate" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата окончания действия подписки" PREVIOUS="begindate" NEXT="sbcorderid"/>
+        <FIELD NAME="sbcorderid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id приказа, которым ученик был подписан на дисциплину" PREVIOUS="enddate" NEXT="learninghistoryid"/>
+        <FIELD NAME="learninghistoryid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id текущей параллели данного слушателя (по learninghistory)" PREVIOUS="sbcorderid" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="icstreamid" UNIQUE="false" FIELDS="cstreamid" NEXT="iprogrammsbcid"/>
+        <INDEX NAME="iprogrammsbcid" UNIQUE="false" FIELDS="programmsbcid" PREVIOUS="icstreamid" NEXT="iprogrammitemid"/>
+        <INDEX NAME="iprogrammitemid" UNIQUE="false" FIELDS="programmitemid" PREVIOUS="iprogrammsbcid" NEXT="istudentid"/>
+        <INDEX NAME="istudentid" UNIQUE="false" FIELDS="studentid" PREVIOUS="iprogrammitemid" NEXT="igrade"/>
+        <INDEX NAME="igrade" UNIQUE="false" FIELDS="grade" PREVIOUS="istudentid" NEXT="igradelevel"/>
+        <INDEX NAME="igradelevel" UNIQUE="false" FIELDS="gradelevel" PREVIOUS="igrade" NEXT="irepeatid"/>
+        <INDEX NAME="irepeatid" UNIQUE="false" FIELDS="repeatid" PREVIOUS="igradelevel" NEXT="itypesync"/>
+        <INDEX NAME="itypesync" UNIQUE="false" FIELDS="typesync" PREVIOUS="irepeatid" NEXT="imdlinstance"/>
+        <INDEX NAME="imdlinstance" UNIQUE="false" FIELDS="mdlinstance" PREVIOUS="itypesync" NEXT="iteacherid"/>
+        <INDEX NAME="iteacherid" UNIQUE="false" FIELDS="teacherid" PREVIOUS="imdlinstance" NEXT="istatus"/>
+        <INDEX NAME="istatus" UNIQUE="false" FIELDS="status" PREVIOUS="iteacherid" NEXT="iageid"/>
+        <INDEX NAME="iageid" UNIQUE="false" FIELDS="ageid" PREVIOUS="istatus" NEXT="iorderid"/>
+        <INDEX NAME="iorderid" UNIQUE="false" FIELDS="orderid" PREVIOUS="iageid" NEXT="iagroupid"/>
+        <INDEX NAME="iagroupid" UNIQUE="false" FIELDS="agroupid" PREVIOUS="iorderid" NEXT="ilearninghistoryid"/>
+        <INDEX NAME="ilearninghistoryid" UNIQUE="false" FIELDS="learninghistoryid" PREVIOUS="iagroupid"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

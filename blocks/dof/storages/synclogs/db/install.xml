@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20131029" COMMENT="XMLDB file for Moodle blocks/dof/storages/sync"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_synclogs" COMMENT="Логи реестра синхронизаций">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="syncid"/>
+        <FIELD NAME="syncid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="id синхронизации" PREVIOUS="id" NEXT="executetime"/>
+        <FIELD NAME="executetime" TYPE="int" LENGTH="11" NOTNULL="false" SEQUENCE="false" COMMENT="время исполнения синхронизации" PREVIOUS="syncid" NEXT="operation"/>
+        <FIELD NAME="operation" TYPE="char" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="последняя операция (connect, create, update, delete, unsync)" PREVIOUS="executetime" NEXT="direct"/>
+        <FIELD NAME="direct" TYPE="char" LENGTH="8" NOTNULL="false" SEQUENCE="false" COMMENT="Направление последней синхронизации (up, down)" PREVIOUS="operation" NEXT="prevoperation"/>
+        <FIELD NAME="prevoperation" TYPE="char" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="предыдущая операция (connect, create, update, delete, unsync)" PREVIOUS="direct" NEXT="error"/>
+        <FIELD NAME="error" TYPE="char" LENGTH="1" NOTNULL="false" SEQUENCE="false" COMMENT="ошибка синхронизации" PREVIOUS="prevoperation" NEXT="textlog"/>
+        <FIELD NAME="textlog" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Текст лога синхронизации" PREVIOUS="error" NEXT="optlog"/>
+        <FIELD NAME="optlog" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Дополнительные параметры лога синхронизации" PREVIOUS="textlog"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="isyncid" UNIQUE="false" FIELDS="syncid" NEXT="iexecutetime"/>
+        <INDEX NAME="iexecutetime" UNIQUE="false" FIELDS="executetime" PREVIOUS="isyncid" NEXT="idirect"/>
+        <INDEX NAME="idirect" UNIQUE="false" FIELDS="direct" PREVIOUS="iexecutetime" NEXT="ioperation"/>
+        <INDEX NAME="ioperation" UNIQUE="false" FIELDS="operation" PREVIOUS="idirect" NEXT="iprevoperation"/>
+        <INDEX NAME="iprevoperation" UNIQUE="false" FIELDS="prevoperation" PREVIOUS="ioperation" NEXT="ierror"/>
+        <INDEX NAME="ierror" UNIQUE="false" FIELDS="error" PREVIOUS="iprevoperation"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

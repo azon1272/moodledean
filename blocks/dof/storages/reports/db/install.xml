@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20111020" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_reports" COMMENT="таблица хранит всю информацию о создаваемых и созданных отчетах">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="plugintype"/>
+        <FIELD NAME="plugintype" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="тип плагина запросившего отчет" PREVIOUS="id" NEXT="plugincode"/>
+        <FIELD NAME="plugincode" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="код плагина запросившего отчет" PREVIOUS="plugintype" NEXT="code"/>
+        <FIELD NAME="code" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="код отчета внутри плагтна" PREVIOUS="plugincode" NEXT="name"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="название отчета" PREVIOUS="code" NEXT="personid"/>
+        <FIELD NAME="personid" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id персоны запросившей отчет" PREVIOUS="name" NEXT="requestdate"/>
+        <FIELD NAME="requestdate" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата запроса отчета" PREVIOUS="personid" NEXT="completedate"/>
+        <FIELD NAME="completedate" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата завершения создания отчета" PREVIOUS="requestdate" NEXT="crondate"/>
+        <FIELD NAME="crondate" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата запуска отчета" PREVIOUS="completedate" NEXT="status"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="статус отчета" PREVIOUS="crondate" NEXT="departmentid"/>
+        <FIELD NAME="departmentid" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id подразделения, к которому принадлежит отчет" PREVIOUS="status" NEXT="objectid"/>
+        <FIELD NAME="objectid" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id объекта, к которому запрашивается отчет" PREVIOUS="departmentid" NEXT="begindate"/>
+        <FIELD NAME="begindate" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="с какого периода запрашиваются данные для отчета" PREVIOUS="objectid" NEXT="enddate"/>
+        <FIELD NAME="enddate" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="по какой период запрашиваются данные для отчета" PREVIOUS="begindate" NEXT="requestdata"/>
+        <FIELD NAME="requestdata" TYPE="text" LENGTH="big" NOTNULL="false" SEQUENCE="false" COMMENT="дополнительные данные для формирования отчета" PREVIOUS="enddate" NEXT="filepath"/>
+        <FIELD NAME="filepath" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="путь к файлу" PREVIOUS="requestdata"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="iplugintype" UNIQUE="false" FIELDS="plugintype" NEXT="iplugincode"/>
+        <INDEX NAME="iplugincode" UNIQUE="false" FIELDS="plugincode" PREVIOUS="iplugintype" NEXT="icode"/>
+        <INDEX NAME="icode" UNIQUE="false" FIELDS="code" PREVIOUS="iplugincode" NEXT="ipersonid"/>
+        <INDEX NAME="ipersonid" UNIQUE="false" FIELDS="personid" PREVIOUS="icode" NEXT="irequestdate"/>
+        <INDEX NAME="irequestdate" UNIQUE="false" FIELDS="requestdate" PREVIOUS="ipersonid" NEXT="icompletedate"/>
+        <INDEX NAME="icompletedate" UNIQUE="false" FIELDS="completedate" PREVIOUS="irequestdate" NEXT="istatus"/>
+        <INDEX NAME="istatus" UNIQUE="false" FIELDS="status" PREVIOUS="icompletedate" NEXT="idepartmentid"/>
+        <INDEX NAME="idepartmentid" UNIQUE="false" FIELDS="departmentid" PREVIOUS="istatus" NEXT="iobjectid"/>
+        <INDEX NAME="iobjectid" UNIQUE="false" FIELDS="objectid" PREVIOUS="idepartmentid" NEXT="ibegindate"/>
+        <INDEX NAME="ibegindate" UNIQUE="false" FIELDS="begindate" PREVIOUS="iobjectid" NEXT="ienddate"/>
+        <INDEX NAME="ienddate" UNIQUE="false" FIELDS="enddate" PREVIOUS="ibegindate" NEXT="icrondate"/>
+        <INDEX NAME="icrondate" UNIQUE="false" FIELDS="crondate" PREVIOUS="ienddate"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

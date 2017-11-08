@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Итоговая ведомость оценок</title>
+</head>
+<body>
+<table border=0 >
+	<tr>
+		<td>Отдел: {departmentname}</td>
+	</tr>
+	<tr>
+		<td>Программа: {programmname}</td>
+	</tr>
+	<tr>
+		<td>Дисциплина: {programmitemname}</td>
+	</tr>
+	<tr>
+		<td>Группа: {groupname}</td>
+	</tr>
+	<tr>
+		<td>Преподаватель: {teachername}</td>
+	</tr>
+	<tr>
+		<td>Период: {agename}</td>
+	</tr>
+</table >	
+<br>
+<div align="center"><b>Ведомость</b></div>
+<br>
+<table align="center" frame='box' rules='all' cellpadding=5>	
+	<tr>
+		<th>№</th>
+		<th>ФИО</th>
+		<th>Оценка</th>
+	</tr>
+
+	<!-- BEGIN table --> 
+	<tr>
+		<td align="right">{number}</td>
+		<td>{student}</td>
+		<td align="center">{grades}</td>
+	</tr>
+	<!-- END table -->
+</table>	
+<br>
+<div align='right'>{ordersigner}___________________</div>
+</body>
+</html>

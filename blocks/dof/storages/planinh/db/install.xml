@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20101216" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_planinh" COMMENT="Таблица наследования тем">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="planid"/>
+        <FIELD NAME="planid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="id родителя" PREVIOUS="id" NEXT="inhplanid"/>
+        <FIELD NAME="inhplanid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="id дочерний" PREVIOUS="planid"/>
+     </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="iplanid" UNIQUE="false" FIELDS="planid" NEXT="iinhplanid"/>
+        <INDEX NAME="iinhplanid" UNIQUE="false" FIELDS="inhplanid" PREVIOUS="iplanid"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

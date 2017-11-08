@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Протокол согласования персональных сведений</title>
+</head>
+<body>
+<table width='90%'  cellpadding='5' cellspacing='0' border='0' > 
+<tr>
+    <td align='center' colspan='2'><strong>Протокол согласования персональных сведений</strong></td>
+</tr>
+<tr>
+    <td align='center' colspan='2'>к договору #{num} от func_date("%d-%m-%Y",{date})</td>
+</tr>
+<tr>
+    <td align='center' colspan='2'><div align='right'>func_date("%d-%m-%Y",{date})</div></td>
+</tr>
+<tr>
+    <td align='left' colspan='2'><strong>func_get_string({student.name},'sel')</strong></td>
+</tr>
+<tr>
+    <td>ФИО</td>
+    <td>{student.lastname} {student.firstname} {student.middlename}</td>
+</tr>
+<tr>
+    <td>Дата рождения</td>
+    <td>func_date("%d-%m-%Y",{student.dateofbirth})</td>
+</tr>
+<tr>
+    <td>Электронная почта</td>
+    <td>{student.email}</td>
+</tr>
+<tr>
+    <td>Домашний адрес</td>
+    <td>{student.country} {student.postalcode} {student.region} {student.county} {student.city} {student.streettype} {student.streetname} {student.number} {student.gate} {student.apartment}</td>
+</tr>
+<tr>
+    <td>Удостоверение личности</td>
+    <td>{student.passtypeid} {student.passportserial} {student.passportnum} func_date("%d-%m-%Y",{student.passportdate}) {student.passportem}</td>
+</tr>
+<tr>
+    <td>Контакты</td>
+    <td>Домашний телефон {student.phonehome}<br/>Рабочий телефон {student.phonework}<br/>Мобильный телефон {student.phonecell}<br/></td>
+</tr>
+<tr>
+    <td align='left' colspan='2'><strong>func_get_string({client.name},'sel')</strong></td>
+</tr>
+<tr>
+    <td>ФИО</td>
+    <td>{client.lastname} {client.firstname} {client.middlename}</td>
+</tr>
+<tr>
+    <td>Дата рождения</td>
+    <td>func_date("%d-%m-%Y",{client.dateofbirth})</td>
+</tr>
+<tr>
+    <td>Электронная почта</td>
+    <td>{client.email}</td>
+</tr>
+<tr>
+    <td>Домашний адрес</td>
+    <td>{client.country} {client.postalcode} {client.region} {client.county} {client.city} {client.streettype} {client.streetname} {client.number} {gate} {apartment}</td>
+</tr>
+<tr>
+    <td>Удостоверение личности</td>
+    <td>{client.passtypeid} {client.passportserial} {client.passportnum} func_date("%d-%m-%Y",{client.passportdate}) {client.passportem}</td>
+</tr>
+<tr>
+    <td>Контакты</td>
+    <td>Домашний телефон {client.phonehome}<br/>Рабочий телефон {client.phonework}<br/>Мобильный телефон {client.phonecell}<br/></td>
+</tr>
+<tr>
+    <td colspan='2'>Персональные сведения с удостоверения личности введены верно.<br/ ><br/ >
+    Куратор:<br/ ><br/ ><br/ >
+    <div align='right'>___________________/{sellastname} func_mb_substr({selfirstname},0,1) func_mb_substr({selmiddlename},0,1)</div></td>
+</tr>
+<tr>
+    <td colspan='2'>Подтверждаю достоверность всех перечисленных сведений.<br/ ><br/ >
+    Законный представитель:<br/ ><br/ ><br/ >
+    <div align='right'>___________________/{clientlastname} func_mb_substr({clientfirstname},0,1) func_mb_substr({clientmiddlename},0,1)</div></td>
+</tr>
+
+</table>
+</body>
+</html>

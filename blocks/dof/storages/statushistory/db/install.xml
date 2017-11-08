@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20090601" COMMENT="XMLDB file for Moodle blocks/dof/storages/statushistory"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_statushistory" COMMENT="Implement storing history of changing statuses">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="status"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" PREVIOUS="id" NEXT="prevstatus"/>
+        <FIELD NAME="prevstatus" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Previous status." PREVIOUS="status" NEXT="plugintype"/>
+        <FIELD NAME="plugintype" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false" PREVIOUS="prevstatus" NEXT="plugincode"/>
+        <FIELD NAME="plugincode" TYPE="char" LENGTH="40" NOTNULL="true" SEQUENCE="false" PREVIOUS="plugintype" NEXT="muserid"/>
+        <FIELD NAME="muserid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="moodle user id, whow changed status" PREVIOUS="plugincode" NEXT="objectid"/>
+        <FIELD NAME="objectid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="id of element from other storage who having this status" PREVIOUS="muserid" NEXT="statusdate"/>
+        <FIELD NAME="statusdate" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="Date of setting this status" PREVIOUS="objectid" NEXT="notes"/>
+        <FIELD NAME="notes" TYPE="text" LENGTH="small" NOTNULL="false" SEQUENCE="false" PREVIOUS="statusdate" NEXT="opt"/>
+        <FIELD NAME="opt" TYPE="text" LENGTH="small" NOTNULL="false" SEQUENCE="false" COMMENT="Additional parameter" PREVIOUS="notes" NEXT="orderid"/>
+        <FIELD NAME="orderid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id приказа, на основании которого был изменен статус (если статус изменен на основании приказа)" PREVIOUS="opt"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="plugintype" UNIQUE="false" FIELDS="plugintype" NEXT="plugincode"/>
+        <INDEX NAME="plugincode" UNIQUE="false" FIELDS="plugincode" PREVIOUS="plugintype" NEXT="objectid"/>
+        <INDEX NAME="objectid" UNIQUE="false" FIELDS="objectid" PREVIOUS="plugincode" NEXT="statusdate"/>
+        <INDEX NAME="statusdate" UNIQUE="false" FIELDS="statusdate" PREVIOUS="objectid" NEXT="iorderid"/>
+        <INDEX NAME="iorderid" UNIQUE="false" FIELDS="orderid" PREVIOUS="statusdate"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

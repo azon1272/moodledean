@@ -1,0 +1,35 @@
+/** Стили для скрывающегося блока
+ *    @todo разобраться с тем как подключать картинки
+ */
+.hideBtn
+{
+    display:block; /* Дисплей блок - для ссылки - необходимо, для установки фона */
+    background:transparent url('../icons/plus.png') no-repeat left center; /* Картинка «плюс» */
+    font:bold 15px ;
+    cursor:pointer;
+    outline:none; /* Скрываем рамочку, при нажатии */
+    padding: 5px;
+    text-align: center;
+}
+
+.hideBtn.show
+{
+    background-image: url('../icons/minus.png'); /* картинка «минус» - для открытого блока */
+}
+
+.hideCont
+{
+    display:none; /* Скрываем контент */
+}
+
+input[readonly="readonly"], input[readonly="readonly"]:focus {
+    
+    background: #ddd;
+    background-color: #ddd;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

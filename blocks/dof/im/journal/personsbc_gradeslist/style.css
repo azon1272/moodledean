@@ -1,0 +1,28 @@
+.pbcgl_left {
+	text-align: left!important;
+}
+.dof_pbcgl_table_wrapper .generaltable {
+	width: auto!important;
+}
+.dof_pbcgl_table {
+	overflow: auto;
+}
+
+.dof_pbcgl_cell {
+    display: inline-block;
+    position: relative;
+    background: inherit;
+    cursor: help;
+}
+.dof_pbcgl_cell:hover::after {
+    content: attr(data-extended);
+    position: absolute;
+    left: 100%;
+    top: 100%;
+    z-index: 1;
+    background: inherit;
+    font-family: Arial, sans-serif; 
+    font-size: 11px;
+    padding: 5px 10px;
+    border: 1px solid #333;
+}

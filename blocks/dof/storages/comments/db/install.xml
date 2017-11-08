@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20120306" COMMENT="XMLDB file for Moodle blocks/dof/storages/comments"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_comments" COMMENT="Комментарии">
+      <FIELDS> 
+      	<FIELD NAME="id"         TYPE="int"  LENGTH="10"   NOTNULL="true"  UNSIGNED="true"  SEQUENCE="true"                         NEXT="plugintype"                      COMMENT="id комментария"/>
+        <FIELD NAME="plugintype" TYPE="char" LENGTH="255"  NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" PREVIOUS="id"          NEXT="plugincode"                      COMMENT="Тип плагина"/>
+        <FIELD NAME="plugincode" TYPE="char" LENGTH="255"  NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" PREVIOUS="plugintype"  NEXT="code"                            COMMENT="Код плагина"/>
+        <FIELD NAME="code"       TYPE="char" LENGTH="255"  NOTNULL="false" UNSIGNED="true"  SEQUENCE="false" PREVIOUS="plugincode"  NEXT="objectid"                        COMMENT="Сабкод плагина"/>
+        <FIELD NAME="objectid"   TYPE="int"  LENGTH="10"   NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" PREVIOUS="code"        NEXT="date"           DEFAULT="0"      COMMENT="Id объекта"/>
+        <FIELD NAME="date"       TYPE="int"  LENGTH="11"   NOTNULL="true"                   SEQUENCE="false" PREVIOUS="objectid"    NEXT="personid"                        COMMENT="Дата"/>
+        <FIELD NAME="personid"   TYPE="int"  LENGTH="10"   NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" PREVIOUS="date"        NEXT="text"           DEFAULT="0"      COMMENT="Id пользователя"/>
+        <FIELD NAME="text"       TYPE="text"               NOTNULL="true"                   SEQUENCE="false" PREVIOUS="personid"    NEXT="status"                          COMMENT="Текст комментария"/>
+        <FIELD NAME="status"     TYPE="char" LENGTH="255"  NOTNULL="true"                   SEQUENCE="false" PREVIOUS="text"                              DEFAULT="active" COMMENT="Статус комментария"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="id" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="id"          UNIQUE="true"  FIELDS="id"                                 NEXT="plugintype"/>
+        <INDEX NAME="plugintype"  UNIQUE="false" FIELDS="plugintype"  PREVIOUS="id"          NEXT="plugincode"/>
+        <INDEX NAME="plugincode"  UNIQUE="false" FIELDS="plugincode"  PREVIOUS="plugintype"  NEXT="code"/>
+        <INDEX NAME="code"        UNIQUE="false" FIELDS="code"        PREVIOUS="plugincode"  NEXT="objectid"/>
+        <INDEX NAME="objectid"    UNIQUE="false" FIELDS="objectid"    PREVIOUS="code"        NEXT="date"/>
+        <INDEX NAME="date"        UNIQUE="false" FIELDS="date"        PREVIOUS="objectid"    NEXT="personid"/>
+        <INDEX NAME="personid"    UNIQUE="false" FIELDS="personid"    PREVIOUS="date"        NEXT="status"/>
+        <INDEX NAME="status"      UNIQUE="false" FIELDS="status"      PREVIOUS="personid"                 />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

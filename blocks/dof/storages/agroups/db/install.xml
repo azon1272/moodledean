@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20080704" COMMENT="XMLDB file for DOF storages/agroup"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_agroups" COMMENT="Academic groups">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="name"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false" PREVIOUS="id" NEXT="code"/>
+        <FIELD NAME="code" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" PREVIOUS="name" NEXT="programmid"/>
+        <FIELD NAME="programmid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="code" NEXT="departmentid"/>
+        <FIELD NAME="departmentid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="programmid" NEXT="agenum"/>
+        <FIELD NAME="agenum" TYPE="int" LENGTH="2" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="departmentid" NEXT="status"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" PREVIOUS="agenum" NEXT='metacontractid'/>
+        <FIELD NAME="metacontractid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="метаконтракт" PREVIOUS="status" NEXT="salfactor"/>
+      	<FIELD NAME="salfactor" TYPE="float" LENGTH="6" NOTNULL="true" DEFAULT="0" UNSIGNED="true" SEQUENCE="false" DECIMALS="2" COMMENT="поправочный зарплатный коэффициент для академической группы" PREVIOUS="metacontractid"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="icode" UNIQUE="true" FIELDS="code" NEXT="iprogrammid"/>
+        <INDEX NAME="iprogrammid" UNIQUE="false" FIELDS="programmid" PREVIOUS="icode" NEXT="istatus"/>
+        <INDEX NAME="istatus" UNIQUE="false" FIELDS="status" PREVIOUS="iprogrammid" NEXT="iagenum"/>
+        <INDEX NAME="iagenum" UNIQUE="false" FIELDS="agenum" PREVIOUS="istatus" NEXT="idepartmentid" />
+        <INDEX NAME="idepartmentid" UNIQUE="false" FIELDS="departmentid" PREVIOUS="iagenum" NEXT="imetacontractid"/>
+        <INDEX NAME="imetacontractid" UNIQUE="false" FIELDS="departmentid" PREVIOUS="idepartmentid" NEXT="isalfactor"/>
+      	<INDEX NAME="isalfactor" UNIQUE="false" FIELDS="salfactor" PREVIOUS="imetacontractid"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20090615" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_cpgrades" COMMENT="оценки по контрольным точкам">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="cpassedid"/>
+        <FIELD NAME="cpassedid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id подписки на дисциплину" PREVIOUS="id" NEXT="planid"/>
+        <FIELD NAME="planid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id контрольной точки или темы в плане" PREVIOUS="cpassedid" NEXT="grade"/>
+        <FIELD NAME="grade" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="полученная оценка" PREVIOUS="planid" NEXT="date"/>
+        <FIELD NAME="date" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата получения оценки" PREVIOUS="grade" NEXT="notice"/>
+        <FIELD NAME="notice" TYPE="text" LENGTH="small" NOTNULL="false" SEQUENCE="false" COMMENT="комментарий преподавателя к отметке" PREVIOUS="date" NEXT="typesync"/>
+        <FIELD NAME="typesync" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="тип синхронизации" PREVIOUS="notice" NEXT="mdlinstance"/>
+        <FIELD NAME="mdlinstance" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id задания в moodle, с которым выполнялась синхронизация" PREVIOUS="typesync" NEXT="orderid"/>
+        <FIELD NAME="orderid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id приказа, в соответствии с которым была выставлена эта оценка" PREVIOUS="mdlinstance" NEXT="teacherid"/>
+        <FIELD NAME="teacherid" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="id сотрудника по справочнику persons, вручную выставившего отметку" PREVIOUS="orderid" NEXT="status"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="статус" PREVIOUS="teacherid"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="icpassedid" UNIQUE="false" FIELDS="cpassedid" NEXT="iplanid"/>
+        <INDEX NAME="iplanid" UNIQUE="false" FIELDS="planid" PREVIOUS="icpassedid" NEXT="igrade"/>
+        <INDEX NAME="igrade" UNIQUE="false" FIELDS="grade" PREVIOUS="iplanid" NEXT="idate"/>
+        <INDEX NAME="idate" UNIQUE="false" FIELDS="date" PREVIOUS="igrade" NEXT="itypesync"/>
+        <INDEX NAME="itypesync" UNIQUE="false" FIELDS="typesync" PREVIOUS="idate" NEXT="imdlinstance"/>
+        <INDEX NAME="imdlinstance" UNIQUE="false" FIELDS="mdlinstance" PREVIOUS="itypesync" NEXT="iorderid"/>
+        <INDEX NAME="iorderid" UNIQUE="false" FIELDS="orderid" PREVIOUS="imdlinstance" NEXT="iteacherid"/>
+        <INDEX NAME="iteacherid" UNIQUE="false" FIELDS="teacherid" PREVIOUS="iorderid" NEXT="istatus"/>
+        <INDEX NAME="istatus" UNIQUE="false" FIELDS="status" PREVIOUS="iteacherid"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

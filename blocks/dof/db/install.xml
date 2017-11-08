@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/dof/db" VERSION="20121010" COMMENT="XMLDB file for Moodle blocks/deansoffice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_plugins" COMMENT="список установленных плагинов" NEXT="block_dof_todo">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="type"/>
+        <FIELD NAME="type" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="тип плагина" PREVIOUS="id" NEXT="code"/>
+        <FIELD NAME="code" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="название плагина" PREVIOUS="type" NEXT="version"/>
+        <FIELD NAME="version" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="версия установленного плагина" PREVIOUS="code" NEXT="cron"/>
+        <FIELD NAME="cron" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="как часто надо запускать крон плагина" PREVIOUS="version" NEXT="lastcron"/>
+        <FIELD NAME="lastcron" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" COMMENT="дата последнего запуска крона этого плагина" PREVIOUS="cron"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="plugin" UNIQUE="false" FIELDS="type, code" NEXT="lastcron"/>
+        <INDEX NAME="lastcron" UNIQUE="false" FIELDS="lastcron" PREVIOUS="plugin" NEXT="cron"/>
+        <INDEX NAME="cron" UNIQUE="false" FIELDS="cron" PREVIOUS="lastcron"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="block_dof_todo" COMMENT="разовые запланированные события" PREVIOUS="block_dof_plugins" NEXT="block_dof_events">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="plugintype"/>
+        <FIELD NAME="plugintype" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="тип плагина" PREVIOUS="id" NEXT="plugincode"/>
+        <FIELD NAME="plugincode" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false" PREVIOUS="plugintype" NEXT="todocode"/>
+        <FIELD NAME="todocode" TYPE="char" LENGTH="50" NOTNULL="true" SEQUENCE="false" COMMENT="код задания" PREVIOUS="plugincode" NEXT="intvar"/>
+        <FIELD NAME="intvar" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="false" SEQUENCE="false" COMMENT="целочисленный параметр" PREVIOUS="todocode" NEXT="mixedvar"/>
+        <FIELD NAME="mixedvar" TYPE="text" LENGTH="small" NOTNULL="false" SEQUENCE="false" COMMENT="набор параметров произвольного типа" PREVIOUS="intvar" NEXT="loan"/>
+        <FIELD NAME="loan" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="mixedvar" NEXT="tododate"/>
+        <FIELD NAME="tododate" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="loan" NEXT="exdate"/>
+        <FIELD NAME="exdate" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="tododate" NEXT="personid"/>
+        <FIELD NAME="personid" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" DEFAULT="0" SEQUENCE="false" COMMENT="id пользователя заказавшего todo" PREVIOUS="exdate"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="exdate" UNIQUE="false" FIELDS="exdate" NEXT="tododate"/>
+        <INDEX NAME="tododate" UNIQUE="false" FIELDS="tododate" PREVIOUS="exdate" NEXT="loan"/>
+        <INDEX NAME="loan" UNIQUE="false" FIELDS="loan" PREVIOUS="tododate" NEXT="personid"/>
+        <INDEX NAME="personid" UNIQUE="false" FIELDS="personid" PREVIOUS="loan"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="block_dof_events" COMMENT="Хранит источники и приемники событий" PREVIOUS="block_dof_todo">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="plugintype"/>
+        <FIELD NAME="plugintype" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="тип плагина источника события" PREVIOUS="id" NEXT="plugincode"/>
+        <FIELD NAME="plugincode" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="код плагина - источника события" PREVIOUS="plugintype" NEXT="eventcode"/>
+        <FIELD NAME="eventcode" TYPE="char" LENGTH="50" NOTNULL="true" SEQUENCE="false" COMMENT="код события" PREVIOUS="plugincode" NEXT="rplugintype"/>
+        <FIELD NAME="rplugintype" TYPE="char" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="тип плагина - приемника события" PREVIOUS="eventcode" NEXT="rplugincode"/>
+        <FIELD NAME="rplugincode" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="код плагина - приемника события" PREVIOUS="rplugintype"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="ievent" UNIQUE="false" FIELDS="plugintype, plugincode, eventcode"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

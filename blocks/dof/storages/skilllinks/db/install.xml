@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/deansoffice/db" VERSION="20120306" COMMENT="XMLDB file for Moodle blocks/dof/storages/skilllinks"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_dof_s_skilllinks" COMMENT="Связь компетенций с объектами">
+      <FIELDS> 
+      	<FIELD NAME="id"         TYPE="int"   LENGTH="10"                NOTNULL="true"  UNSIGNED="true"  SEQUENCE="true"                                    NEXT="plugintype" COMMENT="ID связи"/>
+        <FIELD NAME="plugintype" TYPE="char"  LENGTH="255"               NOTNULL="true"                   SEQUENCE="false"             PREVIOUS="id"         NEXT="plugincode" COMMENT="Тип плагина"/>
+        <FIELD NAME="plugincode" TYPE="char"  LENGTH="255"               NOTNULL="true"                   SEQUENCE="false"             PREVIOUS="plugintype" NEXT="code"       COMMENT="Код плагина"/>
+        <FIELD NAME="code"       TYPE="char"  LENGTH="255"               NOTNULL="true"                   SEQUENCE="false"             PREVIOUS="plugincode" NEXT="objectid"   COMMENT="Код объекта"/>
+        <FIELD NAME="objectid"   TYPE="int"   LENGTH="10"                NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" DEFAULT="0" PREVIOUS="code"       NEXT="skillid"    COMMENT="ID объекта"/>
+        <FIELD NAME="skillid"    TYPE="int"   LENGTH="10"                NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" DEFAULT="0" PREVIOUS="objectid"   NEXT="grade"      COMMENT="ID компетенции"/>
+        <FIELD NAME="grade"      TYPE="float" LENGTH="10"   DECIMALS="4" NOTNULL="true"  UNSIGNED="true"  SEQUENCE="false" DEFAULT="0" PREVIOUS="skillid"    NEXT="date"       COMMENT="Оценка"/>
+        <FIELD NAME="date"       TYPE="int"   LENGTH="10"                NOTNULL="true"                   SEQUENCE="false" DEFAULT="0" PREVIOUS="grade"                        COMMENT="Дата обновления связи"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="id" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="id"         UNIQUE="true"  FIELDS="id"                               NEXT="plugintype"/>
+        <INDEX NAME="plugintype" UNIQUE="false" FIELDS="plugintype" PREVIOUS="id"         NEXT="plugincode"/>
+        <INDEX NAME="plugincode" UNIQUE="false" FIELDS="plugincode" PREVIOUS="plugintype" NEXT="code"/>
+        <INDEX NAME="code"       UNIQUE="false" FIELDS="code"       PREVIOUS="plugincode" NEXT="objectid"/>
+        <INDEX NAME="objectid"   UNIQUE="false" FIELDS="objectid"   PREVIOUS="code"       NEXT="skillid"/>
+        <INDEX NAME="skillid"    UNIQUE="false" FIELDS="skillid"    PREVIOUS="objectid"   NEXT="grade"/>
+        <INDEX NAME="grade"      UNIQUE="false" FIELDS="grade"      PREVIOUS="skillid"    NEXT="date"/>
+        <INDEX NAME="date"       UNIQUE="false" FIELDS="date"       PREVIOUS="grade"                   />
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>
