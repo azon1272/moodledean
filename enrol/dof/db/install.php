@@ -33,7 +33,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-function xmldb_enrol_dof_install() {
+function xmldb_moodle_dean_install() {
     global $CFG;
 
     // migrate settings during 2.0 upgrade

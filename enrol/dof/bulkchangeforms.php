@@ -43,7 +43,7 @@ require_once("$CFG->dirroot/enrol/bulkchange_forms.php");
  * @copyright 2011 Sam Hemelryk
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class enrol_dof_editselectedusers_form extends enrol_bulk_enrolment_change_form {}
+class moodle_dean_editselectedusers_form extends enrol_bulk_enrolment_change_form {}
 
 /**
  * The form to confirm the intention to bulk delete users enrolments.
@@ -51,4 +51,4 @@ class enrol_dof_editselectedusers_form extends enrol_bulk_enrolment_change_form 
  * @copyright 2011 Sam Hemelryk
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class enrol_dof_deleteselectedusers_form extends enrol_bulk_enrolment_confirm_form {}
+class moodle_dean_deleteselectedusers_form extends enrol_bulk_enrolment_confirm_form {}

@@ -32,7 +32,7 @@ if ( 0 > version_compare(PHP_VERSION, '5') )
 require_once('class.ama_course.php');
 
 /** Класс для работы с ролями курса
- * @todo предусмотреть возможность подписки на курс используя не только плагин enrol_dof
+ * @todo предусмотреть возможность подписки на курс используя не только плагин moodle_dean
  */
 class ama_course_roles
 {
@@ -42,7 +42,7 @@ class ama_course_roles
     protected $roleid = 0;
 
     /** Плагин подписки по умолчанию
-     * @var enrol_plugin|enrol_dof_plugin
+     * @var enrol_plugin|moodle_dean_plugin
      */
     protected $enrol;
 
@@ -51,7 +51,7 @@ class ama_course_roles
      * @param int $courseid - id курса, с которым собираются работать
      * @param int $roleid[optional] - id роли (в таблице mdl_role) которая будет назначена пользователю 
      *                      при записи на курс. 
-     *                      Если роль не указана - то она берется из настроек плагина enrol_dof
+     *                      Если роль не указана - то она берется из настроек плагина moodle_dean
      * @return null
      */
     public function __construct($courseid, $roleid = false, $type = 'student')
@@ -63,7 +63,7 @@ class ama_course_roles
         if ( empty($enrol) )
         {// плагин enrol/dof не установлен - а он обязательно нужен, потому что вся подписка происходит
             // через него
-            throw new dof_exception('dofpluginnotinstalled', 'enrol_dof');
+            throw new dof_exception('dofpluginnotinstalled', 'moodle_dean');
         }
 
         $this->enrol = $enrol;
@@ -132,7 +132,7 @@ class ama_course_roles
             $instanceid = $this->enrol->add_instance($course);
             $instance = $DB->get_record('enrol', array('id' => $instanceid));
         }
-        // Выполняем подписку, используя плагин enrol_dof
+        // Выполняем подписку, используя плагин moodle_dean
         $this->enrol->enrol_user($instance, $userid, $this->roleid, $timestart = 0, $timeend);
         // Функция подписки пользователя не возвращает значений,
         // уведомление об отписке происходит через события Moodle.
@@ -156,7 +156,7 @@ class ama_course_roles
         // получаем название используемого в текущий момент плагина подписки
         $myinstancename = $this->enrol->get_name();
         foreach ( $instances as $instance )
-        {// проверяем, есть ли плагин enrol_dof в списке разрешенных к использованию в курсе
+        {// проверяем, есть ли плагин moodle_dean в списке разрешенных к использованию в курсе
             if ( $instance->enrol == $myinstancename )
             {
                 return $instance;

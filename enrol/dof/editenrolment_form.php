@@ -28,7 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once("$CFG->libdir/formslib.php");
 
-class enrol_dof_user_enrolment_form extends moodleform {
+class moodle_dean_user_enrolment_form extends moodleform {
     function definition() {
         global $CFG, $DB;
 

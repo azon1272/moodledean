@@ -29,24 +29,24 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->libdir.'/formslib.php');
 
-class enrol_dof_edit_form extends moodleform {
+class moodle_dean_edit_form extends moodleform {
 
     function definition() {
         $mform = $this->_form;
 
         list($instance, $plugin, $context) = $this->_customdata;
 
-        $mform->addElement('header', 'header', get_string('pluginname', 'enrol_dof'));
+        $mform->addElement('header', 'header', get_string('pluginname', 'moodle_dean'));
 
         $options = array(ENROL_INSTANCE_ENABLED  => get_string('yes'),
                          ENROL_INSTANCE_DISABLED => get_string('no'));
-        $mform->addElement('select', 'status', get_string('status', 'enrol_dof'), $options);
-        $mform->addHelpButton('status', 'status', 'enrol_dof');
+        $mform->addElement('select', 'status', get_string('status', 'moodle_dean'), $options);
+        $mform->addHelpButton('status', 'status', 'moodle_dean');
         $mform->setDefault('status', $plugin->get_config('status'));
 
-        $mform->addElement('duration', 'enrolperiod', get_string('defaultperiod', 'enrol_dof'), array('optional' => true, 'defaultunit' => 86400));
+        $mform->addElement('duration', 'enrolperiod', get_string('defaultperiod', 'moodle_dean'), array('optional' => true, 'defaultunit' => 86400));
         $mform->setDefault('enrolperiod', $plugin->get_config('enrolperiod'));
-        $mform->addHelpButton('enrolperiod', 'defaultperiod', 'enrol_dof');
+        $mform->addHelpButton('enrolperiod', 'defaultperiod', 'moodle_dean');
 
         if ($instance->id) {
             $roles = get_default_enrol_roles($context, $instance->roleid);
@@ -56,7 +56,7 @@ class enrol_dof_edit_form extends moodleform {
         $mform->addElement('select', 'roleid', get_string('defaultrole', 'role'), $roles);
         $mform->setDefault('roleid', $plugin->get_config('roleid'));
         
-        $mform->addElement('select', 'teacherroleid', get_string('defaultteacherrole', 'enrol_dof'), $roles);
+        $mform->addElement('select', 'teacherroleid', get_string('defaultteacherrole', 'moodle_dean'), $roles);
         $mform->setDefault('teacherroleid', $plugin->get_config('teacherroleid'));
 
         $mform->addElement('hidden', 'courseid');

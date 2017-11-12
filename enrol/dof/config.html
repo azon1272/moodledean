@@ -1,7 +1,7 @@
 <table cellspacing="0" cellpadding="5" border="0" class="boxaligncenter">
 
 <tr valign="top">
-    <td align="right">enrol_dof_studentrole:</td>
+    <td align="right">moodle_dean_studentrole:</td>
     <td>
     <?php 
         $roles = get_all_roles();
@@ -10,11 +10,11 @@
         foreach ($roles as $id=>$role) {
             $rolenames[$id]=$role->name;
         }
-        choose_from_menu($rolenames, 'enrol_dof_studentrole', $frm->enrol_dof_studentrole); 
+        choose_from_menu($rolenames, 'moodle_dean_studentrole', $frm->moodle_dean_studentrole); 
     ?>
     </td>
     <td>
-    <?php  print_string("studentrole", "enrol_dof") ?> [<?php  echo $frm->enrol_dof_studentrole; ?>]
+    <?php  print_string("studentrole", "moodle_dean") ?> [<?php  echo $frm->moodle_dean_studentrole; ?>]
     </td>
 </tr>
 

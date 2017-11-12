@@ -34,8 +34,8 @@
 
 $functions = array(
 
-    'enrol_dof_enrol_users' => array(
-        'classname'   => 'enrol_dof_external',
+    'moodle_dean_enrol_users' => array(
+        'classname'   => 'moodle_dean_external',
         'methodname'  => 'enrol_users',
         'classpath'   => 'enrol/dof/externallib.php',
         'description' => 'DOF enrol users',

@@ -40,7 +40,7 @@ require_once("$CFG->libdir/externallib.php");
 /**
  * DOF enrolment functions
  */
-class enrol_dof_external extends external_api {
+class moodle_dean_external extends external_api {
 
     /**
      * Returns description of method parameters
@@ -85,7 +85,7 @@ class enrol_dof_external extends external_api {
         //retrieve the dof enrolment plugin
         $enrol = enrol_get_plugin('dof');
         if (empty($enrol)) {
-            throw new moodle_exception('dofpluginnotinstalled', 'enrol_dof');
+            throw new moodle_exception('dofpluginnotinstalled', 'moodle_dean');
         }
 
         foreach ($params['enrolments'] as $enrolment) {
@@ -109,7 +109,7 @@ class enrol_dof_external extends external_api {
                 $errorparams->roleid = $enrolment['roleid'];
                 $errorparams->courseid = $enrolment['courseid'];
                 $errorparams->userid = $enrolment['userid'];
-                throw new moodle_exception('wsusercannotassign', 'enrol_dof', '', $errorparams);
+                throw new moodle_exception('wsusercannotassign', 'moodle_dean', '', $errorparams);
             }
 
             //check DOF enrolment plugin instance is enabled/exist
@@ -123,7 +123,7 @@ class enrol_dof_external extends external_api {
             if (empty($instance)) {
               $errorparams = new stdClass();
               $errorparams->courseid = $enrolment['courseid'];
-              throw new moodle_exception('wsnoinstance', 'enrol_dof', $errorparams);
+              throw new moodle_exception('wsnoinstance', 'moodle_dean', $errorparams);
             }
 
             //check that the plugin accept enrolment (it should always the case, it's hard coded in the plugin)
@@ -132,7 +132,7 @@ class enrol_dof_external extends external_api {
                 $errorparams->roleid = $enrolment['roleid'];
                 $errorparams->courseid = $enrolment['courseid'];
                 $errorparams->userid = $enrolment['userid'];
-                throw new moodle_exception('wscannotenrol', 'enrol_dof', '', $errorparams);
+                throw new moodle_exception('wscannotenrol', 'moodle_dean', '', $errorparams);
             }
 
             //finally proceed the enrolment

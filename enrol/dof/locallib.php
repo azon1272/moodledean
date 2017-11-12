@@ -32,7 +32,7 @@ require_once($CFG->dirroot . '/enrol/locallib.php');
 /**
  * Enrol candidates
  */
-class enrol_dof_potential_participant extends user_selector_base {
+class moodle_dean_potential_participant extends user_selector_base {
     protected $enrolid;
 
     public function __construct($name, $options) {
@@ -96,7 +96,7 @@ class enrol_dof_potential_participant extends user_selector_base {
 /**
  * Enroled users
  */
-class enrol_dof_current_participant extends user_selector_base {
+class moodle_dean_current_participant extends user_selector_base {
     protected $courseid;
     protected $enrolid;
 
@@ -162,7 +162,7 @@ class enrol_dof_current_participant extends user_selector_base {
  * @copyright 2011 Sam Hemelryk
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class enrol_dof_editselectedusers_operation extends enrol_bulk_enrolment_operation {
+class moodle_dean_editselectedusers_operation extends enrol_bulk_enrolment_operation {
 
     /**
      * Returns the title to display for this bulk operation.
@@ -170,7 +170,7 @@ class enrol_dof_editselectedusers_operation extends enrol_bulk_enrolment_operati
      * @return string
      */
     public function get_title() {
-        return get_string('editselectedusers', 'enrol_dof');
+        return get_string('editselectedusers', 'moodle_dean');
     }
 
     /**
@@ -289,7 +289,7 @@ class enrol_dof_editselectedusers_operation extends enrol_bulk_enrolment_operati
  * @copyright 2011 Sam Hemelryk
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class enrol_dof_deleteselectedusers_operation extends enrol_bulk_enrolment_operation {
+class moodle_dean_deleteselectedusers_operation extends enrol_bulk_enrolment_operation {
 
     /**
      * Returns the title to display for this bulk operation.
@@ -307,7 +307,7 @@ class enrol_dof_deleteselectedusers_operation extends enrol_bulk_enrolment_opera
      * @return string
      */
     public function get_title() {
-        return get_string('deleteselectedusers', 'enrol_dof');
+        return get_string('deleteselectedusers', 'moodle_dean');
     }
 
     /**
@@ -325,8 +325,8 @@ class enrol_dof_deleteselectedusers_operation extends enrol_bulk_enrolment_opera
             $defaultcustomdata = array();
         }
         $defaultcustomdata['title'] = $this->get_title();
-        $defaultcustomdata['message'] = get_string('confirmbulkdeleteenrolment', 'enrol_dof');
-        $defaultcustomdata['button'] = get_string('unenrolusers', 'enrol_dof');
+        $defaultcustomdata['message'] = get_string('confirmbulkdeleteenrolment', 'moodle_dean');
+        $defaultcustomdata['button'] = get_string('unenrolusers', 'moodle_dean');
         return new enrol_manual_deleteselectedusers_form($defaultaction, $defaultcustomdata);
     }
 

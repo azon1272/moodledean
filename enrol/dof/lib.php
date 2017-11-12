@@ -35,7 +35,7 @@ require_once($CFG->dirroot.'/group/lib.php');
 
 defined('MOODLE_INTERNAL') || die();
 
-class enrol_dof_plugin extends enrol_plugin {
+class moodle_dean_plugin extends enrol_plugin {
 
     public function roles_protected() {
         // users may tweak the roles later
@@ -140,7 +140,7 @@ class enrol_dof_plugin extends enrol_plugin {
 
         if (has_capability('enrol/dof:manage', $context)) {
             $managelink = new moodle_url("/enrol/dof/manage.php", array('enrolid'=>$instance->id));
-            $icons[] = $OUTPUT->action_icon($managelink, new pix_icon('i/users', get_string('enrolusers', 'enrol_dof'), 'core', array('class'=>'iconsmall')));
+            $icons[] = $OUTPUT->action_icon($managelink, new pix_icon('i/users', get_string('enrolusers', 'moodle_dean'), 'core', array('class'=>'iconsmall')));
         }
         if (has_capability('enrol/dof:config', $context)) {
             $editlink = new moodle_url("/enrol/dof/edit.php", array('courseid'=>$instance->courseid));
@@ -260,7 +260,7 @@ class enrol_dof_plugin extends enrol_plugin {
  * @param string $feature
  * @return mixed True if yes (some features may use other values)
  */
-function enrol_dof_supports($feature) {
+function moodle_dean_supports($feature) {
     switch($feature) {
         case ENROL_RESTORE_TYPE: return ENROL_RESTORE_EXACT;
 

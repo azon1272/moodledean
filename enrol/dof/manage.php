@@ -66,23 +66,23 @@ if (!isset($roles[$roleid])) {
     $roleid = 0;
 }
 
-if (!$enrol_dof = enrol_get_plugin('dof')) {
-    throw new coding_exception('Can not instantiate enrol_dof');
+if (!$moodle_dean = enrol_get_plugin('dof')) {
+    throw new coding_exception('Can not instantiate moodle_dean');
 }
 
-$instancename = $enrol_dof->get_instance_name($instance);
+$instancename = $moodle_dean->get_instance_name($instance);
 
 $PAGE->set_url('/enrol/dof/manage.php', array('enrolid'=>$instance->id));
 $PAGE->set_pagelayout('admin');
-$PAGE->set_title($enrol_dof->get_instance_name($instance));
+$PAGE->set_title($moodle_dean->get_instance_name($instance));
 $PAGE->set_heading($course->fullname);
 navigation_node::override_active_url(new moodle_url('/enrol/users.php', array('id'=>$course->id)));
 
 // Create the user selector objects.
 $options = array('enrolid' => $enrolid);
 
-$potentialuserselector = new enrol_dof_potential_participant('addselect', $options);
-$currentuserselector = new enrol_dof_current_participant('removeselect', $options);
+$potentialuserselector = new moodle_dean_potential_participant('addselect', $options);
+$currentuserselector = new moodle_dean_current_participant('removeselect', $options);
 
 // Build the list of options for the enrolment period dropdown.
 $unlimitedperiod = get_string('unlimited');
@@ -130,7 +130,7 @@ if (optional_param('add', false, PARAM_BOOL) && confirm_sesskey()) {
             } else {
                 $timeend = $timestart + $extendperiod;
             }
-            $enrol_dof->enrol_user($instance, $adduser->id, $roleid, $timestart, $timeend);
+            $moodle_dean->enrol_user($instance, $adduser->id, $roleid, $timestart, $timeend);
             add_to_log($course->id, 'course', 'enrol', '../enrol/users.php?id='.$course->id, $course->id); //there should be userid somewhere!
         }
 
@@ -146,7 +146,7 @@ if (optional_param('remove', false, PARAM_BOOL) && confirm_sesskey()) {
     $userstounassign = $currentuserselector->get_selected_users();
     if (!empty($userstounassign)) {
         foreach($userstounassign as $removeuser) {
-            $enrol_dof->unenrol_user($instance, $removeuser->id);
+            $moodle_dean->unenrol_user($instance, $removeuser->id);
             add_to_log($course->id, 'course', 'unenrol', '../enrol/users.php?id='.$course->id, $course->id); //there should be userid somewhere!
         }
 
@@ -177,7 +177,7 @@ echo $OUTPUT->heading($instancename);
 
               <div class="enroloptions">
 
-              <p><label for="roleid"><?php print_string('assignrole', 'enrol_dof') ?></label><br />
+              <p><label for="roleid"><?php print_string('assignrole', 'moodle_dean') ?></label><br />
               <?php echo html_writer::select($roles, 'roleid', $roleid, false); ?></p>
 
               <p><label for="extendperiod"><?php print_string('enrolperiod', 'enrol') ?></label><br />

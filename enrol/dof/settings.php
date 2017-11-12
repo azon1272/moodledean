@@ -39,23 +39,23 @@ defined('MOODLE_INTERNAL') || die();
 if ($ADMIN->fulltree) {
 
     //--- general settings -----------------------------------------------------------------------------------
-    $settings->add(new admin_setting_heading('enrol_dof_settings', '', get_string('pluginname_desc', 'enrol_dof')));
+    $settings->add(new admin_setting_heading('moodle_dean_settings', '', get_string('pluginname_desc', 'moodle_dean')));
 
 
     //--- enrol instance defaults ----------------------------------------------------------------------------
-    $settings->add(new admin_setting_heading('enrol_dof_defaults',
+    $settings->add(new admin_setting_heading('moodle_dean_defaults',
         get_string('enrolinstancedefaults', 'admin'), get_string('enrolinstancedefaults_desc', 'admin')));
 
-    $settings->add(new admin_setting_configcheckbox('enrol_dof/defaultenrol',
+    $settings->add(new admin_setting_configcheckbox('moodle_dean/defaultenrol',
         get_string('defaultenrol', 'enrol'), get_string('defaultenrol_desc', 'enrol'), 1));
 
     $options = array(ENROL_INSTANCE_ENABLED  => get_string('yes'),
                      ENROL_INSTANCE_DISABLED => get_string('no'));
-    $settings->add(new admin_setting_configselect('enrol_dof/status',
-        get_string('status', 'enrol_dof'), get_string('status_desc', 'enrol_dof'), ENROL_INSTANCE_ENABLED, $options));
+    $settings->add(new admin_setting_configselect('moodle_dean/status',
+        get_string('status', 'moodle_dean'), get_string('status_desc', 'moodle_dean'), ENROL_INSTANCE_ENABLED, $options));
 
-    $settings->add(new admin_setting_configtext('enrol_dof/enrolperiod',
-        get_string('defaultperiod', 'enrol_dof'), get_string('defaultperiod_desc', 'enrol_dof'), 0, PARAM_INT));
+    $settings->add(new admin_setting_configtext('moodle_dean/enrolperiod',
+        get_string('defaultperiod', 'moodle_dean'), get_string('defaultperiod_desc', 'moodle_dean'), 0, PARAM_INT));
 
     if (!during_initial_install()) 
     {
@@ -69,16 +69,16 @@ if ($ADMIN->fulltree) {
         $options = get_default_enrol_roles($context);
         $student = get_archetype_roles('student');
         $student = reset($student);
-        $settings->add(new admin_setting_configselect('enrol_dof/roleid',
+        $settings->add(new admin_setting_configselect('moodle_dean/roleid',
             get_string('defaultrole', 'role'), '', $student->id, $options));
         $teacher = get_archetype_roles('teacher');
         $teacher = reset($teacher);
-        $settings->add(new admin_setting_configselect('enrol_dof/teacherroleid',
-            get_string('defaultteacherrole', 'enrol_dof'), '', $teacher->id, $options));
+        $settings->add(new admin_setting_configselect('moodle_dean/teacherroleid',
+            get_string('defaultteacherrole', 'moodle_dean'), '', $teacher->id, $options));
         $editing = get_archetype_roles('editingteacher');
         $editing = reset($editing);
-        $settings->add(new admin_setting_configselect('enrol_dof/editingroleid',
-            get_string('defaulteditingrole', 'enrol_dof'), '', $editing->id, $options));
+        $settings->add(new admin_setting_configselect('moodle_dean/editingroleid',
+            get_string('defaulteditingrole', 'moodle_dean'), '', $editing->id, $options));
     }
 }
 

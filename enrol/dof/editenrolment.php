@@ -85,11 +85,11 @@ $PAGE->set_pagelayout('admin');
 navigation_node::override_active_url($usersurl);
 
 list($instance, $plugin) = $manager->get_user_enrolment_components($ue);
-if (!$plugin->allow_manage($instance) || $instance->enrol != 'dof' || !($plugin instanceof enrol_dof_plugin)) {
+if (!$plugin->allow_manage($instance) || $instance->enrol != 'dof' || !($plugin instanceof moodle_dean_plugin)) {
     print_error('erroreditenrolment', 'enrol');
 }
 
-$mform = new enrol_dof_user_enrolment_form($url, array('user'=>$user, 'course'=>$course, 'ue'=>$ue));
+$mform = new moodle_dean_user_enrolment_form($url, array('user'=>$user, 'course'=>$course, 'ue'=>$ue));
 $mform->set_data($PAGE->url->params());
 
 // Check the form hasn't been cancelled
@@ -104,7 +104,7 @@ if ($mform->is_cancelled()) {
 }
 
 $fullname = fullname($user);
-$title = get_string('editenrolment', 'enrol_dof');
+$title = get_string('editenrolment', 'moodle_dean');
 
 $PAGE->set_title($title);
 $PAGE->set_heading($title);

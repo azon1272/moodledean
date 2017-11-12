@@ -69,7 +69,7 @@ if ($instances = $DB->get_records('enrol', array('courseid'=>$course->id, 'enrol
     $instance->courseid = $course->id;
 }
 
-$mform = new enrol_dof_edit_form(NULL, array($instance, $plugin, $context));
+$mform = new moodle_dean_edit_form(NULL, array($instance, $plugin, $context));
 
 if ($mform->is_cancelled()) {
     redirect($return);
@@ -96,10 +96,10 @@ if ($mform->is_cancelled()) {
     redirect($return);
 }
 
-$PAGE->set_title(get_string('pluginname', 'enrol_dof'));
+$PAGE->set_title(get_string('pluginname', 'moodle_dean'));
 $PAGE->set_heading($course->fullname);
 
 echo $OUTPUT->header();
-echo $OUTPUT->heading(get_string('pluginname', 'enrol_dof'));
+echo $OUTPUT->heading(get_string('pluginname', 'moodle_dean'));
 $mform->display();
 echo $OUTPUT->footer();
